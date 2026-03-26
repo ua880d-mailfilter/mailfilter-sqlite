@@ -2,7 +2,7 @@
 
 **A deterministic mail pre-filter with offline rule generation and SQLite-based header analysis.**
 
-![Generated Candidate Example](docs/images/testset-bewertungsblock.png)
+![Generated Candidate Example](docs/images/candidates/testset-bewertungsblock.png)
 
 mailfilter-sqlite is an extended fork of the original **mailfilter** by Andreas Bauer.
 
