@@ -1,0 +1,69 @@
+.TH "Socket" 3 "Sun Sep 4 2022" "Version 0.8.9" "mailfilter" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Socket
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <socket\&.hh>\fP
+.PP
+Inherits \fBConnection\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBSocket\fP (void)"
+.br
+.ti -1c
+.RI "void \fBclear\fP (void)"
+.br
+.ti -1c
+.RI "int \fBc_open\fP (\fBconst\fP char *host, int port, int time_out, int protocol)"
+.br
+.ti -1c
+.RI "int \fBc_close\fP (void) \fBconst\fP"
+.br
+.ti -1c
+.RI "int \fBc_write\fP (\fBconst\fP char *command)"
+.br
+.ti -1c
+.RI "int \fBc_read\fP (bool=false)"
+.br
+.ti -1c
+.RI "\fBconst\fP string * \fBc_reply\fP (void) \fBconst\fP"
+.br
+.in -1c
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "Socket::Socket (void)"
+
+.SH "Member Function Documentation"
+.PP 
+.SS "int Socket::c_close (void) const\fC [virtual]\fP"
+
+.PP
+Implements \fBConnection\fP\&.
+.SS "int Socket::c_open (\fBconst\fP char * host, int port, int time_out, int protocol)\fC [virtual]\fP"
+
+.PP
+Implements \fBConnection\fP\&.
+.SS "int Socket::c_read (bool read_header = \fCfalse\fP)\fC [virtual]\fP"
+
+.PP
+Implements \fBConnection\fP\&.
+.SS "\fBconst\fP string * Socket::c_reply (void) const\fC [virtual]\fP"
+
+.PP
+Implements \fBConnection\fP\&.
+.SS "int Socket::c_write (\fBconst\fP char * command)\fC [virtual]\fP"
+
+.PP
+Implements \fBConnection\fP\&.
+.SS "void Socket::clear (void)"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for mailfilter from the source code\&.

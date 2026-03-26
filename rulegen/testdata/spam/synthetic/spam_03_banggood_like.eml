@@ -1,0 +1,14 @@
+From: "Warehouse Deals" <flash@deals.example-store>
+To: test@example.net
+Subject: Spring Clearance Sale Only 48Hrs - Electric Air Duster $19.99
+Date: Thu, 20 Mar 2025 08:50:44 +0000
+Message-ID: <spam03@deals.example-store>
+Return-path: <bounce@deals.example-store>
+Reply-To: flash@deals.example-store
+List-Unsubscribe: <mailto:leave@deals.example-store>
+Received: from smtp12.mail.fnrz.de (smtp12.mail.fnrz.de [195.4.92.12]) by mx.example.net with ESMTPS id A3;
+X-Mailer: BulkSender
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+
+Synthetic body ignored.

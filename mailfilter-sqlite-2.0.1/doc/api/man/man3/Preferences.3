@@ -1,0 +1,472 @@
+.TH "Preferences" 3 "Sun Sep 4 2022" "Version 0.8.9" "mailfilter" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Preferences
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <preferences\&.hh>\fP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBPreferences\fP ()"
+.br
+.ti -1c
+.RI "void \fBinit\fP (void)"
+.br
+.ti -1c
+.RI "void \fBkill\fP (void)"
+.br
+.ti -1c
+.RI "bool \fBopen\fP (\fBconst\fP char *)"
+.br
+.ti -1c
+.RI "bool \fBload\fP (void)"
+.br
+.ti -1c
+.RI "void \fBadd_deny_rule\fP (\fBconst\fP char *, \fBconst\fP char *, \fBconst\fP char *)"
+.br
+.ti -1c
+.RI "void \fBadd_allow_rule\fP (\fBconst\fP char *, \fBconst\fP char *, \fBconst\fP char *)"
+.br
+.ti -1c
+.RI "void \fBadd_score\fP (\fBconst\fP char *, int, \fBconst\fP char *, \fBconst\fP char *)"
+.br
+.ti -1c
+.RI "int \fBneg_allows\fP (void)"
+.br
+.ti -1c
+.RI "int \fBneg_denies\fP (void)"
+.br
+.ti -1c
+.RI "void \fBset_rc_file\fP (\fBconst\fP char *)"
+.br
+.ti -1c
+.RI "string \fBrc_file\fP (void)"
+.br
+.ti -1c
+.RI "void \fBset_log_file\fP (\fBconst\fP char *)"
+.br
+.ti -1c
+.RI "string \fBlog_file\fP (void)"
+.br
+.ti -1c
+.RI "void \fBset_verbose_level\fP (int)"
+.br
+.ti -1c
+.RI "int \fBverbose_level\fP (void)"
+.br
+.ti -1c
+.RI "void \fBset_headers_file\fP (\fBconst\fP char *)"
+.br
+.ti -1c
+.RI "string \fBheaders_file\fP (void)"
+.br
+.ti -1c
+.RI "void \fBset_default_case\fP (\fBconst\fP char *)"
+.br
+.ti -1c
+.RI "int \fBdefault_case\fP (void)"
+.br
+.ti -1c
+.RI "void \fBset_reg_type\fP (\fBconst\fP char *)"
+.br
+.ti -1c
+.RI "int \fBreg_type\fP (void)"
+.br
+.ti -1c
+.RI "void \fBset_server\fP (\fBconst\fP char *)"
+.br
+.ti -1c
+.RI "void \fBset_usr\fP (\fBconst\fP char *)"
+.br
+.ti -1c
+.RI "void \fBset_passwd\fP (\fBconst\fP char *)"
+.br
+.ti -1c
+.RI "void \fBset_protocol\fP (\fBconst\fP char *)"
+.br
+.ti -1c
+.RI "void \fBset_connection\fP (unsigned int=POSIX_SOCKETS) __attribute__((unused))"
+.br
+.ti -1c
+.RI "void \fBset_port\fP (unsigned int)"
+.br
+.ti -1c
+.RI "unsigned int \fBtime_out\fP (void)"
+.br
+.ti -1c
+.RI "void \fBset_time_out\fP (unsigned int)"
+.br
+.ti -1c
+.RI "bool \fBdelete_duplicates\fP (void)"
+.br
+.ti -1c
+.RI "void \fBset_del_duplicates\fP (\fBconst\fP char *)"
+.br
+.ti -1c
+.RI "int \fBmax_size_allow\fP (void)"
+.br
+.ti -1c
+.RI "void \fBset_max_size_allow\fP (int)"
+.br
+.ti -1c
+.RI "int \fBmax_size_deny\fP (void)"
+.br
+.ti -1c
+.RI "void \fBset_max_size_deny\fP (int)"
+.br
+.ti -1c
+.RI "\fBSize_score\fP \fBmax_size_score\fP (void)"
+.br
+.ti -1c
+.RI "void \fBset_max_size_score\fP (int, int)"
+.br
+.ti -1c
+.RI "int \fBhighscore\fP (void)"
+.br
+.ti -1c
+.RI "void \fBset_highscore\fP (int)"
+.br
+.ti -1c
+.RI "bool \fBnormal\fP (void)"
+.br
+.ti -1c
+.RI "void \fBset_normal\fP (\fBconst\fP char *)"
+.br
+.ti -1c
+.RI "bool \fBtest_mode\fP (void)"
+.br
+.ti -1c
+.RI "void \fBset_test_mode\fP (\fBconst\fP char *)"
+.br
+.ti -1c
+.RI "int \fBmaxlength\fP (void)"
+.br
+.ti -1c
+.RI "void \fBset_maxlength\fP (int)"
+.br
+.ti -1c
+.RI "bool \fBignore_time_stamp\fP ()"
+.br
+.ti -1c
+.RI "void \fBset_ignore_time_stamp\fP (bool=true)"
+.br
+.ti -1c
+.RI "bool \fBreturn_status\fP (void)"
+.br
+.ti -1c
+.RI "void \fBset_return_status\fP (bool)"
+.br
+.ti -1c
+.RI "void \fBset_skip_ssl_verify\fP (bool)"
+.br
+.ti -1c
+.RI "bool \fBskip_ssl_verify\fP (void)"
+.br
+.ti -1c
+.RI "vector< \fBAccount\fP > * \fBaccounts\fP (void)"
+.br
+.ti -1c
+.RI "vector< \fBFilter\fP > * \fBallow_filters\fP (void)"
+.br
+.ti -1c
+.RI "vector< \fBFilter\fP > * \fBdeny_filters\fP (void)"
+.br
+.ti -1c
+.RI "vector< \fBScore\fP > * \fBscore_filters\fP (void)"
+.br
+.in -1c
+.SS "Static Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "static \fBPreferences\fP & \fBInstance\fP ()"
+.br
+.in -1c
+.SS "Protected Attributes"
+
+.in +1c
+.ti -1c
+.RI "ifstream \fBprefs_stream\fP"
+.br
+.ti -1c
+.RI "vector< \fBFilter\fP > \fBallows\fP"
+.br
+.ti -1c
+.RI "vector< \fBFilter\fP > \fBdenies\fP"
+.br
+.ti -1c
+.RI "vector< \fBScore\fP > \fBscores\fP"
+.br
+.ti -1c
+.RI "vector< \fBAccount\fP > \fBaccnts\fP"
+.br
+.ti -1c
+.RI "\fBAccount\fP \fBcur_account\fP"
+.br
+.ti -1c
+.RI "string \fBprefs_file_name\fP"
+.br
+.ti -1c
+.RI "string \fBlog_file_name\fP"
+.br
+.ti -1c
+.RI "string \fBheaders_file_name\fP"
+.br
+.ti -1c
+.RI "int \fBicase\fP"
+.br
+.ti -1c
+.RI "bool \fBnorm\fP"
+.br
+.ti -1c
+.RI "bool \fBtest\fP"
+.br
+.ti -1c
+.RI "bool \fBshow_headers\fP"
+.br
+.ti -1c
+.RI "bool \fBdel_duplicates\fP"
+.br
+.ti -1c
+.RI "bool \fBret_status\fP"
+.br
+.ti -1c
+.RI "bool \fB_ignore_time_stamp\fP"
+.br
+.ti -1c
+.RI "bool \fB_skip_ssl_verify\fP"
+.br
+.ti -1c
+.RI "int \fBhigh_score\fP"
+.br
+.ti -1c
+.RI "unsigned \fBtime_out_val\fP"
+.br
+.ti -1c
+.RI "int \fBmax_size\fP"
+.br
+.ti -1c
+.RI "\fBSize_score\fP \fBsize_score\fP"
+.br
+.ti -1c
+.RI "int \fBmax_size_friends\fP"
+.br
+.ti -1c
+.RI "int \fBmax_line_length\fP"
+.br
+.ti -1c
+.RI "int \fBrreg_type\fP"
+.br
+.ti -1c
+.RI "int \fBverbosity\fP"
+.br
+.ti -1c
+.RI "int \fBconn_type\fP"
+.br
+.ti -1c
+.RI "int \fBnegative_allows\fP"
+.br
+.ti -1c
+.RI "int \fBnegative_denies\fP"
+.br
+.ti -1c
+.RI "int \fBnegative_scores\fP"
+.br
+.ti -1c
+.RI "bool \fBverbosity_changed\fP"
+.br
+.ti -1c
+.RI "bool \fBtest_changed\fP"
+.br
+.in -1c
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "Preferences::Preferences ()"
+
+.SH "Member Function Documentation"
+.PP 
+.SS "vector< \fBAccount\fP > * Preferences::accounts (void)"
+
+.SS "void Preferences::add_allow_rule (\fBconst\fP char * keyword, \fBconst\fP char * operat, \fBconst\fP char * id)"
+
+.SS "void Preferences::add_deny_rule (\fBconst\fP char * keyword, \fBconst\fP char * operat, \fBconst\fP char * id)"
+
+.SS "void Preferences::add_score (\fBconst\fP char * keyword, int given_score, \fBconst\fP char * operat, \fBconst\fP char * id)"
+
+.SS "vector< \fBFilter\fP > * Preferences::allow_filters (void)"
+
+.SS "int Preferences::default_case (void)"
+
+.SS "bool Preferences::delete_duplicates (void)"
+
+.SS "vector< \fBFilter\fP > * Preferences::deny_filters (void)"
+
+.SS "string Preferences::headers_file (void)"
+
+.SS "int Preferences::highscore (void)"
+
+.SS "bool Preferences::ignore_time_stamp ()"
+
+.SS "void Preferences::init (void)"
+
+.SS "\fBPreferences\fP & Preferences::Instance ()\fC [static]\fP"
+
+.SS "void Preferences::kill (void)"
+
+.SS "bool Preferences::load (void)"
+
+.SS "string Preferences::log_file (void)"
+
+.SS "int Preferences::max_size_allow (void)"
+
+.SS "int Preferences::max_size_deny (void)"
+
+.SS "\fBSize_score\fP Preferences::max_size_score (void)"
+
+.SS "int Preferences::maxlength (void)"
+
+.SS "int Preferences::neg_allows (void)"
+
+.SS "int Preferences::neg_denies (void)"
+
+.SS "bool Preferences::normal (void)"
+
+.SS "bool Preferences::open (\fBconst\fP char * name)"
+
+.SS "string Preferences::rc_file (void)"
+
+.SS "int Preferences::reg_type (void)"
+
+.SS "bool Preferences::return_status (void)"
+
+.SS "vector< \fBScore\fP > * Preferences::score_filters (void)"
+
+.SS "void Preferences::set_connection (unsigned int p = \fCPOSIX_SOCKETS\fP)"
+
+.SS "void Preferences::set_default_case (\fBconst\fP char * new_case)"
+
+.SS "void Preferences::set_del_duplicates (\fBconst\fP char * del)"
+
+.SS "void Preferences::set_headers_file (\fBconst\fP char * name)"
+
+.SS "void Preferences::set_highscore (int val)"
+
+.SS "void Preferences::set_ignore_time_stamp (bool new_ts = \fCtrue\fP)"
+
+.SS "void Preferences::set_log_file (\fBconst\fP char * name)"
+
+.SS "void Preferences::set_max_size_allow (int val)"
+
+.SS "void Preferences::set_max_size_deny (int val)"
+
+.SS "void Preferences::set_max_size_score (int score, int size)"
+
+.SS "void Preferences::set_maxlength (int val)"
+
+.SS "void Preferences::set_normal (\fBconst\fP char * par)"
+
+.SS "void Preferences::set_passwd (\fBconst\fP char * pass)"
+
+.SS "void Preferences::set_port (unsigned int p)"
+
+.SS "void Preferences::set_protocol (\fBconst\fP char * prot)"
+
+.SS "void Preferences::set_rc_file (\fBconst\fP char * name)"
+
+.SS "void Preferences::set_reg_type (\fBconst\fP char * new_type)"
+
+.SS "void Preferences::set_return_status (bool st)"
+
+.SS "void Preferences::set_server (\fBconst\fP char * server)"
+
+.SS "void Preferences::set_skip_ssl_verify (bool skip)"
+
+.SS "void Preferences::set_test_mode (\fBconst\fP char * par)"
+
+.SS "void Preferences::set_time_out (unsigned int val)"
+
+.SS "void Preferences::set_usr (\fBconst\fP char * user)"
+
+.SS "void Preferences::set_verbose_level (int level)"
+
+.SS "bool Preferences::skip_ssl_verify (void)"
+
+.SS "bool Preferences::test_mode (void)"
+
+.SS "unsigned int Preferences::time_out (void)"
+
+.SS "int Preferences::verbose_level (void)"
+
+.SH "Member Data Documentation"
+.PP 
+.SS "bool Preferences::_ignore_time_stamp\fC [protected]\fP"
+
+.SS "bool Preferences::_skip_ssl_verify\fC [protected]\fP"
+
+.SS "vector<\fBAccount\fP> Preferences::accnts\fC [protected]\fP"
+
+.SS "vector<\fBFilter\fP> Preferences::allows\fC [protected]\fP"
+
+.SS "int Preferences::conn_type\fC [protected]\fP"
+
+.SS "\fBAccount\fP Preferences::cur_account\fC [protected]\fP"
+
+.SS "bool Preferences::del_duplicates\fC [protected]\fP"
+
+.SS "vector<\fBFilter\fP> Preferences::denies\fC [protected]\fP"
+
+.SS "string Preferences::headers_file_name\fC [protected]\fP"
+
+.SS "int Preferences::high_score\fC [protected]\fP"
+
+.SS "int Preferences::icase\fC [protected]\fP"
+
+.SS "string Preferences::log_file_name\fC [protected]\fP"
+
+.SS "int Preferences::max_line_length\fC [protected]\fP"
+
+.SS "int Preferences::max_size\fC [protected]\fP"
+
+.SS "int Preferences::max_size_friends\fC [protected]\fP"
+
+.SS "int Preferences::negative_allows\fC [protected]\fP"
+
+.SS "int Preferences::negative_denies\fC [protected]\fP"
+
+.SS "int Preferences::negative_scores\fC [protected]\fP"
+
+.SS "bool Preferences::norm\fC [protected]\fP"
+
+.SS "string Preferences::prefs_file_name\fC [protected]\fP"
+
+.SS "ifstream Preferences::prefs_stream\fC [protected]\fP"
+
+.SS "bool Preferences::ret_status\fC [protected]\fP"
+
+.SS "int Preferences::rreg_type\fC [protected]\fP"
+
+.SS "vector<\fBScore\fP> Preferences::scores\fC [protected]\fP"
+
+.SS "bool Preferences::show_headers\fC [protected]\fP"
+
+.SS "\fBSize_score\fP Preferences::size_score\fC [protected]\fP"
+
+.SS "bool Preferences::test\fC [protected]\fP"
+
+.SS "bool Preferences::test_changed\fC [protected]\fP"
+
+.SS "unsigned Preferences::time_out_val\fC [protected]\fP"
+
+.SS "int Preferences::verbosity\fC [protected]\fP"
+
+.SS "bool Preferences::verbosity_changed\fC [protected]\fP"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for mailfilter from the source code\&.

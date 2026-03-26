@@ -1,0 +1,94 @@
+\doxysubsection{Connection Class Reference}
+\label{classConnection}\index{Connection@{Connection}}
+
+
+{\ttfamily \#include $<$connection.\+hh$>$}
+
+Inheritance diagram for Connection\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classConnection}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual \textbf{ $\sim$\+Connection} (void)
+\item 
+virtual int \textbf{ c\+\_\+open} (\textbf{ const} char $\ast$host\+\_\+name, int port, int time\+\_\+out, int protocol)=0
+\item 
+virtual int \textbf{ c\+\_\+close} (void) \textbf{ const} =0
+\item 
+virtual int \textbf{ c\+\_\+read} (bool=false)=0
+\item 
+virtual int \textbf{ c\+\_\+write} (\textbf{ const} char $\ast$msg)=0
+\item 
+virtual \textbf{ const} string $\ast$ \textbf{ c\+\_\+reply} (void) \textbf{ const} =0
+\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Constructor \& Destructor Documentation}
+\mbox{\label{classConnection_a4612766870d8abe5cacadf2cd32d7303}} 
+\index{Connection@{Connection}!````~Connection@{$\sim$Connection}}
+\index{````~Connection@{$\sim$Connection}!Connection@{Connection}}
+\doxyparagraph{$\sim$Connection()}
+{\footnotesize\ttfamily virtual Connection\+::$\sim$\+Connection (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+\doxysubsubsection{Member Function Documentation}
+\mbox{\label{classConnection_a59ec69c9c520e630ff68d26a79e9e233}} 
+\index{Connection@{Connection}!c\_close@{c\_close}}
+\index{c\_close@{c\_close}!Connection@{Connection}}
+\doxyparagraph{c\_close()}
+{\footnotesize\ttfamily virtual int Connection\+::c\+\_\+close (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implemented in \textbf{ Socket} \doxyref{}{p.}{classSocket_a98e3297aaeae72d7ac35f6dff8fcf40e}.
+
+\mbox{\label{classConnection_a72f5c47421cb5e244f13c31af3ec8997}} 
+\index{Connection@{Connection}!c\_open@{c\_open}}
+\index{c\_open@{c\_open}!Connection@{Connection}}
+\doxyparagraph{c\_open()}
+{\footnotesize\ttfamily virtual int Connection\+::c\+\_\+open (\begin{DoxyParamCaption}\item[{\textbf{ const} char $\ast$}]{host\+\_\+name,  }\item[{int}]{port,  }\item[{int}]{time\+\_\+out,  }\item[{int}]{protocol }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implemented in \textbf{ Socket} \doxyref{}{p.}{classSocket_abde2f1d9ce0920abf5db65045a994261}.
+
+\mbox{\label{classConnection_a1afa33b5406c710fde80167c4688a3fa}} 
+\index{Connection@{Connection}!c\_read@{c\_read}}
+\index{c\_read@{c\_read}!Connection@{Connection}}
+\doxyparagraph{c\_read()}
+{\footnotesize\ttfamily virtual int Connection\+::c\+\_\+read (\begin{DoxyParamCaption}\item[{bool}]{ = {\ttfamily false} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implemented in \textbf{ Socket} \doxyref{}{p.}{classSocket_ac5891445e5a71a389dffc5a20396901c}.
+
+\mbox{\label{classConnection_a21d05ebfedbedf2bc8f89c8c6727976b}} 
+\index{Connection@{Connection}!c\_reply@{c\_reply}}
+\index{c\_reply@{c\_reply}!Connection@{Connection}}
+\doxyparagraph{c\_reply()}
+{\footnotesize\ttfamily virtual \textbf{ const} string$\ast$ Connection\+::c\+\_\+reply (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implemented in \textbf{ Socket} \doxyref{}{p.}{classSocket_a9b4098ab8133b851dc9b07494ee8f9b9}.
+
+\mbox{\label{classConnection_a64687373aef3050c7620d726989df0e2}} 
+\index{Connection@{Connection}!c\_write@{c\_write}}
+\index{c\_write@{c\_write}!Connection@{Connection}}
+\doxyparagraph{c\_write()}
+{\footnotesize\ttfamily virtual int Connection\+::c\+\_\+write (\begin{DoxyParamCaption}\item[{\textbf{ const} char $\ast$}]{msg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implemented in \textbf{ Socket} \doxyref{}{p.}{classSocket_a3c60642af7ebb0ee0f3f6642702f6f87}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\textbf{ connection.\+hh}\end{DoxyCompactItemize}

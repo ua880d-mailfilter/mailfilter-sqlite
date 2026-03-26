@@ -1,0 +1,14 @@
+From: "Warehouse Deals" <flash@deals.example-store>
+To: test@example.net
+Subject: Bottom Price Smart Watch Offer $15.99
+Date: Thu, 20 Mar 2025 12:03:00 +0000
+Message-ID: <beta6@deals.example-store>
+Return-path: <bounce@deals.example-store>
+Reply-To: flash@deals.example-store
+List-Unsubscribe: <mailto:leave@deals.example-store>
+Received: from mx-relay167-hz1.antispameurope.com (mx-relay167-hz1.antispameurope.com [217.13.76.26]) by mx.example.net with ESMTPS id BE6;
+X-Mailer: PromoEngine
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+
+Synthetic body ignored.

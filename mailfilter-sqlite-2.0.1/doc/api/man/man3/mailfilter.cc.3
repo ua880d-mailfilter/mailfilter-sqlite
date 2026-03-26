@@ -1,0 +1,119 @@
+.TH "mailfilter.cc" 3 "Sun Sep 4 2022" "Version 0.8.9" "mailfilter" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+mailfilter.cc
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <iostream>\fP
+.br
+\fC#include <sstream>\fP
+.br
+\fC#include <string>\fP
+.br
+\fC#include <cstring>\fP
+.br
+\fC#include <cstdlib>\fP
+.br
+\fC#include <cstdio>\fP
+.br
+\fC#include <csignal>\fP
+.br
+\fC#include <stdexcept>\fP
+.br
+\fC#include <vector>\fP
+.br
+\fC#include 'mailfilter\&.hh'\fP
+.br
+\fC#include 'preferences\&.hh'\fP
+.br
+\fC#include 'feedback\&.hh'\fP
+.br
+\fC#include 'weeder\&.hh'\fP
+.br
+\fC#include 'time\&.h'\fP
+.br
+\fC#include 'getopt\&.h'\fP
+.br
+
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBinit_app\fP (void)"
+.br
+.ti -1c
+.RI "bool \fBopen_prefs\fP (string)"
+.br
+.ti -1c
+.RI "void \fBget_opts\fP (int argc, char *argv[])"
+.br
+.ti -1c
+.RI "void \fBoverride_prefs\fP (string)"
+.br
+.ti -1c
+.RI "int \fBcmp_no_case\fP (\fBconst\fP string &, \fBconst\fP string &)"
+.br
+.ti -1c
+.RI "int \fBprecompile_expressions\fP (void)"
+.br
+.ti -1c
+.RI "void \fBconnect_sigint\fP (int)"
+.br
+.ti -1c
+.RI "string \fBint_to_string\fP (int)"
+.br
+.ti -1c
+.RI "int \fBmain\fP (int argc, char *argv[])"
+.br
+.ti -1c
+.RI "string \fBexec_shell\fP (\fBconst\fP char *command)"
+.br
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "struct sigaction \fBsigact\fP"
+.br
+.ti -1c
+.RI "Weeder \fBweeder\fP"
+.br
+.ti -1c
+.RI "int \fBmailbox_status\fP"
+.br
+.in -1c
+.SH "Function Documentation"
+.PP 
+.SS "int cmp_no_case (\fBconst\fP string & s, \fBconst\fP string & s2)"
+
+.SS "void connect_sigint (int signo)"
+
+.SS "string exec_shell (\fBconst\fP char * command)"
+
+.SS "void get_opts (int argc, char * argv[])"
+
+.SS "void init_app (void)"
+
+.SS "string int_to_string (int val)"
+
+.SS "int main (int argc, char * argv[])"
+
+.SS "bool open_prefs (string)"
+
+.SS "void override_prefs (string)"
+
+.SS "int precompile_expressions (void)"
+
+.SH "Variable Documentation"
+.PP 
+.SS "int mailbox_status"
+
+.SS "struct sigaction sigact"
+
+.SS "Weeder weeder"
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for mailfilter from the source code\&.

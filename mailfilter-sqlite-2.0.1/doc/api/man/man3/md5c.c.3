@@ -1,0 +1,198 @@
+.TH "md5c.c" 3 "Sun Sep 4 2022" "Version 0.8.9" "mailfilter" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+md5c.c
+.SH SYNOPSIS
+.br
+.PP
+\fC#include 'md5\&.h'\fP
+.br
+
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBS11\fP   7"
+.br
+.ti -1c
+.RI "#define \fBS12\fP   12"
+.br
+.ti -1c
+.RI "#define \fBS13\fP   17"
+.br
+.ti -1c
+.RI "#define \fBS14\fP   22"
+.br
+.ti -1c
+.RI "#define \fBS21\fP   5"
+.br
+.ti -1c
+.RI "#define \fBS22\fP   9"
+.br
+.ti -1c
+.RI "#define \fBS23\fP   14"
+.br
+.ti -1c
+.RI "#define \fBS24\fP   20"
+.br
+.ti -1c
+.RI "#define \fBS31\fP   4"
+.br
+.ti -1c
+.RI "#define \fBS32\fP   11"
+.br
+.ti -1c
+.RI "#define \fBS33\fP   16"
+.br
+.ti -1c
+.RI "#define \fBS34\fP   23"
+.br
+.ti -1c
+.RI "#define \fBS41\fP   6"
+.br
+.ti -1c
+.RI "#define \fBS42\fP   10"
+.br
+.ti -1c
+.RI "#define \fBS43\fP   15"
+.br
+.ti -1c
+.RI "#define \fBS44\fP   21"
+.br
+.ti -1c
+.RI "#define \fBF\fP(x,  y,  z)   (((x) & (y)) | ((~x) & (z)))"
+.br
+.ti -1c
+.RI "#define \fBG\fP(x,  y,  z)   (((x) & (z)) | ((y) & (~z)))"
+.br
+.ti -1c
+.RI "#define \fBH\fP(x,  y,  z)   ((x) ^ (y) ^ (z))"
+.br
+.ti -1c
+.RI "#define \fBI\fP(x,  y,  z)   ((y) ^ ((x) | (~z)))"
+.br
+.ti -1c
+.RI "#define \fBROTATE_LEFT\fP(x,  n)   (((x) << (n)) | ((x) >> (32\-(n))))"
+.br
+.ti -1c
+.RI "#define \fBFF\fP(a,  b,  c,  d,  x,  s,  ac)"
+.br
+.ti -1c
+.RI "#define \fBGG\fP(a,  b,  c,  d,  x,  s,  ac)"
+.br
+.ti -1c
+.RI "#define \fBHH\fP(a,  b,  c,  d,  x,  s,  ac)"
+.br
+.ti -1c
+.RI "#define \fBII\fP(a,  b,  c,  d,  x,  s,  ac)"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBMD5Init\fP (\fBMD5_CTX\fP *context)"
+.br
+.ti -1c
+.RI "void \fBMD5Update\fP (\fBMD5_CTX\fP *context, unsigned char *input, unsigned int inputLen)"
+.br
+.ti -1c
+.RI "void \fBMD5Final\fP (digest, \fBMD5_CTX\fP *context)"
+.br
+.in -1c
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#define F(x, y, z)   (((x) & (y)) | ((~x) & (z)))"
+
+.SS "#define FF(a, b, c, d, x, s, ac)"
+\fBValue:\fP
+.PP
+.nf
+ { \
+ (a) += F ((b), (c), (d)) + (x) + (uint32_t)(ac); \
+ (a) = ROTATE_LEFT ((a), (s)); \
+ (a) += (b); \
+  }
+.fi
+.SS "#define G(x, y, z)   (((x) & (z)) | ((y) & (~z)))"
+
+.SS "#define GG(a, b, c, d, x, s, ac)"
+\fBValue:\fP
+.PP
+.nf
+ { \
+ (a) += G ((b), (c), (d)) + (x) + (uint32_t)(ac); \
+ (a) = ROTATE_LEFT ((a), (s)); \
+ (a) += (b); \
+  }
+.fi
+.SS "#define H(x, y, z)   ((x) ^ (y) ^ (z))"
+
+.SS "#define HH(a, b, c, d, x, s, ac)"
+\fBValue:\fP
+.PP
+.nf
+ { \
+ (a) += H ((b), (c), (d)) + (x) + (uint32_t)(ac); \
+ (a) = ROTATE_LEFT ((a), (s)); \
+ (a) += (b); \
+  }
+.fi
+.SS "#define I(x, y, z)   ((y) ^ ((x) | (~z)))"
+
+.SS "#define II(a, b, c, d, x, s, ac)"
+\fBValue:\fP
+.PP
+.nf
+ { \
+ (a) += I ((b), (c), (d)) + (x) + (uint32_t)(ac); \
+ (a) = ROTATE_LEFT ((a), (s)); \
+ (a) += (b); \
+  }
+.fi
+.SS "#define ROTATE_LEFT(x, n)   (((x) << (n)) | ((x) >> (32\-(n))))"
+
+.SS "#define S11   7"
+
+.SS "#define S12   12"
+
+.SS "#define S13   17"
+
+.SS "#define S14   22"
+
+.SS "#define S21   5"
+
+.SS "#define S22   9"
+
+.SS "#define S23   14"
+
+.SS "#define S24   20"
+
+.SS "#define S31   4"
+
+.SS "#define S32   11"
+
+.SS "#define S33   16"
+
+.SS "#define S34   23"
+
+.SS "#define S41   6"
+
+.SS "#define S42   10"
+
+.SS "#define S43   15"
+
+.SS "#define S44   21"
+
+.SH "Function Documentation"
+.PP 
+.SS "void MD5Final (digest, \fBMD5_CTX\fP * context)"
+
+.SS "void MD5Init (\fBMD5_CTX\fP * context)"
+
+.SS "void MD5Update (\fBMD5_CTX\fP * context, unsigned char * input, unsigned int inputLen)"
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for mailfilter from the source code\&.

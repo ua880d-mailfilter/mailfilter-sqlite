@@ -1,0 +1,45 @@
+\doxysubsection{pop3.\+hh File Reference}
+\label{pop3_8hh}\index{pop3.hh@{pop3.hh}}
+{\ttfamily \#include \char`\"{}header.\+hh\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}protocol.\+hh\char`\"{}}\newline
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \textbf{ POP3}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \textbf{ REPLY\+\_\+\+OK}
+\item 
+\#define \textbf{ HEADER\+\_\+\+OK}
+\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Macro Definition Documentation}
+\mbox{\label{pop3_8hh_a8e89edde6ff4d0abaca2a4012884b49f}} 
+\index{pop3.hh@{pop3.hh}!HEADER\_OK@{HEADER\_OK}}
+\index{HEADER\_OK@{HEADER\_OK}!pop3.hh@{pop3.hh}}
+\doxyparagraph{HEADER\_OK}
+{\footnotesize\ttfamily \#define HEADER\+\_\+\+OK}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{        ((conn-\/>c\_read (\textcolor{keyword}{true}) > 0 \&\& conn-\/>c\_reply ())? \(\backslash\)}
+\DoxyCodeLine{        (((conn-\/>c\_reply ()-\/>c\_str ())[0] == \textcolor{charliteral}{'+'}) ? true : \textcolor{keyword}{false}) \(\backslash\)}
+\DoxyCodeLine{                                                         : \textcolor{keyword}{false})}
+
+\end{DoxyCode}
+\mbox{\label{pop3_8hh_ada8f909957a3c59c73e8de4d28cd623e}} 
+\index{pop3.hh@{pop3.hh}!REPLY\_OK@{REPLY\_OK}}
+\index{REPLY\_OK@{REPLY\_OK}!pop3.hh@{pop3.hh}}
+\doxyparagraph{REPLY\_OK}
+{\footnotesize\ttfamily \#define REPLY\+\_\+\+OK}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{        ((conn-\/>c\_read () > 0 \&\& conn-\/>c\_reply ()) ?     \(\backslash\)}
+\DoxyCodeLine{        (((conn-\/>c\_reply ()-\/>c\_str ())[0] == \textcolor{charliteral}{'+'}) ? true : \textcolor{keyword}{false}) \(\backslash\)}
+\DoxyCodeLine{                                                         : \textcolor{keyword}{false})}
+
+\end{DoxyCode}

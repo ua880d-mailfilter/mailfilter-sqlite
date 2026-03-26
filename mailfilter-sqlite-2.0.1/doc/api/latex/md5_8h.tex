@@ -1,0 +1,61 @@
+\doxysubsection{md5.\+h File Reference}
+\label{md5_8h}\index{md5.h@{md5.h}}
+{\ttfamily \#include $<$sys/types.\+h$>$}\newline
+{\ttfamily \#include $<$inttypes.\+h$>$}\newline
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \textbf{ MD5\+\_\+\+CTX}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef unsigned char $\ast$ \textbf{ POINTER}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \textbf{ MD5\+Init} (\textbf{ MD5\+\_\+\+CTX} $\ast$)
+\item 
+void \textbf{ MD5\+Update} (\textbf{ MD5\+\_\+\+CTX} $\ast$, unsigned char $\ast$, unsigned int)
+\item 
+void \textbf{ MD5\+Final} (unsigned char[16], \textbf{ MD5\+\_\+\+CTX} $\ast$)
+\item 
+void \textbf{ gethash} (char[33], char $\ast$, char $\ast$)
+\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Typedef Documentation}
+\mbox{\label{md5_8h_a73204e40637f83518fb695362ea084a4}} 
+\index{md5.h@{md5.h}!POINTER@{POINTER}}
+\index{POINTER@{POINTER}!md5.h@{md5.h}}
+\doxyparagraph{POINTER}
+{\footnotesize\ttfamily typedef unsigned char$\ast$ \textbf{ POINTER}}
+
+
+
+\doxysubsubsection{Function Documentation}
+\mbox{\label{md5_8h_a7d2e74be253746111f6c5fe55aecb677}} 
+\index{md5.h@{md5.h}!gethash@{gethash}}
+\index{gethash@{gethash}!md5.h@{md5.h}}
+\doxyparagraph{gethash()}
+{\footnotesize\ttfamily void gethash (\begin{DoxyParamCaption}\item[{char}]{[33],  }\item[{char $\ast$}]{,  }\item[{char $\ast$}]{ }\end{DoxyParamCaption})}
+
+\mbox{\label{md5_8h_a4d0e4f16069f15e42f92028772aa7dc9}} 
+\index{md5.h@{md5.h}!MD5Final@{MD5Final}}
+\index{MD5Final@{MD5Final}!md5.h@{md5.h}}
+\doxyparagraph{MD5Final()}
+{\footnotesize\ttfamily void MD5\+Final (\begin{DoxyParamCaption}\item[{unsigned char}]{[16],  }\item[{\textbf{ MD5\+\_\+\+CTX} $\ast$}]{ }\end{DoxyParamCaption})}
+
+\mbox{\label{md5_8h_a43e334cd23b7e92d1ee2f8b26071b1f0}} 
+\index{md5.h@{md5.h}!MD5Init@{MD5Init}}
+\index{MD5Init@{MD5Init}!md5.h@{md5.h}}
+\doxyparagraph{MD5Init()}
+{\footnotesize\ttfamily void MD5\+Init (\begin{DoxyParamCaption}\item[{\textbf{ MD5\+\_\+\+CTX} $\ast$}]{context }\end{DoxyParamCaption})}
+
+\mbox{\label{md5_8h_a94a6d6c9c4c21729d906f81d7f431313}} 
+\index{md5.h@{md5.h}!MD5Update@{MD5Update}}
+\index{MD5Update@{MD5Update}!md5.h@{md5.h}}
+\doxyparagraph{MD5Update()}
+{\footnotesize\ttfamily void MD5\+Update (\begin{DoxyParamCaption}\item[{\textbf{ MD5\+\_\+\+CTX} $\ast$}]{context,  }\item[{unsigned char $\ast$}]{input,  }\item[{unsigned int}]{input\+Len }\end{DoxyParamCaption})}
+

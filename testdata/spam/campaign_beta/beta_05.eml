@@ -1,0 +1,14 @@
+From: "Warehouse Deals" <flash@deals.example-store>
+To: test@example.net
+Subject: Weekend Mail Exclusive - Smart Watch from $16.49
+Date: Thu, 20 Mar 2025 08:18:00 +0000
+Message-ID: <beta5@deals.example-store>
+Return-path: <bounce@deals.example-store>
+Reply-To: flash@deals.example-store
+List-Unsubscribe: <mailto:leave@deals.example-store>
+Received: from mx-relay31-hz1-if1.hornetsecurity.com (mx-relay31-hz1-if1.hornetsecurity.com [217.13.76.25]) by mx.example.net with ESMTPS id BE5;
+X-Mailer: PromoEngine
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+
+Synthetic body ignored.

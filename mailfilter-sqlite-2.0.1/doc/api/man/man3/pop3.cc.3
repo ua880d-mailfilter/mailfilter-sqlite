@@ -1,0 +1,80 @@
+.TH "pop3.cc" 3 "Sun Sep 4 2022" "Version 0.8.9" "mailfilter" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+pop3.cc
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <cstdio>\fP
+.br
+\fC#include <cstdlib>\fP
+.br
+\fC#include <sstream>\fP
+.br
+\fC#include <string>\fP
+.br
+\fC#include 'socket\&.hh'\fP
+.br
+\fC#include 'pop3\&.hh'\fP
+.br
+\fC#include 'feedback\&.hh'\fP
+.br
+\fC#include 'preferences\&.hh'\fP
+.br
+\fC#include 'mailfilter\&.hh'\fP
+.br
+\fC#include 'header\&.hh'\fP
+.br
+\fC#include 'weeder\&.hh'\fP
+.br
+\fC#include 'defines\&.hh'\fP
+.br
+\fC#include 'protocol\&.hh'\fP
+.br
+\fC#include 'rfc822parser\&.hh'\fP
+.br
+\fC#include <FlexLexer\&.h>\fP
+.br
+
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fByyFlexLexer\fP   rfcFlexLexer"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "int \fBrfcparse\fP (void *)"
+.br
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "FlexLexer * \fBrfclexer\fP"
+.br
+.ti -1c
+.RI "Weeder \fBweeder\fP"
+.br
+.in -1c
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#define yyFlexLexer   rfcFlexLexer"
+
+.SH "Function Documentation"
+.PP 
+.SS "int rfcparse (void *)"
+
+.SH "Variable Documentation"
+.PP 
+.SS "FlexLexer* rfclexer"
+
+.SS "Weeder weeder\fC [extern]\fP"
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for mailfilter from the source code\&.

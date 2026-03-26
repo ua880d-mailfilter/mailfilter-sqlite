@@ -1,0 +1,164 @@
+\doxysubsection{getopt.\+c File Reference}
+\label{getopt_8c}\index{getopt.c@{getopt.c}}
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}getopt.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$strings.\+h$>$}\newline
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \textbf{ \+\_\+\+NO\+\_\+\+PROTO}
+\item 
+\#define \textbf{ const}
+\item 
+\#define \textbf{ GETOPT\+\_\+\+INTERFACE\+\_\+\+VERSION}~2
+\item 
+\#define \textbf{ \+\_\+}(msgid)~(msgid)
+\item 
+\#define \textbf{ SWAP\+\_\+\+FLAGS}(ch1,  ch2)
+\item 
+\#define \textbf{ NONOPTION\+\_\+P}~(argv[\textbf{ optind}][0] != \textquotesingle{}-\/\textquotesingle{} $\vert$$\vert$ argv[\textbf{ optind}][1] == \textquotesingle{}\textbackslash{}0\textquotesingle{})
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \{ \textbf{ REQUIRE\+\_\+\+ORDER}
+, \textbf{ PERMUTE}
+, \textbf{ RETURN\+\_\+\+IN\+\_\+\+ORDER}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+char $\ast$ \textbf{ getenv} ()
+\item 
+int \textbf{ \+\_\+getopt\+\_\+internal} (int argc, char $\ast$\textbf{ const} $\ast$argv, \textbf{ const} char $\ast$optstring, \textbf{ const} struct \textbf{ option} $\ast$longopts, int $\ast$longind, int long\+\_\+only)
+\item 
+int \textbf{ getopt} (int argc, char $\ast$\textbf{ const} $\ast$argv, \textbf{ const} char $\ast$optstring)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+char $\ast$ \textbf{ optarg}
+\item 
+int \textbf{ optind} = 1
+\item 
+int \textbf{ \+\_\+\+\_\+getopt\+\_\+initialized}
+\item 
+int \textbf{ opterr} = 1
+\item 
+int \textbf{ optopt} = \textquotesingle{}?\textquotesingle{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Macro Definition Documentation}
+\mbox{\label{getopt_8c_a86a239addea586602343007a370bf8ad}} 
+\index{getopt.c@{getopt.c}!\_@{\_}}
+\index{\_@{\_}!getopt.c@{getopt.c}}
+\doxyparagraph{\_}
+{\footnotesize\ttfamily \#define \+\_\+(\begin{DoxyParamCaption}\item[{}]{msgid }\end{DoxyParamCaption})~(msgid)}
+
+\mbox{\label{getopt_8c_a9bcd7db9771ff03b7e5a9fec9c489861}} 
+\index{getopt.c@{getopt.c}!\_NO\_PROTO@{\_NO\_PROTO}}
+\index{\_NO\_PROTO@{\_NO\_PROTO}!getopt.c@{getopt.c}}
+\doxyparagraph{\_NO\_PROTO}
+{\footnotesize\ttfamily \#define \+\_\+\+NO\+\_\+\+PROTO}
+
+\mbox{\label{getopt_8c_a2c212835823e3c54a8ab6d95c652660e}} 
+\index{getopt.c@{getopt.c}!const@{const}}
+\index{const@{const}!getopt.c@{getopt.c}}
+\doxyparagraph{const}
+{\footnotesize\ttfamily \#define const}
+
+\mbox{\label{getopt_8c_a5325c715897861c318d3ae312ac452cc}} 
+\index{getopt.c@{getopt.c}!GETOPT\_INTERFACE\_VERSION@{GETOPT\_INTERFACE\_VERSION}}
+\index{GETOPT\_INTERFACE\_VERSION@{GETOPT\_INTERFACE\_VERSION}!getopt.c@{getopt.c}}
+\doxyparagraph{GETOPT\_INTERFACE\_VERSION}
+{\footnotesize\ttfamily \#define GETOPT\+\_\+\+INTERFACE\+\_\+\+VERSION~2}
+
+\mbox{\label{getopt_8c_a71ceb8911d64b39b402041ba5ea8453c}} 
+\index{getopt.c@{getopt.c}!NONOPTION\_P@{NONOPTION\_P}}
+\index{NONOPTION\_P@{NONOPTION\_P}!getopt.c@{getopt.c}}
+\doxyparagraph{NONOPTION\_P}
+{\footnotesize\ttfamily \#define NONOPTION\+\_\+P~(argv[\textbf{ optind}][0] != \textquotesingle{}-\/\textquotesingle{} $\vert$$\vert$ argv[\textbf{ optind}][1] == \textquotesingle{}\textbackslash{}0\textquotesingle{})}
+
+\mbox{\label{getopt_8c_a6e06e56c5fa96faaf47f3b231e015e35}} 
+\index{getopt.c@{getopt.c}!SWAP\_FLAGS@{SWAP\_FLAGS}}
+\index{SWAP\_FLAGS@{SWAP\_FLAGS}!getopt.c@{getopt.c}}
+\doxyparagraph{SWAP\_FLAGS}
+{\footnotesize\ttfamily \#define SWAP\+\_\+\+FLAGS(\begin{DoxyParamCaption}\item[{}]{ch1,  }\item[{}]{ch2 }\end{DoxyParamCaption})}
+
+
+
+\doxysubsubsection{Enumeration Type Documentation}
+\mbox{\label{getopt_8c_a06fc87d81c62e9abb8790b6e5713c55b}} 
+\doxyparagraph{anonymous enum}
+{\footnotesize\ttfamily anonymous enum}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{REQUIRE\_ORDER@{REQUIRE\_ORDER}!getopt.c@{getopt.c}}\index{getopt.c@{getopt.c}!REQUIRE\_ORDER@{REQUIRE\_ORDER}}}\mbox{\label{getopt_8c_a06fc87d81c62e9abb8790b6e5713c55ba0e73a0691c110b1442d8364d1d12eccc}} 
+REQUIRE\+\_\+\+ORDER&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PERMUTE@{PERMUTE}!getopt.c@{getopt.c}}\index{getopt.c@{getopt.c}!PERMUTE@{PERMUTE}}}\mbox{\label{getopt_8c_a06fc87d81c62e9abb8790b6e5713c55bacfdde4b47c27f4efbd832e1ac7f8a8fc}} 
+PERMUTE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{RETURN\_IN\_ORDER@{RETURN\_IN\_ORDER}!getopt.c@{getopt.c}}\index{getopt.c@{getopt.c}!RETURN\_IN\_ORDER@{RETURN\_IN\_ORDER}}}\mbox{\label{getopt_8c_a06fc87d81c62e9abb8790b6e5713c55ba3c56550bfafe809d9214b863b69c31c5}} 
+RETURN\+\_\+\+IN\+\_\+\+ORDER&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsubsection{Function Documentation}
+\mbox{\label{getopt_8c_a0df92a0ae8fe1fd43268c738f548674f}} 
+\index{getopt.c@{getopt.c}!\_getopt\_internal@{\_getopt\_internal}}
+\index{\_getopt\_internal@{\_getopt\_internal}!getopt.c@{getopt.c}}
+\doxyparagraph{\_getopt\_internal()}
+{\footnotesize\ttfamily int \+\_\+getopt\+\_\+internal (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$\textbf{ const} $\ast$}]{argv,  }\item[{\textbf{ const} char $\ast$}]{optstring,  }\item[{\textbf{ const} struct \textbf{ option} $\ast$}]{longopts,  }\item[{int $\ast$}]{longind,  }\item[{int}]{long\+\_\+only }\end{DoxyParamCaption})}
+
+\mbox{\label{getopt_8c_aee28fd8a0e40b6d958f7d20348e45368}} 
+\index{getopt.c@{getopt.c}!getenv@{getenv}}
+\index{getenv@{getenv}!getopt.c@{getopt.c}}
+\doxyparagraph{getenv()}
+{\footnotesize\ttfamily char$\ast$ getenv (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\label{getopt_8c_a1b2ada39ab92162c6ec9c67c8093fa2e}} 
+\index{getopt.c@{getopt.c}!getopt@{getopt}}
+\index{getopt@{getopt}!getopt.c@{getopt.c}}
+\doxyparagraph{getopt()}
+{\footnotesize\ttfamily int getopt (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$\textbf{ const} $\ast$}]{argv,  }\item[{\textbf{ const} char $\ast$}]{optstring }\end{DoxyParamCaption})}
+
+
+
+\doxysubsubsection{Variable Documentation}
+\mbox{\label{getopt_8c_a28286be757527aeb1db951b5da9aeec1}} 
+\index{getopt.c@{getopt.c}!\_\_getopt\_initialized@{\_\_getopt\_initialized}}
+\index{\_\_getopt\_initialized@{\_\_getopt\_initialized}!getopt.c@{getopt.c}}
+\doxyparagraph{\_\_getopt\_initialized}
+{\footnotesize\ttfamily int \+\_\+\+\_\+getopt\+\_\+initialized}
+
+\mbox{\label{getopt_8c_adb50a0eab9fed92fc3bfc7dfa4f2c410}} 
+\index{getopt.c@{getopt.c}!optarg@{optarg}}
+\index{optarg@{optarg}!getopt.c@{getopt.c}}
+\doxyparagraph{optarg}
+{\footnotesize\ttfamily char$\ast$ optarg}
+
+\mbox{\label{getopt_8c_ae30f05ee1e2e5652f174a35c7875d25e}} 
+\index{getopt.c@{getopt.c}!opterr@{opterr}}
+\index{opterr@{opterr}!getopt.c@{getopt.c}}
+\doxyparagraph{opterr}
+{\footnotesize\ttfamily int opterr = 1}
+
+\mbox{\label{getopt_8c_ad5e1c16213bbee2d5e8cc363309f418c}} 
+\index{getopt.c@{getopt.c}!optind@{optind}}
+\index{optind@{optind}!getopt.c@{getopt.c}}
+\doxyparagraph{optind}
+{\footnotesize\ttfamily int optind = 1}
+
+\mbox{\label{getopt_8c_a475b8db98445da73e5f62a1ef6324b95}} 
+\index{getopt.c@{getopt.c}!optopt@{optopt}}
+\index{optopt@{optopt}!getopt.c@{getopt.c}}
+\doxyparagraph{optopt}
+{\footnotesize\ttfamily int optopt = \textquotesingle{}?\textquotesingle{}}
+

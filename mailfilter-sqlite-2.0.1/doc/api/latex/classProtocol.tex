@@ -1,0 +1,149 @@
+\doxysubsection{Protocol Class Reference}
+\label{classProtocol}\index{Protocol@{Protocol}}
+
+
+{\ttfamily \#include $<$protocol.\+hh$>$}
+
+Inheritance diagram for Protocol\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classProtocol}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual \textbf{ $\sim$\+Protocol} (void)
+\item 
+virtual bool \textbf{ login} (\textbf{ const} char $\ast$usr, \textbf{ const} char $\ast$pass, \textbf{ const} unsigned int) \textbf{ const} =0
+\item 
+virtual bool \textbf{ logout} (void) \textbf{ const} =0
+\item 
+virtual int \textbf{ remove\+\_\+msg} (\textbf{ const} unsigned int num) \textbf{ const} =0
+\item 
+virtual int \textbf{ status} (void) \textbf{ const} =0
+\item 
+virtual int \textbf{ scan} (void) \textbf{ const} =0
+\item 
+void \textbf{ set\+\_\+connection} (\textbf{ Connection} $\ast$)
+\item 
+void \textbf{ set\+\_\+ident} (unsigned int)
+\item 
+unsigned int \textbf{ ident} (void) \textbf{ const}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ Connection} $\ast$ \textbf{ conn}
+\item 
+unsigned int \textbf{ prot\+\_\+ident}
+\item 
+unsigned int \textbf{ connect\+\_\+type}
+\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Constructor \& Destructor Documentation}
+\mbox{\label{classProtocol_a61154b2c43496d9a97f95dcb7162ab5f}} 
+\index{Protocol@{Protocol}!````~Protocol@{$\sim$Protocol}}
+\index{````~Protocol@{$\sim$Protocol}!Protocol@{Protocol}}
+\doxyparagraph{$\sim$Protocol()}
+{\footnotesize\ttfamily virtual Protocol\+::$\sim$\+Protocol (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+\doxysubsubsection{Member Function Documentation}
+\mbox{\label{classProtocol_aa02d40b64543f6a283acdd9a579eb36c}} 
+\index{Protocol@{Protocol}!ident@{ident}}
+\index{ident@{ident}!Protocol@{Protocol}}
+\doxyparagraph{ident()}
+{\footnotesize\ttfamily unsigned int Protocol\+::ident (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const}
+
+\mbox{\label{classProtocol_add24e2c5ffa8c940dd6a3ba8f295113f}} 
+\index{Protocol@{Protocol}!login@{login}}
+\index{login@{login}!Protocol@{Protocol}}
+\doxyparagraph{login()}
+{\footnotesize\ttfamily virtual bool Protocol\+::login (\begin{DoxyParamCaption}\item[{\textbf{ const} char $\ast$}]{usr,  }\item[{\textbf{ const} char $\ast$}]{pass,  }\item[{\textbf{ const} unsigned int}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implemented in \textbf{ APOP} \doxyref{}{p.}{classAPOP_a081ed9660ccf4cd5ebeb67603307b6d1}, and \textbf{ POP3} \doxyref{}{p.}{classPOP3_a0cc5fd9c460403dd04a45f068b3dff5f}.
+
+\mbox{\label{classProtocol_a488b2fdeb3dec121284b5102b913619e}} 
+\index{Protocol@{Protocol}!logout@{logout}}
+\index{logout@{logout}!Protocol@{Protocol}}
+\doxyparagraph{logout()}
+{\footnotesize\ttfamily virtual bool Protocol\+::logout (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implemented in \textbf{ POP3} \doxyref{}{p.}{classPOP3_a6cb0598ed849dde70723ebfb98475a93}.
+
+\mbox{\label{classProtocol_ad53aee64e3f129eec4aff7017c7dbc6f}} 
+\index{Protocol@{Protocol}!remove\_msg@{remove\_msg}}
+\index{remove\_msg@{remove\_msg}!Protocol@{Protocol}}
+\doxyparagraph{remove\_msg()}
+{\footnotesize\ttfamily virtual int Protocol\+::remove\+\_\+msg (\begin{DoxyParamCaption}\item[{\textbf{ const} unsigned int}]{num }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implemented in \textbf{ POP3} \doxyref{}{p.}{classPOP3_ab9e995f57d7bfa108c5643c41630ba47}.
+
+\mbox{\label{classProtocol_a7dceb148931883c4ce8c1dd643cbcc3f}} 
+\index{Protocol@{Protocol}!scan@{scan}}
+\index{scan@{scan}!Protocol@{Protocol}}
+\doxyparagraph{scan()}
+{\footnotesize\ttfamily virtual int Protocol\+::scan (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implemented in \textbf{ POP3} \doxyref{}{p.}{classPOP3_a2821930c9d442b5b3a3d004c9bdeaeeb}.
+
+\mbox{\label{classProtocol_a85546aa117be70f6a0e26d74394853a3}} 
+\index{Protocol@{Protocol}!set\_connection@{set\_connection}}
+\index{set\_connection@{set\_connection}!Protocol@{Protocol}}
+\doxyparagraph{set\_connection()}
+{\footnotesize\ttfamily void Protocol\+::set\+\_\+connection (\begin{DoxyParamCaption}\item[{\textbf{ Connection} $\ast$}]{currently\+\_\+established\+\_\+connection }\end{DoxyParamCaption})}
+
+\mbox{\label{classProtocol_a264ca0a8901e25808495443c823c399f}} 
+\index{Protocol@{Protocol}!set\_ident@{set\_ident}}
+\index{set\_ident@{set\_ident}!Protocol@{Protocol}}
+\doxyparagraph{set\_ident()}
+{\footnotesize\ttfamily void Protocol\+::set\+\_\+ident (\begin{DoxyParamCaption}\item[{unsigned int}]{i }\end{DoxyParamCaption})}
+
+\mbox{\label{classProtocol_afebeff26211c158d3cfdeb9b456b53c5}} 
+\index{Protocol@{Protocol}!status@{status}}
+\index{status@{status}!Protocol@{Protocol}}
+\doxyparagraph{status()}
+{\footnotesize\ttfamily virtual int Protocol\+::status (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implemented in \textbf{ POP3} \doxyref{}{p.}{classPOP3_aa24d08ca75098430e7031a3cc45f2284}.
+
+
+
+\doxysubsubsection{Member Data Documentation}
+\mbox{\label{classProtocol_af1f453d40b56eef6493a777d18f82706}} 
+\index{Protocol@{Protocol}!conn@{conn}}
+\index{conn@{conn}!Protocol@{Protocol}}
+\doxyparagraph{conn}
+{\footnotesize\ttfamily \textbf{ Connection}$\ast$ Protocol\+::conn\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\label{classProtocol_a2934827bc2c96f11fa0ec84b196fdfd6}} 
+\index{Protocol@{Protocol}!connect\_type@{connect\_type}}
+\index{connect\_type@{connect\_type}!Protocol@{Protocol}}
+\doxyparagraph{connect\_type}
+{\footnotesize\ttfamily unsigned int Protocol\+::connect\+\_\+type\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\label{classProtocol_a40de8aaff8deebdfee2aa4c29e5b716e}} 
+\index{Protocol@{Protocol}!prot\_ident@{prot\_ident}}
+\index{prot\_ident@{prot\_ident}!Protocol@{Protocol}}
+\doxyparagraph{prot\_ident}
+{\footnotesize\ttfamily unsigned int Protocol\+::prot\+\_\+ident\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\textbf{ protocol.\+hh}\item 
+\textbf{ protocol.\+cc}\end{DoxyCompactItemize}

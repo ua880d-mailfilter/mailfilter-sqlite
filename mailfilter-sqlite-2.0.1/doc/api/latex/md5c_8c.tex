@@ -1,0 +1,275 @@
+\doxysubsection{md5c.\+c File Reference}
+\label{md5c_8c}\index{md5c.c@{md5c.c}}
+{\ttfamily \#include \char`\"{}md5.\+h\char`\"{}}\newline
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \textbf{ S11}~7
+\item 
+\#define \textbf{ S12}~12
+\item 
+\#define \textbf{ S13}~17
+\item 
+\#define \textbf{ S14}~22
+\item 
+\#define \textbf{ S21}~5
+\item 
+\#define \textbf{ S22}~9
+\item 
+\#define \textbf{ S23}~14
+\item 
+\#define \textbf{ S24}~20
+\item 
+\#define \textbf{ S31}~4
+\item 
+\#define \textbf{ S32}~11
+\item 
+\#define \textbf{ S33}~16
+\item 
+\#define \textbf{ S34}~23
+\item 
+\#define \textbf{ S41}~6
+\item 
+\#define \textbf{ S42}~10
+\item 
+\#define \textbf{ S43}~15
+\item 
+\#define \textbf{ S44}~21
+\item 
+\#define \textbf{ F}(x,  y,  z)~(((x) \& (y)) $\vert$ (($\sim$x) \& (z)))
+\item 
+\#define \textbf{ G}(x,  y,  z)~(((x) \& (z)) $\vert$ ((y) \& ($\sim$z)))
+\item 
+\#define \textbf{ H}(x,  y,  z)~((x) $^\wedge$ (y) $^\wedge$ (z))
+\item 
+\#define \textbf{ I}(x,  y,  z)~((y) $^\wedge$ ((x) $\vert$ ($\sim$z)))
+\item 
+\#define \textbf{ ROTATE\+\_\+\+LEFT}(x,  n)~(((x) $<$$<$ (n)) $\vert$ ((x) $>$$>$ (32-\/(n))))
+\item 
+\#define \textbf{ FF}(a,  b,  c,  d,  x,  s,  ac)
+\item 
+\#define \textbf{ GG}(a,  b,  c,  d,  x,  s,  ac)
+\item 
+\#define \textbf{ HH}(a,  b,  c,  d,  x,  s,  ac)
+\item 
+\#define \textbf{ II}(a,  b,  c,  d,  x,  s,  ac)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \textbf{ MD5\+Init} (\textbf{ MD5\+\_\+\+CTX} $\ast$context)
+\item 
+void \textbf{ MD5\+Update} (\textbf{ MD5\+\_\+\+CTX} $\ast$context, unsigned char $\ast$input, unsigned int input\+Len)
+\item 
+void \textbf{ MD5\+Final} (digest, \textbf{ MD5\+\_\+\+CTX} $\ast$context)
+\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Macro Definition Documentation}
+\mbox{\label{md5c_8c_a96d73bbd7af15cb1fc38c3f4a3bd82e9}} 
+\index{md5c.c@{md5c.c}!F@{F}}
+\index{F@{F}!md5c.c@{md5c.c}}
+\doxyparagraph{F}
+{\footnotesize\ttfamily \#define F(\begin{DoxyParamCaption}\item[{}]{x,  }\item[{}]{y,  }\item[{}]{z }\end{DoxyParamCaption})~(((x) \& (y)) $\vert$ (($\sim$x) \& (z)))}
+
+\mbox{\label{md5c_8c_a0a143972cb6c4fe16f0ffa8a3d41ebf3}} 
+\index{md5c.c@{md5c.c}!FF@{FF}}
+\index{FF@{FF}!md5c.c@{md5c.c}}
+\doxyparagraph{FF}
+{\footnotesize\ttfamily \#define FF(\begin{DoxyParamCaption}\item[{}]{a,  }\item[{}]{b,  }\item[{}]{c,  }\item[{}]{d,  }\item[{}]{x,  }\item[{}]{s,  }\item[{}]{ac }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{ \{ \(\backslash\)}
+\DoxyCodeLine{ (a) += F ((b), (c), (d)) + (x) + (uint32\_t)(ac); \(\backslash\)}
+\DoxyCodeLine{ (a) = ROTATE\_LEFT ((a), (s)); \(\backslash\)}
+\DoxyCodeLine{ (a) += (b); \(\backslash\)}
+\DoxyCodeLine{  \}}
+
+\end{DoxyCode}
+\mbox{\label{md5c_8c_ad96b7cf3182ce2ba85e5a7a93b12c441}} 
+\index{md5c.c@{md5c.c}!G@{G}}
+\index{G@{G}!md5c.c@{md5c.c}}
+\doxyparagraph{G}
+{\footnotesize\ttfamily \#define G(\begin{DoxyParamCaption}\item[{}]{x,  }\item[{}]{y,  }\item[{}]{z }\end{DoxyParamCaption})~(((x) \& (z)) $\vert$ ((y) \& ($\sim$z)))}
+
+\mbox{\label{md5c_8c_a685f32faa2a66e743850b990a13b8bfa}} 
+\index{md5c.c@{md5c.c}!GG@{GG}}
+\index{GG@{GG}!md5c.c@{md5c.c}}
+\doxyparagraph{GG}
+{\footnotesize\ttfamily \#define GG(\begin{DoxyParamCaption}\item[{}]{a,  }\item[{}]{b,  }\item[{}]{c,  }\item[{}]{d,  }\item[{}]{x,  }\item[{}]{s,  }\item[{}]{ac }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{ \{ \(\backslash\)}
+\DoxyCodeLine{ (a) += G ((b), (c), (d)) + (x) + (uint32\_t)(ac); \(\backslash\)}
+\DoxyCodeLine{ (a) = ROTATE\_LEFT ((a), (s)); \(\backslash\)}
+\DoxyCodeLine{ (a) += (b); \(\backslash\)}
+\DoxyCodeLine{  \}}
+
+\end{DoxyCode}
+\mbox{\label{md5c_8c_ae42219072d798876e6b08e6b78614ff6}} 
+\index{md5c.c@{md5c.c}!H@{H}}
+\index{H@{H}!md5c.c@{md5c.c}}
+\doxyparagraph{H}
+{\footnotesize\ttfamily \#define H(\begin{DoxyParamCaption}\item[{}]{x,  }\item[{}]{y,  }\item[{}]{z }\end{DoxyParamCaption})~((x) $^\wedge$ (y) $^\wedge$ (z))}
+
+\mbox{\label{md5c_8c_a8b9f1c4778df01ef970b87dbe5541dc5}} 
+\index{md5c.c@{md5c.c}!HH@{HH}}
+\index{HH@{HH}!md5c.c@{md5c.c}}
+\doxyparagraph{HH}
+{\footnotesize\ttfamily \#define HH(\begin{DoxyParamCaption}\item[{}]{a,  }\item[{}]{b,  }\item[{}]{c,  }\item[{}]{d,  }\item[{}]{x,  }\item[{}]{s,  }\item[{}]{ac }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{ \{ \(\backslash\)}
+\DoxyCodeLine{ (a) += H ((b), (c), (d)) + (x) + (uint32\_t)(ac); \(\backslash\)}
+\DoxyCodeLine{ (a) = ROTATE\_LEFT ((a), (s)); \(\backslash\)}
+\DoxyCodeLine{ (a) += (b); \(\backslash\)}
+\DoxyCodeLine{  \}}
+
+\end{DoxyCode}
+\mbox{\label{md5c_8c_ac0eafdc9ee161b71e7af98af736952fd}} 
+\index{md5c.c@{md5c.c}!I@{I}}
+\index{I@{I}!md5c.c@{md5c.c}}
+\doxyparagraph{I}
+{\footnotesize\ttfamily \#define I(\begin{DoxyParamCaption}\item[{}]{x,  }\item[{}]{y,  }\item[{}]{z }\end{DoxyParamCaption})~((y) $^\wedge$ ((x) $\vert$ ($\sim$z)))}
+
+\mbox{\label{md5c_8c_ad26626e5efb37b2dadef4e88e35e4329}} 
+\index{md5c.c@{md5c.c}!II@{II}}
+\index{II@{II}!md5c.c@{md5c.c}}
+\doxyparagraph{II}
+{\footnotesize\ttfamily \#define II(\begin{DoxyParamCaption}\item[{}]{a,  }\item[{}]{b,  }\item[{}]{c,  }\item[{}]{d,  }\item[{}]{x,  }\item[{}]{s,  }\item[{}]{ac }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{ \{ \(\backslash\)}
+\DoxyCodeLine{ (a) += I ((b), (c), (d)) + (x) + (uint32\_t)(ac); \(\backslash\)}
+\DoxyCodeLine{ (a) = ROTATE\_LEFT ((a), (s)); \(\backslash\)}
+\DoxyCodeLine{ (a) += (b); \(\backslash\)}
+\DoxyCodeLine{  \}}
+
+\end{DoxyCode}
+\mbox{\label{md5c_8c_a7417fd4e875360c0533fa5b412cdab49}} 
+\index{md5c.c@{md5c.c}!ROTATE\_LEFT@{ROTATE\_LEFT}}
+\index{ROTATE\_LEFT@{ROTATE\_LEFT}!md5c.c@{md5c.c}}
+\doxyparagraph{ROTATE\_LEFT}
+{\footnotesize\ttfamily \#define ROTATE\+\_\+\+LEFT(\begin{DoxyParamCaption}\item[{}]{x,  }\item[{}]{n }\end{DoxyParamCaption})~(((x) $<$$<$ (n)) $\vert$ ((x) $>$$>$ (32-\/(n))))}
+
+\mbox{\label{md5c_8c_a51398c0e5541164ad4d6615880073305}} 
+\index{md5c.c@{md5c.c}!S11@{S11}}
+\index{S11@{S11}!md5c.c@{md5c.c}}
+\doxyparagraph{S11}
+{\footnotesize\ttfamily \#define S11~7}
+
+\mbox{\label{md5c_8c_a1ec499cd0e54ecc28c2ac2afea5b038e}} 
+\index{md5c.c@{md5c.c}!S12@{S12}}
+\index{S12@{S12}!md5c.c@{md5c.c}}
+\doxyparagraph{S12}
+{\footnotesize\ttfamily \#define S12~12}
+
+\mbox{\label{md5c_8c_aaeec90429105fb54d853dd4fc7027a54}} 
+\index{md5c.c@{md5c.c}!S13@{S13}}
+\index{S13@{S13}!md5c.c@{md5c.c}}
+\doxyparagraph{S13}
+{\footnotesize\ttfamily \#define S13~17}
+
+\mbox{\label{md5c_8c_a78342b0ccde2ed12fdf19a113cc266cf}} 
+\index{md5c.c@{md5c.c}!S14@{S14}}
+\index{S14@{S14}!md5c.c@{md5c.c}}
+\doxyparagraph{S14}
+{\footnotesize\ttfamily \#define S14~22}
+
+\mbox{\label{md5c_8c_ab6d5354f647a0e7592a1f051fc8377b2}} 
+\index{md5c.c@{md5c.c}!S21@{S21}}
+\index{S21@{S21}!md5c.c@{md5c.c}}
+\doxyparagraph{S21}
+{\footnotesize\ttfamily \#define S21~5}
+
+\mbox{\label{md5c_8c_addad30455da936bc1879ee9c72b46d59}} 
+\index{md5c.c@{md5c.c}!S22@{S22}}
+\index{S22@{S22}!md5c.c@{md5c.c}}
+\doxyparagraph{S22}
+{\footnotesize\ttfamily \#define S22~9}
+
+\mbox{\label{md5c_8c_a6321a8b29628936f76e9e78cf5bda95f}} 
+\index{md5c.c@{md5c.c}!S23@{S23}}
+\index{S23@{S23}!md5c.c@{md5c.c}}
+\doxyparagraph{S23}
+{\footnotesize\ttfamily \#define S23~14}
+
+\mbox{\label{md5c_8c_a0c09eb77d30a0d5f9154914147b86c20}} 
+\index{md5c.c@{md5c.c}!S24@{S24}}
+\index{S24@{S24}!md5c.c@{md5c.c}}
+\doxyparagraph{S24}
+{\footnotesize\ttfamily \#define S24~20}
+
+\mbox{\label{md5c_8c_aef26590f8a880ee6f4a158168defcd89}} 
+\index{md5c.c@{md5c.c}!S31@{S31}}
+\index{S31@{S31}!md5c.c@{md5c.c}}
+\doxyparagraph{S31}
+{\footnotesize\ttfamily \#define S31~4}
+
+\mbox{\label{md5c_8c_a1d512424dd8a91e0a5bcc98563f33914}} 
+\index{md5c.c@{md5c.c}!S32@{S32}}
+\index{S32@{S32}!md5c.c@{md5c.c}}
+\doxyparagraph{S32}
+{\footnotesize\ttfamily \#define S32~11}
+
+\mbox{\label{md5c_8c_a1c854214533f6220e859b0063196abb3}} 
+\index{md5c.c@{md5c.c}!S33@{S33}}
+\index{S33@{S33}!md5c.c@{md5c.c}}
+\doxyparagraph{S33}
+{\footnotesize\ttfamily \#define S33~16}
+
+\mbox{\label{md5c_8c_af6472be1d535970afee8e5266a74aa07}} 
+\index{md5c.c@{md5c.c}!S34@{S34}}
+\index{S34@{S34}!md5c.c@{md5c.c}}
+\doxyparagraph{S34}
+{\footnotesize\ttfamily \#define S34~23}
+
+\mbox{\label{md5c_8c_ab674ba129e588da55d1d494e1cf3c15e}} 
+\index{md5c.c@{md5c.c}!S41@{S41}}
+\index{S41@{S41}!md5c.c@{md5c.c}}
+\doxyparagraph{S41}
+{\footnotesize\ttfamily \#define S41~6}
+
+\mbox{\label{md5c_8c_a268ef1a49114a94b931cc6b313e3cd1b}} 
+\index{md5c.c@{md5c.c}!S42@{S42}}
+\index{S42@{S42}!md5c.c@{md5c.c}}
+\doxyparagraph{S42}
+{\footnotesize\ttfamily \#define S42~10}
+
+\mbox{\label{md5c_8c_a5aaa7121f39650d472746942ca68f959}} 
+\index{md5c.c@{md5c.c}!S43@{S43}}
+\index{S43@{S43}!md5c.c@{md5c.c}}
+\doxyparagraph{S43}
+{\footnotesize\ttfamily \#define S43~15}
+
+\mbox{\label{md5c_8c_a6a3989af72b55d169bd73a66f8620aae}} 
+\index{md5c.c@{md5c.c}!S44@{S44}}
+\index{S44@{S44}!md5c.c@{md5c.c}}
+\doxyparagraph{S44}
+{\footnotesize\ttfamily \#define S44~21}
+
+
+
+\doxysubsubsection{Function Documentation}
+\mbox{\label{md5c_8c_a6265921688d4d2f4fb2456dfe7a2828a}} 
+\index{md5c.c@{md5c.c}!MD5Final@{MD5Final}}
+\index{MD5Final@{MD5Final}!md5c.c@{md5c.c}}
+\doxyparagraph{MD5Final()}
+{\footnotesize\ttfamily void MD5\+Final (\begin{DoxyParamCaption}\item[{digest}]{,  }\item[{\textbf{ MD5\+\_\+\+CTX} $\ast$}]{context }\end{DoxyParamCaption})}
+
+\mbox{\label{md5c_8c_a08e47999152d737f33fda2b8729c4f7c}} 
+\index{md5c.c@{md5c.c}!MD5Init@{MD5Init}}
+\index{MD5Init@{MD5Init}!md5c.c@{md5c.c}}
+\doxyparagraph{MD5Init()}
+{\footnotesize\ttfamily void MD5\+Init (\begin{DoxyParamCaption}\item[{\textbf{ MD5\+\_\+\+CTX} $\ast$}]{context }\end{DoxyParamCaption})}
+
+\mbox{\label{md5c_8c_aa5b3e14ee3b69e0c7e10d69c9e538b3e}} 
+\index{md5c.c@{md5c.c}!MD5Update@{MD5Update}}
+\index{MD5Update@{MD5Update}!md5c.c@{md5c.c}}
+\doxyparagraph{MD5Update()}
+{\footnotesize\ttfamily void MD5\+Update (\begin{DoxyParamCaption}\item[{\textbf{ MD5\+\_\+\+CTX} $\ast$}]{context,  }\item[{unsigned char $\ast$}]{input,  }\item[{unsigned int}]{input\+Len }\end{DoxyParamCaption})}
+

@@ -1,0 +1,53 @@
+.TH "getopt1.c" 3 "Sun Sep 4 2022" "Version 0.8.9" "mailfilter" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+getopt1.c
+.SH SYNOPSIS
+.br
+.PP
+\fC#include 'getopt\&.h'\fP
+.br
+\fC#include <stdio\&.h>\fP
+.br
+
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBconst\fP"
+.br
+.ti -1c
+.RI "#define \fBGETOPT_INTERFACE_VERSION\fP   2"
+.br
+.ti -1c
+.RI "#define \fBNULL\fP   0"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "int \fBgetopt_long\fP (int argc, char *\fBconst\fP *argv, \fBconst\fP char *options, \fBconst\fP struct \fBoption\fP *long_options, int *opt_index)"
+.br
+.ti -1c
+.RI "int \fBgetopt_long_only\fP (int argc, char *\fBconst\fP *argv, \fBconst\fP char *options, \fBconst\fP struct \fBoption\fP *long_options, int *opt_index)"
+.br
+.in -1c
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#define const"
+
+.SS "#define GETOPT_INTERFACE_VERSION   2"
+
+.SS "#define NULL   0"
+
+.SH "Function Documentation"
+.PP 
+.SS "int getopt_long (int argc, char *\fBconst\fP * argv, \fBconst\fP char * options, \fBconst\fP struct \fBoption\fP * long_options, int * opt_index)"
+
+.SS "int getopt_long_only (int argc, char *\fBconst\fP * argv, \fBconst\fP char * options, \fBconst\fP struct \fBoption\fP * long_options, int * opt_index)"
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for mailfilter from the source code\&.

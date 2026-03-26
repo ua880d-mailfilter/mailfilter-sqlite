@@ -1,0 +1,100 @@
+.TH "Protocol" 3 "Sun Sep 4 2022" "Version 0.8.9" "mailfilter" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Protocol
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <protocol\&.hh>\fP
+.PP
+Inherited by \fBPOP3\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "virtual \fB~Protocol\fP (void)"
+.br
+.ti -1c
+.RI "virtual bool \fBlogin\fP (\fBconst\fP char *usr, \fBconst\fP char *pass, \fBconst\fP unsigned int) \fBconst\fP =0"
+.br
+.ti -1c
+.RI "virtual bool \fBlogout\fP (void) \fBconst\fP =0"
+.br
+.ti -1c
+.RI "virtual int \fBremove_msg\fP (\fBconst\fP unsigned int num) \fBconst\fP =0"
+.br
+.ti -1c
+.RI "virtual int \fBstatus\fP (void) \fBconst\fP =0"
+.br
+.ti -1c
+.RI "virtual int \fBscan\fP (void) \fBconst\fP =0"
+.br
+.ti -1c
+.RI "void \fBset_connection\fP (\fBConnection\fP *)"
+.br
+.ti -1c
+.RI "void \fBset_ident\fP (unsigned int)"
+.br
+.ti -1c
+.RI "unsigned int \fBident\fP (void) \fBconst\fP"
+.br
+.in -1c
+.SS "Protected Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBConnection\fP * \fBconn\fP"
+.br
+.ti -1c
+.RI "unsigned int \fBprot_ident\fP"
+.br
+.ti -1c
+.RI "unsigned int \fBconnect_type\fP"
+.br
+.in -1c
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "virtual Protocol::~Protocol (void)\fC [inline]\fP, \fC [virtual]\fP"
+
+.SH "Member Function Documentation"
+.PP 
+.SS "unsigned int Protocol::ident (void) const"
+
+.SS "virtual bool Protocol::login (\fBconst\fP char * usr, \fBconst\fP char * pass, \fBconst\fP unsigned int) const\fC [pure virtual]\fP"
+
+.PP
+Implemented in \fBAPOP\fP, and \fBPOP3\fP\&.
+.SS "virtual bool Protocol::logout (void) const\fC [pure virtual]\fP"
+
+.PP
+Implemented in \fBPOP3\fP\&.
+.SS "virtual int Protocol::remove_msg (\fBconst\fP unsigned int num) const\fC [pure virtual]\fP"
+
+.PP
+Implemented in \fBPOP3\fP\&.
+.SS "virtual int Protocol::scan (void) const\fC [pure virtual]\fP"
+
+.PP
+Implemented in \fBPOP3\fP\&.
+.SS "void Protocol::set_connection (\fBConnection\fP * currently_established_connection)"
+
+.SS "void Protocol::set_ident (unsigned int i)"
+
+.SS "virtual int Protocol::status (void) const\fC [pure virtual]\fP"
+
+.PP
+Implemented in \fBPOP3\fP\&.
+.SH "Member Data Documentation"
+.PP 
+.SS "\fBConnection\fP* Protocol::conn\fC [protected]\fP"
+
+.SS "unsigned int Protocol::connect_type\fC [protected]\fP"
+
+.SS "unsigned int Protocol::prot_ident\fC [protected]\fP"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for mailfilter from the source code\&.

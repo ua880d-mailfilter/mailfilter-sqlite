@@ -1,0 +1,67 @@
+\doxysubsection{pop3.\+cc File Reference}
+\label{pop3_8cc}\index{pop3.cc@{pop3.cc}}
+{\ttfamily \#include $<$cstdio$>$}\newline
+{\ttfamily \#include $<$cstdlib$>$}\newline
+{\ttfamily \#include $<$sstream$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include \char`\"{}socket.\+hh\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}pop3.\+hh\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}feedback.\+hh\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}preferences.\+hh\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}mailfilter.\+hh\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}header.\+hh\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}weeder.\+hh\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}defines.\+hh\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}protocol.\+hh\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}rfc822parser.\+hh\char`\"{}}\newline
+{\ttfamily \#include $<$Flex\+Lexer.\+h$>$}\newline
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \textbf{ yy\+Flex\+Lexer}~rfc\+Flex\+Lexer
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \textbf{ rfcparse} (void $\ast$)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+Flex\+Lexer $\ast$ \textbf{ rfclexer}
+\item 
+Weeder \textbf{ weeder}
+\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Macro Definition Documentation}
+\mbox{\label{pop3_8cc_af699458ba5331ddec7e15a878f42f8f5}} 
+\index{pop3.cc@{pop3.cc}!yyFlexLexer@{yyFlexLexer}}
+\index{yyFlexLexer@{yyFlexLexer}!pop3.cc@{pop3.cc}}
+\doxyparagraph{yyFlexLexer}
+{\footnotesize\ttfamily \#define yy\+Flex\+Lexer~rfc\+Flex\+Lexer}
+
+
+
+\doxysubsubsection{Function Documentation}
+\mbox{\label{pop3_8cc_a244880e4425841cbc78d84da8c882369}} 
+\index{pop3.cc@{pop3.cc}!rfcparse@{rfcparse}}
+\index{rfcparse@{rfcparse}!pop3.cc@{pop3.cc}}
+\doxyparagraph{rfcparse()}
+{\footnotesize\ttfamily int rfcparse (\begin{DoxyParamCaption}\item[{void $\ast$}]{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsubsection{Variable Documentation}
+\mbox{\label{pop3_8cc_a031d57ace52fefb9c659321b045831b5}} 
+\index{pop3.cc@{pop3.cc}!rfclexer@{rfclexer}}
+\index{rfclexer@{rfclexer}!pop3.cc@{pop3.cc}}
+\doxyparagraph{rfclexer}
+{\footnotesize\ttfamily Flex\+Lexer$\ast$ rfclexer}
+
+\mbox{\label{pop3_8cc_aa366ad0c1ab3b661b0df659697a5e10f}} 
+\index{pop3.cc@{pop3.cc}!weeder@{weeder}}
+\index{weeder@{weeder}!pop3.cc@{pop3.cc}}
+\doxyparagraph{weeder}
+{\footnotesize\ttfamily Weeder weeder\hspace{0.3cm}{\ttfamily [extern]}}
+

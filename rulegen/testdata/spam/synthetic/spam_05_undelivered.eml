@@ -1,0 +1,11 @@
+From: "Mail Delivery System" <mailer-daemon@randomhost.example>
+To: test@example.net
+Subject: Undelivered Mail Returned to Sender
+Date: Mon, 14 May 2021 22:40:25 +0200
+Message-ID: <spam05@randomhost.example>
+Return-path: <mailer-daemon@randomhost.example>
+Received: from relay.badmail.example (relay.badmail.example [198.51.100.21]) by mx.example.net with ESMTPS id A5;
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+
+Synthetic body ignored.

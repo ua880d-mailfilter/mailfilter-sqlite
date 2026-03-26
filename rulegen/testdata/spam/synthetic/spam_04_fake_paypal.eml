@@ -1,0 +1,13 @@
+From: "PayPaI Security" <alert@paypaI-secure-check.example>
+To: test@example.net
+Subject: Your PayPal account is limited - verify now
+Date: Fri, 21 Mar 2025 06:17:55 +0000
+Message-ID: <spam04@paypaI-secure-check.example>
+Return-path: <alert@paypaI-secure-check.example>
+Reply-To: confirm@paypaI-secure-check.example
+Received: from mx3.slc.paypal.com.fakehost.example (mx3.slc.paypal.com.fakehost.example [203.0.113.45]) by mx.example.net with ESMTPS id A4;
+X-Mailer: CustomMailer
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+
+Synthetic body ignored.

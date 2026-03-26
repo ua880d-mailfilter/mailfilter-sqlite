@@ -1,0 +1,12 @@
+From: Rechnung Pollin Electronic GmbH <rechnung@pollin.de>
+To: test@example.net
+Subject: Ihre Rechnung VRG250409773
+Date: Mon, 5 Feb 2024 11:06:20 +0000
+Message-ID: <ham01@pollin.de>
+Return-path: <rechnung@pollin.de>
+Reply-To: service@pollin.de
+Received: from mailin44.aul.t-online.de (mailin44.aul.t-online.de [194.25.134.84]) by mx.example.net with ESMTPS id H1;
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+
+Synthetic body ignored.

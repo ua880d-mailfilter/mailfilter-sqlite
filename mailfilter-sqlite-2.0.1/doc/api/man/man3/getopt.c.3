@@ -1,0 +1,126 @@
+.TH "getopt.c" 3 "Sun Sep 4 2022" "Version 0.8.9" "mailfilter" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+getopt.c
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <stdio\&.h>\fP
+.br
+\fC#include 'getopt\&.h'\fP
+.br
+\fC#include <strings\&.h>\fP
+.br
+
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fB_NO_PROTO\fP"
+.br
+.ti -1c
+.RI "#define \fBconst\fP"
+.br
+.ti -1c
+.RI "#define \fBGETOPT_INTERFACE_VERSION\fP   2"
+.br
+.ti -1c
+.RI "#define \fB_\fP(msgid)   (msgid)"
+.br
+.ti -1c
+.RI "#define \fBSWAP_FLAGS\fP(ch1,  ch2)"
+.br
+.ti -1c
+.RI "#define \fBNONOPTION_P\fP   (argv[\fBoptind\fP][0] != '\-' || argv[\fBoptind\fP][1] == '\\0')"
+.br
+.in -1c
+.SS "Enumerations"
+
+.in +1c
+.ti -1c
+.RI "enum { \fBREQUIRE_ORDER\fP, \fBPERMUTE\fP, \fBRETURN_IN_ORDER\fP }"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "char * \fBgetenv\fP ()"
+.br
+.ti -1c
+.RI "int \fB_getopt_internal\fP (int argc, char *\fBconst\fP *argv, \fBconst\fP char *optstring, \fBconst\fP struct \fBoption\fP *longopts, int *longind, int long_only)"
+.br
+.ti -1c
+.RI "int \fBgetopt\fP (int argc, char *\fBconst\fP *argv, \fBconst\fP char *optstring)"
+.br
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "char * \fBoptarg\fP"
+.br
+.ti -1c
+.RI "int \fBoptind\fP = 1"
+.br
+.ti -1c
+.RI "int \fB__getopt_initialized\fP"
+.br
+.ti -1c
+.RI "int \fBopterr\fP = 1"
+.br
+.ti -1c
+.RI "int \fBoptopt\fP = '?'"
+.br
+.in -1c
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#define _(msgid)   (msgid)"
+
+.SS "#define _NO_PROTO"
+
+.SS "#define const"
+
+.SS "#define GETOPT_INTERFACE_VERSION   2"
+
+.SS "#define NONOPTION_P   (argv[\fBoptind\fP][0] != '\-' || argv[\fBoptind\fP][1] == '\\0')"
+
+.SS "#define SWAP_FLAGS(ch1, ch2)"
+
+.SH "Enumeration Type Documentation"
+.PP 
+.SS "anonymous enum"
+
+.PP
+\fBEnumerator\fP
+.in +1c
+.TP
+\fB\fIREQUIRE_ORDER \fP\fP
+.TP
+\fB\fIPERMUTE \fP\fP
+.TP
+\fB\fIRETURN_IN_ORDER \fP\fP
+.SH "Function Documentation"
+.PP 
+.SS "int _getopt_internal (int argc, char *\fBconst\fP * argv, \fBconst\fP char * optstring, \fBconst\fP struct \fBoption\fP * longopts, int * longind, int long_only)"
+
+.SS "char* getenv ()"
+
+.SS "int getopt (int argc, char *\fBconst\fP * argv, \fBconst\fP char * optstring)"
+
+.SH "Variable Documentation"
+.PP 
+.SS "int __getopt_initialized"
+
+.SS "char* optarg"
+
+.SS "int opterr = 1"
+
+.SS "int optind = 1"
+
+.SS "int optopt = '?'"
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for mailfilter from the source code\&.

@@ -1,0 +1,60 @@
+.TH "md5.h" 3 "Sun Sep 4 2022" "Version 0.8.9" "mailfilter" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+md5.h
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <sys/types\&.h>\fP
+.br
+\fC#include <inttypes\&.h>\fP
+.br
+
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "struct \fBMD5_CTX\fP"
+.br
+.in -1c
+.SS "Typedefs"
+
+.in +1c
+.ti -1c
+.RI "typedef unsigned char * \fBPOINTER\fP"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBMD5Init\fP (\fBMD5_CTX\fP *)"
+.br
+.ti -1c
+.RI "void \fBMD5Update\fP (\fBMD5_CTX\fP *, unsigned char *, unsigned int)"
+.br
+.ti -1c
+.RI "void \fBMD5Final\fP (unsigned char[16], \fBMD5_CTX\fP *)"
+.br
+.ti -1c
+.RI "void \fBgethash\fP (char[33], char *, char *)"
+.br
+.in -1c
+.SH "Typedef Documentation"
+.PP 
+.SS "typedef unsigned char* \fBPOINTER\fP"
+
+.SH "Function Documentation"
+.PP 
+.SS "void gethash (char[33], char *, char *)"
+
+.SS "void MD5Final (unsigned char[16], \fBMD5_CTX\fP *)"
+
+.SS "void MD5Init (\fBMD5_CTX\fP * context)"
+
+.SS "void MD5Update (\fBMD5_CTX\fP * context, unsigned char * input, unsigned int inputLen)"
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for mailfilter from the source code\&.

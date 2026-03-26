@@ -1,0 +1,13 @@
+From: "PayPaI Security" <alert@paypai-secure-check.example>
+To: test@example.net
+Subject: Your PayPal account is limited - verify now
+Date: Fri, 21 Mar 2025 07:02:00 +0000
+Message-ID: <gamma1@paypai-secure-check.example>
+Return-path: <alert@paypai-secure-check.example>
+Reply-To: confirm@paypai-secure-check.example>
+Received: from smtp12.mail.fnrz.de (smtp12.mail.fnrz.de [203.0.113.41]) by mx.example.net with ESMTPS id GA1;
+X-Mailer: CustomMailer
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+
+Synthetic body ignored.

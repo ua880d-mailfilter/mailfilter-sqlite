@@ -1,0 +1,74 @@
+.TH "Filter" 3 "Sun Sep 4 2022" "Version 0.8.9" "mailfilter" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Filter
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <filter\&.hh>\fP
+.PP
+Inherited by \fBScore\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBFilter\fP (void)"
+.br
+.ti -1c
+.RI "\fB~Filter\fP (void)"
+.br
+.ti -1c
+.RI "string \fBexpression\fP (void) \fBconst\fP"
+.br
+.ti -1c
+.RI "void \fBset_expression\fP (\fBconst\fP char *)"
+.br
+.ti -1c
+.RI "int \fBcompile\fP (void)"
+.br
+.ti -1c
+.RI "void \fBset_negativity\fP (bool)"
+.br
+.ti -1c
+.RI "bool \fBis_negative\fP (void) \fBconst\fP"
+.br
+.ti -1c
+.RI "int \fBccase\fP (void) \fBconst\fP"
+.br
+.ti -1c
+.RI "void \fBset_case\fP (int)"
+.br
+.ti -1c
+.RI "\fBconst\fP regex_t * \fBcomp_exp\fP (void) \fBconst\fP"
+.br
+.in -1c
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "Filter::Filter (void)"
+
+.SS "Filter::~Filter (void)"
+
+.SH "Member Function Documentation"
+.PP 
+.SS "int Filter::ccase (void) const"
+
+.SS "\fBconst\fP regex_t * Filter::comp_exp (void) const"
+
+.SS "int Filter::compile (void)"
+
+.SS "string Filter::expression (void) const"
+
+.SS "bool Filter::is_negative (void) const"
+
+.SS "void Filter::set_case (int c)"
+
+.SS "void Filter::set_expression (\fBconst\fP char * exp)"
+
+.SS "void Filter::set_negativity (bool t)"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for mailfilter from the source code\&.

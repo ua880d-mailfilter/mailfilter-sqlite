@@ -1,0 +1,12 @@
+From: Versand Pollin Electronic GmbH <versandinfo@pollin.de>
+To: test@example.net
+Subject: Ihr Paket wurde versendet
+Date: Mon, 25 Aug 2025 14:04:24 +0000
+Message-ID: <ham02@pollin.de>
+Return-path: <versandinfo@pollin.de>
+Reply-To: service@pollin.de
+Received: from mailin44.aul.t-online.de (mailin44.aul.t-online.de [194.25.134.84]) by mx.example.net with ESMTPS id H2;
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+
+Synthetic body ignored.

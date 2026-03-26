@@ -1,0 +1,12 @@
+From: fixyouraudio <orders@fixyouraudio.com>
+To: test@example.net
+Subject: Your invoice for purchases on FixYourAudio.com site
+Date: Thu, 6 Mar 2025 17:32:45 +0000 (UTC)
+Message-ID: <ham04@fixyouraudio.com>
+Return-path: <orders@fixyouraudio.com>
+Reply-To: info@fixyouraudio.com
+Received: from mail01.ipfire.org (mail01.ipfire.org [198.51.100.80]) by mx.example.net with ESMTPS id H4;
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+
+Synthetic body ignored.

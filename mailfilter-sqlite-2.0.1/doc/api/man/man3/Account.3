@@ -1,0 +1,126 @@
+.TH "Account" 3 "Sun Sep 4 2022" "Version 0.8.9" "mailfilter" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Account
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <account\&.hh>\fP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBclear\fP (void)"
+.br
+.ti -1c
+.RI "string \fBserver\fP (void)"
+.br
+.ti -1c
+.RI "void \fBset_server\fP (\fBconst\fP char *)"
+.br
+.ti -1c
+.RI "string \fBusr\fP (void)"
+.br
+.ti -1c
+.RI "void \fBset_usr\fP (\fBconst\fP char *)"
+.br
+.ti -1c
+.RI "string \fBpasswd\fP (void)"
+.br
+.ti -1c
+.RI "void \fBset_passwd\fP (\fBconst\fP char *)"
+.br
+.ti -1c
+.RI "unsigned int \fBport\fP (void)"
+.br
+.ti -1c
+.RI "void \fBset_port\fP (unsigned int)"
+.br
+.ti -1c
+.RI "void \fBset_protocol\fP (unsigned int)"
+.br
+.ti -1c
+.RI "unsigned int \fBprotocol\fP (void)"
+.br
+.ti -1c
+.RI "void \fBset_connection\fP (unsigned int=POSIX_SOCKETS) __attribute__((unused))"
+.br
+.ti -1c
+.RI "int \fBcheck\fP (void)"
+.br
+.in -1c
+.SS "Protected Attributes"
+
+.in +1c
+.ti -1c
+.RI "string \fBserv\fP"
+.br
+.ti -1c
+.RI "string \fBuser\fP"
+.br
+.ti -1c
+.RI "string \fBpass\fP"
+.br
+.ti -1c
+.RI "int \fBthe_port\fP"
+.br
+.ti -1c
+.RI "vector< string > \fBmsg_ids\fP"
+.br
+.ti -1c
+.RI "\fBProtocol\fP * \fBproto\fP"
+.br
+.ti -1c
+.RI "\fBConnection\fP * \fBconn\fP"
+.br
+.in -1c
+.SH "Member Function Documentation"
+.PP 
+.SS "int Account::check (void)"
+
+.SS "void Account::clear (void)"
+
+.SS "string Account::passwd (void)"
+
+.SS "unsigned int Account::port (void)"
+
+.SS "unsigned int Account::protocol (void)"
+
+.SS "string Account::server (void)"
+
+.SS "void Account::set_connection (unsigned int the_connection_type = \fCPOSIX_SOCKETS\fP)"
+
+.SS "void Account::set_passwd (\fBconst\fP char * s)"
+
+.SS "void Account::set_port (unsigned int p)"
+
+.SS "void Account::set_protocol (unsigned int prot)"
+
+.SS "void Account::set_server (\fBconst\fP char * s)"
+
+.SS "void Account::set_usr (\fBconst\fP char * s)"
+
+.SS "string Account::usr (void)"
+
+.SH "Member Data Documentation"
+.PP 
+.SS "\fBConnection\fP* Account::conn\fC [protected]\fP"
+
+.SS "vector<string> Account::msg_ids\fC [protected]\fP"
+
+.SS "string Account::pass\fC [protected]\fP"
+
+.SS "\fBProtocol\fP* Account::proto\fC [protected]\fP"
+
+.SS "string Account::serv\fC [protected]\fP"
+
+.SS "int Account::the_port\fC [protected]\fP"
+
+.SS "string Account::user\fC [protected]\fP"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for mailfilter from the source code\&.

@@ -1,0 +1,64 @@
+.TH "Connection" 3 "Sun Sep 4 2022" "Version 0.8.9" "mailfilter" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Connection
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <connection\&.hh>\fP
+.PP
+Inherited by \fBSocket\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "virtual \fB~Connection\fP (void)"
+.br
+.ti -1c
+.RI "virtual int \fBc_open\fP (\fBconst\fP char *host_name, int port, int time_out, int protocol)=0"
+.br
+.ti -1c
+.RI "virtual int \fBc_close\fP (void) \fBconst\fP =0"
+.br
+.ti -1c
+.RI "virtual int \fBc_read\fP (bool=false)=0"
+.br
+.ti -1c
+.RI "virtual int \fBc_write\fP (\fBconst\fP char *msg)=0"
+.br
+.ti -1c
+.RI "virtual \fBconst\fP string * \fBc_reply\fP (void) \fBconst\fP =0"
+.br
+.in -1c
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "virtual Connection::~Connection (void)\fC [inline]\fP, \fC [virtual]\fP"
+
+.SH "Member Function Documentation"
+.PP 
+.SS "virtual int Connection::c_close (void) const\fC [pure virtual]\fP"
+
+.PP
+Implemented in \fBSocket\fP\&.
+.SS "virtual int Connection::c_open (\fBconst\fP char * host_name, int port, int time_out, int protocol)\fC [pure virtual]\fP"
+
+.PP
+Implemented in \fBSocket\fP\&.
+.SS "virtual int Connection::c_read (bool = \fCfalse\fP)\fC [pure virtual]\fP"
+
+.PP
+Implemented in \fBSocket\fP\&.
+.SS "virtual \fBconst\fP string* Connection::c_reply (void) const\fC [pure virtual]\fP"
+
+.PP
+Implemented in \fBSocket\fP\&.
+.SS "virtual int Connection::c_write (\fBconst\fP char * msg)\fC [pure virtual]\fP"
+
+.PP
+Implemented in \fBSocket\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for mailfilter from the source code\&.

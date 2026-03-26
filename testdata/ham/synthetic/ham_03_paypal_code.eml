@@ -1,0 +1,13 @@
+From: "PayPal" <service@paypal.com>
+To: test@example.net
+Subject: Your PayPal verification code
+Date: Sat, 19 Jul 2025 09:52:04 -0700
+Message-ID: <ham03@paypal.com>
+Return-path: <service@paypal.com>
+Reply-To: service@paypal.com
+Received: from mx0.slc.paypal.com (mx0.slc.paypal.com [66.211.170.67]) by mx.example.net with ESMTPS id H3;
+List-Unsubscribe: <mailto:unsubscribe@paypal.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+
+Synthetic body ignored.

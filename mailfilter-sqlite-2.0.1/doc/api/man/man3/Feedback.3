@@ -1,0 +1,56 @@
+.TH "Feedback" 3 "Sun Sep 4 2022" "Version 0.8.9" "mailfilter" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Feedback
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <feedback\&.hh>\fP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fB~Feedback\fP (void)"
+.br
+.ti -1c
+.RI "bool \fBopen\fP (\fBconst\fP char *)"
+.br
+.ti -1c
+.RI "bool \fBprint_msg\fP (\fBconst\fP string, int)"
+.br
+.ti -1c
+.RI "bool \fBprint_err\fP (\fBconst\fP string, int=1)"
+.br
+.ti -1c
+.RI "bool \fBprint_header\fP (\fBconst\fP string)"
+.br
+.in -1c
+.SS "Static Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "static \fBFeedback\fP * \fBInstance\fP (void)"
+.br
+.in -1c
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "Feedback::~Feedback (void)"
+
+.SH "Member Function Documentation"
+.PP 
+.SS "\fBFeedback\fP * Feedback::Instance (void)\fC [static]\fP"
+
+.SS "bool Feedback::open (\fBconst\fP char * name)"
+
+.SS "bool Feedback::print_err (\fBconst\fP string msg, int min_verbose_level = \fC1\fP)"
+
+.SS "bool Feedback::print_header (\fBconst\fP string msg)"
+
+.SS "bool Feedback::print_msg (\fBconst\fP string msg, int min_verbose_level)"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for mailfilter from the source code\&.

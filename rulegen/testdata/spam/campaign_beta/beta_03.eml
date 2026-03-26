@@ -1,0 +1,14 @@
+From: "Warehouse Deals" <flash@deals.example-store>
+To: test@example.net
+Subject: Limited Sale - AMOLED Smart Watch $17.99
+Date: Wed, 19 Mar 2025 07:44:00 +0000
+Message-ID: <beta3@deals.example-store>
+Return-path: <bounce@deals.example-store>
+Reply-To: flash@deals.example-store
+List-Unsubscribe: <mailto:leave@deals.example-store>
+Received: from mx-relay167-hz1.antispameurope.com (mx-relay167-hz1.antispameurope.com [217.13.76.23]) by mx.example.net with ESMTPS id BE3;
+X-Mailer: PromoEngine
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+
+Synthetic body ignored.

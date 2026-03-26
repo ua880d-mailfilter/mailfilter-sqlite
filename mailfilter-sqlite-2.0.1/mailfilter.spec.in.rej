@@ -1,0 +1,18 @@
+--- /dev/null
++++ /dev/null
+@@ -38,10 +41,10 @@
+ %files
+ %defattr(-, root, root)
+ %doc contrib
+ %doc AUTHORS COPYING ChangeLog INSTALL NEWS README THANKS ABOUT-NLS
+ %doc doc/FAQ doc/README.Slackware doc/README.Windows doc/rcfile.example1 doc/rcfile.example2 doc/rcfile.example2.ru doc/rcfile.example1.it doc/win_Makefile.am doc/win_configure.in doc/win_src_Makefile.am doc/supported_servers
+-%{_bindir}/mailfilter
+-%{_datadir}/locale/*/LC_MESSAGES/mailfilter.mo
+-%{_mandir}/man1/mailfilter.1*
+-%{_mandir}/man5/mailfilterrc.5*
+-%{_mandir}/man5/mailfilterex.5*
++%{_bindir}/%{progname}
++%{_datadir}/locale/*/LC_MESSAGES/%{progname}.mo
++%{_mandir}/man1/%{progname}.1*
++%{_mandir}/man5/%{progname}rc.5*
++%{_mandir}/man5/%{progname}ex.5*

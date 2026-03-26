@@ -1,0 +1,12 @@
+From: Amazon.de <shipment-tracking@amazon.de>
+To: test@example.net
+Subject: Ihre Amazon.de Bestellung wurde versandt
+Date: Tue, 11 Mar 2025 07:21:54 +0000
+Message-ID: <ham06@amazon.de>
+Return-path: <shipment-tracking@amazon.de>
+Reply-To: auto-confirm@amazon.de
+Received: from smtp.amazon.de (smtp.amazon.de [176.32.103.12]) by mx.example.net with ESMTPS id H6;
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+
+Synthetic body ignored.

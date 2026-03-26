@@ -1,0 +1,12 @@
+From: <noreply@github.com>
+To: test@example.net
+Subject: [GitHub] Password reset requested
+Date: Wed, 19 Mar 2025 11:15:00 +0000
+Message-ID: <hamc4@github.com>
+Return-path: <noreply@github.com>
+Reply-To: <noreply@github.com>
+Received: from mail.github.com (mail.github.com [192.0.2.14]) by mx.example.net with ESMTPS id HM4;
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+
+Synthetic body ignored.

@@ -1,0 +1,99 @@
+.TH "getopt.h" 3 "Sun Sep 4 2022" "Version 0.8.9" "mailfilter" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+getopt.h
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <ctype\&.h>\fP
+.br
+
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "struct \fBoption\fP"
+.br
+.in -1c
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fB_GETOPT_H\fP   1"
+.br
+.ti -1c
+.RI "#define \fBno_argument\fP   0"
+.br
+.ti -1c
+.RI "#define \fBrequired_argument\fP   1"
+.br
+.ti -1c
+.RI "#define \fBoptional_argument\fP   2"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "int \fBgetopt\fP ()"
+.br
+.ti -1c
+.RI "int \fBgetopt_long\fP ()"
+.br
+.ti -1c
+.RI "int \fBgetopt_long_only\fP ()"
+.br
+.ti -1c
+.RI "int \fB_getopt_internal\fP ()"
+.br
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "char * \fBoptarg\fP"
+.br
+.ti -1c
+.RI "int \fBoptind\fP"
+.br
+.ti -1c
+.RI "int \fBopterr\fP"
+.br
+.ti -1c
+.RI "int \fBoptopt\fP"
+.br
+.in -1c
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#define _GETOPT_H   1"
+
+.SS "#define no_argument   0"
+
+.SS "#define optional_argument   2"
+
+.SS "#define required_argument   1"
+
+.SH "Function Documentation"
+.PP 
+.SS "int _getopt_internal ()"
+
+.SS "int getopt ()"
+
+.SS "int getopt_long ()"
+
+.SS "int getopt_long_only ()"
+
+.SH "Variable Documentation"
+.PP 
+.SS "char* optarg\fC [extern]\fP"
+
+.SS "int opterr\fC [extern]\fP"
+
+.SS "int optind\fC [extern]\fP"
+
+.SS "int optopt\fC [extern]\fP"
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for mailfilter from the source code\&.

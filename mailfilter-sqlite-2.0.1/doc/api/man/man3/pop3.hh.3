@@ -1,0 +1,51 @@
+.TH "pop3.hh" 3 "Sun Sep 4 2022" "Version 0.8.9" "mailfilter" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+pop3.hh
+.SH SYNOPSIS
+.br
+.PP
+\fC#include 'header\&.hh'\fP
+.br
+\fC#include 'protocol\&.hh'\fP
+.br
+
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "class \fBPOP3\fP"
+.br
+.in -1c
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBREPLY_OK\fP"
+.br
+.ti -1c
+.RI "#define \fBHEADER_OK\fP"
+.br
+.in -1c
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#define HEADER_OK"
+\fBValue:\fP
+.PP
+.nf
+        ((conn->c_read (true) > 0 && conn->c_reply ())? \
+        (((conn->c_reply ()->c_str ())[0] == '+') ? true : false) \
+                                                         : false)
+.fi
+.SS "#define REPLY_OK"
+\fBValue:\fP
+.PP
+.nf
+        ((conn->c_read () > 0 && conn->c_reply ()) ?     \
+        (((conn->c_reply ()->c_str ())[0] == '+') ? true : false) \
+                                                         : false)
+.fi
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for mailfilter from the source code\&.

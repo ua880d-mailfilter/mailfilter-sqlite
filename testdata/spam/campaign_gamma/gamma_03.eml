@@ -1,0 +1,13 @@
+From: "PayPaI Security" <alert@paypai-secure-check.example>
+To: test@example.net
+Subject: PayPal notice: unusual sign-in attempt
+Date: Fri, 21 Mar 2025 07:30:00 +0000
+Message-ID: <gamma3@paypai-secure-check.example>
+Return-path: <alert@paypai-secure-check.example>
+Reply-To: confirm@paypai-secure-check.example>
+Received: from smtp12.mail.fnrz.de (smtp12.mail.fnrz.de [203.0.113.43]) by mx.example.net with ESMTPS id GA3;
+X-Mailer: CustomMailer
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+
+Synthetic body ignored.

@@ -1,0 +1,734 @@
+\doxysubsection{Preferences Class Reference}
+\label{classPreferences}\index{Preferences@{Preferences}}
+
+
+{\ttfamily \#include $<$preferences.\+hh$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ Preferences} ()
+\item 
+void \textbf{ init} (void)
+\item 
+void \textbf{ kill} (void)
+\item 
+bool \textbf{ open} (\textbf{ const} char $\ast$)
+\item 
+bool \textbf{ load} (void)
+\item 
+void \textbf{ add\+\_\+deny\+\_\+rule} (\textbf{ const} char $\ast$, \textbf{ const} char $\ast$, \textbf{ const} char $\ast$)
+\item 
+void \textbf{ add\+\_\+allow\+\_\+rule} (\textbf{ const} char $\ast$, \textbf{ const} char $\ast$, \textbf{ const} char $\ast$)
+\item 
+void \textbf{ add\+\_\+score} (\textbf{ const} char $\ast$, int, \textbf{ const} char $\ast$, \textbf{ const} char $\ast$)
+\item 
+int \textbf{ neg\+\_\+allows} (void)
+\item 
+int \textbf{ neg\+\_\+denies} (void)
+\item 
+void \textbf{ set\+\_\+rc\+\_\+file} (\textbf{ const} char $\ast$)
+\item 
+string \textbf{ rc\+\_\+file} (void)
+\item 
+void \textbf{ set\+\_\+log\+\_\+file} (\textbf{ const} char $\ast$)
+\item 
+string \textbf{ log\+\_\+file} (void)
+\item 
+void \textbf{ set\+\_\+verbose\+\_\+level} (int)
+\item 
+int \textbf{ verbose\+\_\+level} (void)
+\item 
+void \textbf{ set\+\_\+headers\+\_\+file} (\textbf{ const} char $\ast$)
+\item 
+string \textbf{ headers\+\_\+file} (void)
+\item 
+void \textbf{ set\+\_\+default\+\_\+case} (\textbf{ const} char $\ast$)
+\item 
+int \textbf{ default\+\_\+case} (void)
+\item 
+void \textbf{ set\+\_\+reg\+\_\+type} (\textbf{ const} char $\ast$)
+\item 
+int \textbf{ reg\+\_\+type} (void)
+\item 
+void \textbf{ set\+\_\+server} (\textbf{ const} char $\ast$)
+\item 
+void \textbf{ set\+\_\+usr} (\textbf{ const} char $\ast$)
+\item 
+void \textbf{ set\+\_\+passwd} (\textbf{ const} char $\ast$)
+\item 
+void \textbf{ set\+\_\+protocol} (\textbf{ const} char $\ast$)
+\item 
+void \textbf{ set\+\_\+connection} (unsigned int=POSIX\+\_\+\+SOCKETS) \+\_\+\+\_\+attribute\+\_\+\+\_\+((unused))
+\item 
+void \textbf{ set\+\_\+port} (unsigned int)
+\item 
+unsigned int \textbf{ time\+\_\+out} (void)
+\item 
+void \textbf{ set\+\_\+time\+\_\+out} (unsigned int)
+\item 
+bool \textbf{ delete\+\_\+duplicates} (void)
+\item 
+void \textbf{ set\+\_\+del\+\_\+duplicates} (\textbf{ const} char $\ast$)
+\item 
+int \textbf{ max\+\_\+size\+\_\+allow} (void)
+\item 
+void \textbf{ set\+\_\+max\+\_\+size\+\_\+allow} (int)
+\item 
+int \textbf{ max\+\_\+size\+\_\+deny} (void)
+\item 
+void \textbf{ set\+\_\+max\+\_\+size\+\_\+deny} (int)
+\item 
+\textbf{ Size\+\_\+score} \textbf{ max\+\_\+size\+\_\+score} (void)
+\item 
+void \textbf{ set\+\_\+max\+\_\+size\+\_\+score} (int, int)
+\item 
+int \textbf{ highscore} (void)
+\item 
+void \textbf{ set\+\_\+highscore} (int)
+\item 
+bool \textbf{ normal} (void)
+\item 
+void \textbf{ set\+\_\+normal} (\textbf{ const} char $\ast$)
+\item 
+bool \textbf{ test\+\_\+mode} (void)
+\item 
+void \textbf{ set\+\_\+test\+\_\+mode} (\textbf{ const} char $\ast$)
+\item 
+int \textbf{ maxlength} (void)
+\item 
+void \textbf{ set\+\_\+maxlength} (int)
+\item 
+bool \textbf{ ignore\+\_\+time\+\_\+stamp} ()
+\item 
+void \textbf{ set\+\_\+ignore\+\_\+time\+\_\+stamp} (bool=true)
+\item 
+bool \textbf{ return\+\_\+status} (void)
+\item 
+void \textbf{ set\+\_\+return\+\_\+status} (bool)
+\item 
+void \textbf{ set\+\_\+skip\+\_\+ssl\+\_\+verify} (bool)
+\item 
+bool \textbf{ skip\+\_\+ssl\+\_\+verify} (void)
+\item 
+vector$<$ \textbf{ Account} $>$ $\ast$ \textbf{ accounts} (void)
+\item 
+vector$<$ \textbf{ Filter} $>$ $\ast$ \textbf{ allow\+\_\+filters} (void)
+\item 
+vector$<$ \textbf{ Filter} $>$ $\ast$ \textbf{ deny\+\_\+filters} (void)
+\item 
+vector$<$ \textbf{ Score} $>$ $\ast$ \textbf{ score\+\_\+filters} (void)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \textbf{ Preferences} \& \textbf{ Instance} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+ifstream \textbf{ prefs\+\_\+stream}
+\item 
+vector$<$ \textbf{ Filter} $>$ \textbf{ allows}
+\item 
+vector$<$ \textbf{ Filter} $>$ \textbf{ denies}
+\item 
+vector$<$ \textbf{ Score} $>$ \textbf{ scores}
+\item 
+vector$<$ \textbf{ Account} $>$ \textbf{ accnts}
+\item 
+\textbf{ Account} \textbf{ cur\+\_\+account}
+\item 
+string \textbf{ prefs\+\_\+file\+\_\+name}
+\item 
+string \textbf{ log\+\_\+file\+\_\+name}
+\item 
+string \textbf{ headers\+\_\+file\+\_\+name}
+\item 
+int \textbf{ icase}
+\item 
+bool \textbf{ norm}
+\item 
+bool \textbf{ test}
+\item 
+bool \textbf{ show\+\_\+headers}
+\item 
+bool \textbf{ del\+\_\+duplicates}
+\item 
+bool \textbf{ ret\+\_\+status}
+\item 
+bool \textbf{ \+\_\+ignore\+\_\+time\+\_\+stamp}
+\item 
+bool \textbf{ \+\_\+skip\+\_\+ssl\+\_\+verify}
+\item 
+int \textbf{ high\+\_\+score}
+\item 
+unsigned \textbf{ time\+\_\+out\+\_\+val}
+\item 
+int \textbf{ max\+\_\+size}
+\item 
+\textbf{ Size\+\_\+score} \textbf{ size\+\_\+score}
+\item 
+int \textbf{ max\+\_\+size\+\_\+friends}
+\item 
+int \textbf{ max\+\_\+line\+\_\+length}
+\item 
+int \textbf{ rreg\+\_\+type}
+\item 
+int \textbf{ verbosity}
+\item 
+int \textbf{ conn\+\_\+type}
+\item 
+int \textbf{ negative\+\_\+allows}
+\item 
+int \textbf{ negative\+\_\+denies}
+\item 
+int \textbf{ negative\+\_\+scores}
+\item 
+bool \textbf{ verbosity\+\_\+changed}
+\item 
+bool \textbf{ test\+\_\+changed}
+\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Constructor \& Destructor Documentation}
+\mbox{\label{classPreferences_a9ca3b7029509bc36da1a57ed296c2fa8}} 
+\index{Preferences@{Preferences}!Preferences@{Preferences}}
+\index{Preferences@{Preferences}!Preferences@{Preferences}}
+\doxyparagraph{Preferences()}
+{\footnotesize\ttfamily Preferences\+::\+Preferences (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsubsection{Member Function Documentation}
+\mbox{\label{classPreferences_a02ee3db34b6fd38c51480a3815a73d70}} 
+\index{Preferences@{Preferences}!accounts@{accounts}}
+\index{accounts@{accounts}!Preferences@{Preferences}}
+\doxyparagraph{accounts()}
+{\footnotesize\ttfamily vector$<$ \textbf{ Account} $>$ $\ast$ Preferences\+::accounts (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\label{classPreferences_a5acc85aa479bd30c652488fb1bdd2b10}} 
+\index{Preferences@{Preferences}!add\_allow\_rule@{add\_allow\_rule}}
+\index{add\_allow\_rule@{add\_allow\_rule}!Preferences@{Preferences}}
+\doxyparagraph{add\_allow\_rule()}
+{\footnotesize\ttfamily void Preferences\+::add\+\_\+allow\+\_\+rule (\begin{DoxyParamCaption}\item[{\textbf{ const} char $\ast$}]{keyword,  }\item[{\textbf{ const} char $\ast$}]{operat,  }\item[{\textbf{ const} char $\ast$}]{id }\end{DoxyParamCaption})}
+
+\mbox{\label{classPreferences_a55efff112a469fd6fb81ab9c68445ae5}} 
+\index{Preferences@{Preferences}!add\_deny\_rule@{add\_deny\_rule}}
+\index{add\_deny\_rule@{add\_deny\_rule}!Preferences@{Preferences}}
+\doxyparagraph{add\_deny\_rule()}
+{\footnotesize\ttfamily void Preferences\+::add\+\_\+deny\+\_\+rule (\begin{DoxyParamCaption}\item[{\textbf{ const} char $\ast$}]{keyword,  }\item[{\textbf{ const} char $\ast$}]{operat,  }\item[{\textbf{ const} char $\ast$}]{id }\end{DoxyParamCaption})}
+
+\mbox{\label{classPreferences_a93573e40851102ac3f3ea570a564816c}} 
+\index{Preferences@{Preferences}!add\_score@{add\_score}}
+\index{add\_score@{add\_score}!Preferences@{Preferences}}
+\doxyparagraph{add\_score()}
+{\footnotesize\ttfamily void Preferences\+::add\+\_\+score (\begin{DoxyParamCaption}\item[{\textbf{ const} char $\ast$}]{keyword,  }\item[{int}]{given\+\_\+score,  }\item[{\textbf{ const} char $\ast$}]{operat,  }\item[{\textbf{ const} char $\ast$}]{id }\end{DoxyParamCaption})}
+
+\mbox{\label{classPreferences_a0de52e37ab68a0ae81e0c5a407655133}} 
+\index{Preferences@{Preferences}!allow\_filters@{allow\_filters}}
+\index{allow\_filters@{allow\_filters}!Preferences@{Preferences}}
+\doxyparagraph{allow\_filters()}
+{\footnotesize\ttfamily vector$<$ \textbf{ Filter} $>$ $\ast$ Preferences\+::allow\+\_\+filters (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\label{classPreferences_a52e7145907bb142641f73ac7791ce2c6}} 
+\index{Preferences@{Preferences}!default\_case@{default\_case}}
+\index{default\_case@{default\_case}!Preferences@{Preferences}}
+\doxyparagraph{default\_case()}
+{\footnotesize\ttfamily int Preferences\+::default\+\_\+case (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\label{classPreferences_ac91a505ec620abd1e2c84a0bce070f5b}} 
+\index{Preferences@{Preferences}!delete\_duplicates@{delete\_duplicates}}
+\index{delete\_duplicates@{delete\_duplicates}!Preferences@{Preferences}}
+\doxyparagraph{delete\_duplicates()}
+{\footnotesize\ttfamily bool Preferences\+::delete\+\_\+duplicates (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\label{classPreferences_ad0e1567bd8f31112b27d225d9c975515}} 
+\index{Preferences@{Preferences}!deny\_filters@{deny\_filters}}
+\index{deny\_filters@{deny\_filters}!Preferences@{Preferences}}
+\doxyparagraph{deny\_filters()}
+{\footnotesize\ttfamily vector$<$ \textbf{ Filter} $>$ $\ast$ Preferences\+::deny\+\_\+filters (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\label{classPreferences_a12d88b8213c125d2e9261b8baf011f08}} 
+\index{Preferences@{Preferences}!headers\_file@{headers\_file}}
+\index{headers\_file@{headers\_file}!Preferences@{Preferences}}
+\doxyparagraph{headers\_file()}
+{\footnotesize\ttfamily string Preferences\+::headers\+\_\+file (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\label{classPreferences_a46f20146880cbb8af12e63902e1f2b33}} 
+\index{Preferences@{Preferences}!highscore@{highscore}}
+\index{highscore@{highscore}!Preferences@{Preferences}}
+\doxyparagraph{highscore()}
+{\footnotesize\ttfamily int Preferences\+::highscore (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\label{classPreferences_a41b7f7c8a227ed615ce9a4489fc788ee}} 
+\index{Preferences@{Preferences}!ignore\_time\_stamp@{ignore\_time\_stamp}}
+\index{ignore\_time\_stamp@{ignore\_time\_stamp}!Preferences@{Preferences}}
+\doxyparagraph{ignore\_time\_stamp()}
+{\footnotesize\ttfamily bool Preferences\+::ignore\+\_\+time\+\_\+stamp (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\label{classPreferences_a46ecf6ca535a5aba2b68b941a66c81e3}} 
+\index{Preferences@{Preferences}!init@{init}}
+\index{init@{init}!Preferences@{Preferences}}
+\doxyparagraph{init()}
+{\footnotesize\ttfamily void Preferences\+::init (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\label{classPreferences_ae4b949f0a47518c152e92120241d64d0}} 
+\index{Preferences@{Preferences}!Instance@{Instance}}
+\index{Instance@{Instance}!Preferences@{Preferences}}
+\doxyparagraph{Instance()}
+{\footnotesize\ttfamily \textbf{ Preferences} \& Preferences\+::\+Instance (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\label{classPreferences_a70fbfe1ed1bdd745063c35b62084101d}} 
+\index{Preferences@{Preferences}!kill@{kill}}
+\index{kill@{kill}!Preferences@{Preferences}}
+\doxyparagraph{kill()}
+{\footnotesize\ttfamily void Preferences\+::kill (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\label{classPreferences_a3d894765c4e383e24a70235ae610ad96}} 
+\index{Preferences@{Preferences}!load@{load}}
+\index{load@{load}!Preferences@{Preferences}}
+\doxyparagraph{load()}
+{\footnotesize\ttfamily bool Preferences\+::load (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\label{classPreferences_ab70147910b8a36e9e17b6301c8dc07d3}} 
+\index{Preferences@{Preferences}!log\_file@{log\_file}}
+\index{log\_file@{log\_file}!Preferences@{Preferences}}
+\doxyparagraph{log\_file()}
+{\footnotesize\ttfamily string Preferences\+::log\+\_\+file (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\label{classPreferences_a139bad88a384e35ef0754f915dfed37a}} 
+\index{Preferences@{Preferences}!max\_size\_allow@{max\_size\_allow}}
+\index{max\_size\_allow@{max\_size\_allow}!Preferences@{Preferences}}
+\doxyparagraph{max\_size\_allow()}
+{\footnotesize\ttfamily int Preferences\+::max\+\_\+size\+\_\+allow (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\label{classPreferences_a05e741f8bb97aa0afb9639b50c55ee0c}} 
+\index{Preferences@{Preferences}!max\_size\_deny@{max\_size\_deny}}
+\index{max\_size\_deny@{max\_size\_deny}!Preferences@{Preferences}}
+\doxyparagraph{max\_size\_deny()}
+{\footnotesize\ttfamily int Preferences\+::max\+\_\+size\+\_\+deny (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\label{classPreferences_a100e98fa9125b2eef221a61ee9d4309d}} 
+\index{Preferences@{Preferences}!max\_size\_score@{max\_size\_score}}
+\index{max\_size\_score@{max\_size\_score}!Preferences@{Preferences}}
+\doxyparagraph{max\_size\_score()}
+{\footnotesize\ttfamily \textbf{ Size\+\_\+score} Preferences\+::max\+\_\+size\+\_\+score (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\label{classPreferences_a413622da211f3883410d919cf0430c9e}} 
+\index{Preferences@{Preferences}!maxlength@{maxlength}}
+\index{maxlength@{maxlength}!Preferences@{Preferences}}
+\doxyparagraph{maxlength()}
+{\footnotesize\ttfamily int Preferences\+::maxlength (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\label{classPreferences_a9d31cb5c1699a6e1aab998261c4d5f1c}} 
+\index{Preferences@{Preferences}!neg\_allows@{neg\_allows}}
+\index{neg\_allows@{neg\_allows}!Preferences@{Preferences}}
+\doxyparagraph{neg\_allows()}
+{\footnotesize\ttfamily int Preferences\+::neg\+\_\+allows (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\label{classPreferences_a73cf94b6597102465633b9700ef5d4c5}} 
+\index{Preferences@{Preferences}!neg\_denies@{neg\_denies}}
+\index{neg\_denies@{neg\_denies}!Preferences@{Preferences}}
+\doxyparagraph{neg\_denies()}
+{\footnotesize\ttfamily int Preferences\+::neg\+\_\+denies (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\label{classPreferences_a3d967d393f6dce817b3e5eb3618759f2}} 
+\index{Preferences@{Preferences}!normal@{normal}}
+\index{normal@{normal}!Preferences@{Preferences}}
+\doxyparagraph{normal()}
+{\footnotesize\ttfamily bool Preferences\+::normal (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\label{classPreferences_aa7d1352a0a1152315d9e8cbb440ed603}} 
+\index{Preferences@{Preferences}!open@{open}}
+\index{open@{open}!Preferences@{Preferences}}
+\doxyparagraph{open()}
+{\footnotesize\ttfamily bool Preferences\+::open (\begin{DoxyParamCaption}\item[{\textbf{ const} char $\ast$}]{name }\end{DoxyParamCaption})}
+
+\mbox{\label{classPreferences_af77084e00a96be0f7f3dae21a9e46b88}} 
+\index{Preferences@{Preferences}!rc\_file@{rc\_file}}
+\index{rc\_file@{rc\_file}!Preferences@{Preferences}}
+\doxyparagraph{rc\_file()}
+{\footnotesize\ttfamily string Preferences\+::rc\+\_\+file (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\label{classPreferences_a66395b943993458d9df28cab988abda8}} 
+\index{Preferences@{Preferences}!reg\_type@{reg\_type}}
+\index{reg\_type@{reg\_type}!Preferences@{Preferences}}
+\doxyparagraph{reg\_type()}
+{\footnotesize\ttfamily int Preferences\+::reg\+\_\+type (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\label{classPreferences_a3c7ec309cb681698faa84c3aefac3f20}} 
+\index{Preferences@{Preferences}!return\_status@{return\_status}}
+\index{return\_status@{return\_status}!Preferences@{Preferences}}
+\doxyparagraph{return\_status()}
+{\footnotesize\ttfamily bool Preferences\+::return\+\_\+status (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\label{classPreferences_a520ff38784f3c2deb37628ff1a9bad64}} 
+\index{Preferences@{Preferences}!score\_filters@{score\_filters}}
+\index{score\_filters@{score\_filters}!Preferences@{Preferences}}
+\doxyparagraph{score\_filters()}
+{\footnotesize\ttfamily vector$<$ \textbf{ Score} $>$ $\ast$ Preferences\+::score\+\_\+filters (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\label{classPreferences_a9267543cb81e484869a72634cfe2299a}} 
+\index{Preferences@{Preferences}!set\_connection@{set\_connection}}
+\index{set\_connection@{set\_connection}!Preferences@{Preferences}}
+\doxyparagraph{set\_connection()}
+{\footnotesize\ttfamily void Preferences\+::set\+\_\+connection (\begin{DoxyParamCaption}\item[{unsigned int}]{p = {\ttfamily POSIX\+\_\+SOCKETS} }\end{DoxyParamCaption})}
+
+\mbox{\label{classPreferences_a5d05bbe427e01908135594e0ade41405}} 
+\index{Preferences@{Preferences}!set\_default\_case@{set\_default\_case}}
+\index{set\_default\_case@{set\_default\_case}!Preferences@{Preferences}}
+\doxyparagraph{set\_default\_case()}
+{\footnotesize\ttfamily void Preferences\+::set\+\_\+default\+\_\+case (\begin{DoxyParamCaption}\item[{\textbf{ const} char $\ast$}]{new\+\_\+case }\end{DoxyParamCaption})}
+
+\mbox{\label{classPreferences_a4fb6746b2fe32a0abe1f5d2314d848c7}} 
+\index{Preferences@{Preferences}!set\_del\_duplicates@{set\_del\_duplicates}}
+\index{set\_del\_duplicates@{set\_del\_duplicates}!Preferences@{Preferences}}
+\doxyparagraph{set\_del\_duplicates()}
+{\footnotesize\ttfamily void Preferences\+::set\+\_\+del\+\_\+duplicates (\begin{DoxyParamCaption}\item[{\textbf{ const} char $\ast$}]{del }\end{DoxyParamCaption})}
+
+\mbox{\label{classPreferences_a0ca2b4346ae1eacc1ca2d0695af2029d}} 
+\index{Preferences@{Preferences}!set\_headers\_file@{set\_headers\_file}}
+\index{set\_headers\_file@{set\_headers\_file}!Preferences@{Preferences}}
+\doxyparagraph{set\_headers\_file()}
+{\footnotesize\ttfamily void Preferences\+::set\+\_\+headers\+\_\+file (\begin{DoxyParamCaption}\item[{\textbf{ const} char $\ast$}]{name }\end{DoxyParamCaption})}
+
+\mbox{\label{classPreferences_abde69b5a180d3bbc743451efd57e1ac6}} 
+\index{Preferences@{Preferences}!set\_highscore@{set\_highscore}}
+\index{set\_highscore@{set\_highscore}!Preferences@{Preferences}}
+\doxyparagraph{set\_highscore()}
+{\footnotesize\ttfamily void Preferences\+::set\+\_\+highscore (\begin{DoxyParamCaption}\item[{int}]{val }\end{DoxyParamCaption})}
+
+\mbox{\label{classPreferences_a533f5b01ef77e2051f2160de8506114d}} 
+\index{Preferences@{Preferences}!set\_ignore\_time\_stamp@{set\_ignore\_time\_stamp}}
+\index{set\_ignore\_time\_stamp@{set\_ignore\_time\_stamp}!Preferences@{Preferences}}
+\doxyparagraph{set\_ignore\_time\_stamp()}
+{\footnotesize\ttfamily void Preferences\+::set\+\_\+ignore\+\_\+time\+\_\+stamp (\begin{DoxyParamCaption}\item[{bool}]{new\+\_\+ts = {\ttfamily true} }\end{DoxyParamCaption})}
+
+\mbox{\label{classPreferences_aaa84f4623e247b3cb56f5ea7d0ac1579}} 
+\index{Preferences@{Preferences}!set\_log\_file@{set\_log\_file}}
+\index{set\_log\_file@{set\_log\_file}!Preferences@{Preferences}}
+\doxyparagraph{set\_log\_file()}
+{\footnotesize\ttfamily void Preferences\+::set\+\_\+log\+\_\+file (\begin{DoxyParamCaption}\item[{\textbf{ const} char $\ast$}]{name }\end{DoxyParamCaption})}
+
+\mbox{\label{classPreferences_a2753e9e3bc3bf15c5ed73a26ef2db9ef}} 
+\index{Preferences@{Preferences}!set\_max\_size\_allow@{set\_max\_size\_allow}}
+\index{set\_max\_size\_allow@{set\_max\_size\_allow}!Preferences@{Preferences}}
+\doxyparagraph{set\_max\_size\_allow()}
+{\footnotesize\ttfamily void Preferences\+::set\+\_\+max\+\_\+size\+\_\+allow (\begin{DoxyParamCaption}\item[{int}]{val }\end{DoxyParamCaption})}
+
+\mbox{\label{classPreferences_a8323008e771d4a4cb577ea5a6cd5af6c}} 
+\index{Preferences@{Preferences}!set\_max\_size\_deny@{set\_max\_size\_deny}}
+\index{set\_max\_size\_deny@{set\_max\_size\_deny}!Preferences@{Preferences}}
+\doxyparagraph{set\_max\_size\_deny()}
+{\footnotesize\ttfamily void Preferences\+::set\+\_\+max\+\_\+size\+\_\+deny (\begin{DoxyParamCaption}\item[{int}]{val }\end{DoxyParamCaption})}
+
+\mbox{\label{classPreferences_adc82f986dd6e1fdb2935938a3151aaf5}} 
+\index{Preferences@{Preferences}!set\_max\_size\_score@{set\_max\_size\_score}}
+\index{set\_max\_size\_score@{set\_max\_size\_score}!Preferences@{Preferences}}
+\doxyparagraph{set\_max\_size\_score()}
+{\footnotesize\ttfamily void Preferences\+::set\+\_\+max\+\_\+size\+\_\+score (\begin{DoxyParamCaption}\item[{int}]{score,  }\item[{int}]{size }\end{DoxyParamCaption})}
+
+\mbox{\label{classPreferences_a91e17b5740f9151bc077171fce90bea4}} 
+\index{Preferences@{Preferences}!set\_maxlength@{set\_maxlength}}
+\index{set\_maxlength@{set\_maxlength}!Preferences@{Preferences}}
+\doxyparagraph{set\_maxlength()}
+{\footnotesize\ttfamily void Preferences\+::set\+\_\+maxlength (\begin{DoxyParamCaption}\item[{int}]{val }\end{DoxyParamCaption})}
+
+\mbox{\label{classPreferences_ae34eaff9c12d99475535b2d65b721aa8}} 
+\index{Preferences@{Preferences}!set\_normal@{set\_normal}}
+\index{set\_normal@{set\_normal}!Preferences@{Preferences}}
+\doxyparagraph{set\_normal()}
+{\footnotesize\ttfamily void Preferences\+::set\+\_\+normal (\begin{DoxyParamCaption}\item[{\textbf{ const} char $\ast$}]{par }\end{DoxyParamCaption})}
+
+\mbox{\label{classPreferences_a3bba6dc213b23cfa8bd5dedab1d6bc2c}} 
+\index{Preferences@{Preferences}!set\_passwd@{set\_passwd}}
+\index{set\_passwd@{set\_passwd}!Preferences@{Preferences}}
+\doxyparagraph{set\_passwd()}
+{\footnotesize\ttfamily void Preferences\+::set\+\_\+passwd (\begin{DoxyParamCaption}\item[{\textbf{ const} char $\ast$}]{pass }\end{DoxyParamCaption})}
+
+\mbox{\label{classPreferences_a77f7fe1f6426aea3fdf372b8270d4807}} 
+\index{Preferences@{Preferences}!set\_port@{set\_port}}
+\index{set\_port@{set\_port}!Preferences@{Preferences}}
+\doxyparagraph{set\_port()}
+{\footnotesize\ttfamily void Preferences\+::set\+\_\+port (\begin{DoxyParamCaption}\item[{unsigned int}]{p }\end{DoxyParamCaption})}
+
+\mbox{\label{classPreferences_aafab91620b190a9376e0542a9f27d49c}} 
+\index{Preferences@{Preferences}!set\_protocol@{set\_protocol}}
+\index{set\_protocol@{set\_protocol}!Preferences@{Preferences}}
+\doxyparagraph{set\_protocol()}
+{\footnotesize\ttfamily void Preferences\+::set\+\_\+protocol (\begin{DoxyParamCaption}\item[{\textbf{ const} char $\ast$}]{prot }\end{DoxyParamCaption})}
+
+\mbox{\label{classPreferences_ad845e83217b77cc0d4a08d7883b0a40f}} 
+\index{Preferences@{Preferences}!set\_rc\_file@{set\_rc\_file}}
+\index{set\_rc\_file@{set\_rc\_file}!Preferences@{Preferences}}
+\doxyparagraph{set\_rc\_file()}
+{\footnotesize\ttfamily void Preferences\+::set\+\_\+rc\+\_\+file (\begin{DoxyParamCaption}\item[{\textbf{ const} char $\ast$}]{name }\end{DoxyParamCaption})}
+
+\mbox{\label{classPreferences_ad72b32c7670ec7e04426bc05450e37e7}} 
+\index{Preferences@{Preferences}!set\_reg\_type@{set\_reg\_type}}
+\index{set\_reg\_type@{set\_reg\_type}!Preferences@{Preferences}}
+\doxyparagraph{set\_reg\_type()}
+{\footnotesize\ttfamily void Preferences\+::set\+\_\+reg\+\_\+type (\begin{DoxyParamCaption}\item[{\textbf{ const} char $\ast$}]{new\+\_\+type }\end{DoxyParamCaption})}
+
+\mbox{\label{classPreferences_a2a080cea055eeee929d2845e2926d32f}} 
+\index{Preferences@{Preferences}!set\_return\_status@{set\_return\_status}}
+\index{set\_return\_status@{set\_return\_status}!Preferences@{Preferences}}
+\doxyparagraph{set\_return\_status()}
+{\footnotesize\ttfamily void Preferences\+::set\+\_\+return\+\_\+status (\begin{DoxyParamCaption}\item[{bool}]{st }\end{DoxyParamCaption})}
+
+\mbox{\label{classPreferences_ac650c18ffa32c10076c93167ca60c2d2}} 
+\index{Preferences@{Preferences}!set\_server@{set\_server}}
+\index{set\_server@{set\_server}!Preferences@{Preferences}}
+\doxyparagraph{set\_server()}
+{\footnotesize\ttfamily void Preferences\+::set\+\_\+server (\begin{DoxyParamCaption}\item[{\textbf{ const} char $\ast$}]{server }\end{DoxyParamCaption})}
+
+\mbox{\label{classPreferences_a8e7ba336fee3d5a2fa51cda0674066bb}} 
+\index{Preferences@{Preferences}!set\_skip\_ssl\_verify@{set\_skip\_ssl\_verify}}
+\index{set\_skip\_ssl\_verify@{set\_skip\_ssl\_verify}!Preferences@{Preferences}}
+\doxyparagraph{set\_skip\_ssl\_verify()}
+{\footnotesize\ttfamily void Preferences\+::set\+\_\+skip\+\_\+ssl\+\_\+verify (\begin{DoxyParamCaption}\item[{bool}]{skip }\end{DoxyParamCaption})}
+
+\mbox{\label{classPreferences_a26ea6a356d1492eb30e9d7b9853e79ff}} 
+\index{Preferences@{Preferences}!set\_test\_mode@{set\_test\_mode}}
+\index{set\_test\_mode@{set\_test\_mode}!Preferences@{Preferences}}
+\doxyparagraph{set\_test\_mode()}
+{\footnotesize\ttfamily void Preferences\+::set\+\_\+test\+\_\+mode (\begin{DoxyParamCaption}\item[{\textbf{ const} char $\ast$}]{par }\end{DoxyParamCaption})}
+
+\mbox{\label{classPreferences_a63575bad9fc1a8c432a615f11fa907e2}} 
+\index{Preferences@{Preferences}!set\_time\_out@{set\_time\_out}}
+\index{set\_time\_out@{set\_time\_out}!Preferences@{Preferences}}
+\doxyparagraph{set\_time\_out()}
+{\footnotesize\ttfamily void Preferences\+::set\+\_\+time\+\_\+out (\begin{DoxyParamCaption}\item[{unsigned int}]{val }\end{DoxyParamCaption})}
+
+\mbox{\label{classPreferences_a7ec7478498bfbfa417ddbb2499535da3}} 
+\index{Preferences@{Preferences}!set\_usr@{set\_usr}}
+\index{set\_usr@{set\_usr}!Preferences@{Preferences}}
+\doxyparagraph{set\_usr()}
+{\footnotesize\ttfamily void Preferences\+::set\+\_\+usr (\begin{DoxyParamCaption}\item[{\textbf{ const} char $\ast$}]{user }\end{DoxyParamCaption})}
+
+\mbox{\label{classPreferences_a3c2a97b12ae2ff9525d6318ffe214357}} 
+\index{Preferences@{Preferences}!set\_verbose\_level@{set\_verbose\_level}}
+\index{set\_verbose\_level@{set\_verbose\_level}!Preferences@{Preferences}}
+\doxyparagraph{set\_verbose\_level()}
+{\footnotesize\ttfamily void Preferences\+::set\+\_\+verbose\+\_\+level (\begin{DoxyParamCaption}\item[{int}]{level }\end{DoxyParamCaption})}
+
+\mbox{\label{classPreferences_a61f8ba5dec4977920ef761044e8d4c1f}} 
+\index{Preferences@{Preferences}!skip\_ssl\_verify@{skip\_ssl\_verify}}
+\index{skip\_ssl\_verify@{skip\_ssl\_verify}!Preferences@{Preferences}}
+\doxyparagraph{skip\_ssl\_verify()}
+{\footnotesize\ttfamily bool Preferences\+::skip\+\_\+ssl\+\_\+verify (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\label{classPreferences_a90f544f3db10bb0518dbbd32595284b1}} 
+\index{Preferences@{Preferences}!test\_mode@{test\_mode}}
+\index{test\_mode@{test\_mode}!Preferences@{Preferences}}
+\doxyparagraph{test\_mode()}
+{\footnotesize\ttfamily bool Preferences\+::test\+\_\+mode (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\label{classPreferences_a7fe26586baf0ff47767bd1acc43d5a66}} 
+\index{Preferences@{Preferences}!time\_out@{time\_out}}
+\index{time\_out@{time\_out}!Preferences@{Preferences}}
+\doxyparagraph{time\_out()}
+{\footnotesize\ttfamily unsigned int Preferences\+::time\+\_\+out (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\label{classPreferences_a588ae9819d902fb8ea13f51d55775efd}} 
+\index{Preferences@{Preferences}!verbose\_level@{verbose\_level}}
+\index{verbose\_level@{verbose\_level}!Preferences@{Preferences}}
+\doxyparagraph{verbose\_level()}
+{\footnotesize\ttfamily int Preferences\+::verbose\+\_\+level (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsubsection{Member Data Documentation}
+\mbox{\label{classPreferences_a43007940645a033e20e7ce5c467458c0}} 
+\index{Preferences@{Preferences}!\_ignore\_time\_stamp@{\_ignore\_time\_stamp}}
+\index{\_ignore\_time\_stamp@{\_ignore\_time\_stamp}!Preferences@{Preferences}}
+\doxyparagraph{\_ignore\_time\_stamp}
+{\footnotesize\ttfamily bool Preferences\+::\+\_\+ignore\+\_\+time\+\_\+stamp\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\label{classPreferences_a32e674cb884254712f4ff7a363d35e1c}} 
+\index{Preferences@{Preferences}!\_skip\_ssl\_verify@{\_skip\_ssl\_verify}}
+\index{\_skip\_ssl\_verify@{\_skip\_ssl\_verify}!Preferences@{Preferences}}
+\doxyparagraph{\_skip\_ssl\_verify}
+{\footnotesize\ttfamily bool Preferences\+::\+\_\+skip\+\_\+ssl\+\_\+verify\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\label{classPreferences_ac9e5ebc179c47dd2d5a0de327282b2b6}} 
+\index{Preferences@{Preferences}!accnts@{accnts}}
+\index{accnts@{accnts}!Preferences@{Preferences}}
+\doxyparagraph{accnts}
+{\footnotesize\ttfamily vector$<$\textbf{ Account}$>$ Preferences\+::accnts\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\label{classPreferences_ae669c185b2a41f9be2fdd45e555087bb}} 
+\index{Preferences@{Preferences}!allows@{allows}}
+\index{allows@{allows}!Preferences@{Preferences}}
+\doxyparagraph{allows}
+{\footnotesize\ttfamily vector$<$\textbf{ Filter}$>$ Preferences\+::allows\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\label{classPreferences_afac7a9c11e4a35c95e51d29f45d052f0}} 
+\index{Preferences@{Preferences}!conn\_type@{conn\_type}}
+\index{conn\_type@{conn\_type}!Preferences@{Preferences}}
+\doxyparagraph{conn\_type}
+{\footnotesize\ttfamily int Preferences\+::conn\+\_\+type\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\label{classPreferences_abf10c6052bd762cbd5d1fa97e6f0f3fa}} 
+\index{Preferences@{Preferences}!cur\_account@{cur\_account}}
+\index{cur\_account@{cur\_account}!Preferences@{Preferences}}
+\doxyparagraph{cur\_account}
+{\footnotesize\ttfamily \textbf{ Account} Preferences\+::cur\+\_\+account\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\label{classPreferences_a135a3f6f8172d7e2ef5d4b0868ae82e4}} 
+\index{Preferences@{Preferences}!del\_duplicates@{del\_duplicates}}
+\index{del\_duplicates@{del\_duplicates}!Preferences@{Preferences}}
+\doxyparagraph{del\_duplicates}
+{\footnotesize\ttfamily bool Preferences\+::del\+\_\+duplicates\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\label{classPreferences_a7c738e5cc26f54fc6b53914ba5c03a0f}} 
+\index{Preferences@{Preferences}!denies@{denies}}
+\index{denies@{denies}!Preferences@{Preferences}}
+\doxyparagraph{denies}
+{\footnotesize\ttfamily vector$<$\textbf{ Filter}$>$ Preferences\+::denies\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\label{classPreferences_a87d974f1c122f9d0f1c3202e31016268}} 
+\index{Preferences@{Preferences}!headers\_file\_name@{headers\_file\_name}}
+\index{headers\_file\_name@{headers\_file\_name}!Preferences@{Preferences}}
+\doxyparagraph{headers\_file\_name}
+{\footnotesize\ttfamily string Preferences\+::headers\+\_\+file\+\_\+name\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\label{classPreferences_a3e493f7da8cfe5c3cbf7d7b636a9dad6}} 
+\index{Preferences@{Preferences}!high\_score@{high\_score}}
+\index{high\_score@{high\_score}!Preferences@{Preferences}}
+\doxyparagraph{high\_score}
+{\footnotesize\ttfamily int Preferences\+::high\+\_\+score\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\label{classPreferences_aee19bf8b0a59a564f29ae9ccc0f8196c}} 
+\index{Preferences@{Preferences}!icase@{icase}}
+\index{icase@{icase}!Preferences@{Preferences}}
+\doxyparagraph{icase}
+{\footnotesize\ttfamily int Preferences\+::icase\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\label{classPreferences_ad28daf0963038ab26104c7ff5efc1fda}} 
+\index{Preferences@{Preferences}!log\_file\_name@{log\_file\_name}}
+\index{log\_file\_name@{log\_file\_name}!Preferences@{Preferences}}
+\doxyparagraph{log\_file\_name}
+{\footnotesize\ttfamily string Preferences\+::log\+\_\+file\+\_\+name\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\label{classPreferences_a9abf1e54f474ab8977fd0fe7dc864ea2}} 
+\index{Preferences@{Preferences}!max\_line\_length@{max\_line\_length}}
+\index{max\_line\_length@{max\_line\_length}!Preferences@{Preferences}}
+\doxyparagraph{max\_line\_length}
+{\footnotesize\ttfamily int Preferences\+::max\+\_\+line\+\_\+length\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\label{classPreferences_a20c3d6f93eeb32c69be2cb59e2ed3f14}} 
+\index{Preferences@{Preferences}!max\_size@{max\_size}}
+\index{max\_size@{max\_size}!Preferences@{Preferences}}
+\doxyparagraph{max\_size}
+{\footnotesize\ttfamily int Preferences\+::max\+\_\+size\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\label{classPreferences_a68ae8561e444be21bac8f63ab715c9fd}} 
+\index{Preferences@{Preferences}!max\_size\_friends@{max\_size\_friends}}
+\index{max\_size\_friends@{max\_size\_friends}!Preferences@{Preferences}}
+\doxyparagraph{max\_size\_friends}
+{\footnotesize\ttfamily int Preferences\+::max\+\_\+size\+\_\+friends\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\label{classPreferences_ab5e4ea28e24a76b1a67ae79fe2f338d6}} 
+\index{Preferences@{Preferences}!negative\_allows@{negative\_allows}}
+\index{negative\_allows@{negative\_allows}!Preferences@{Preferences}}
+\doxyparagraph{negative\_allows}
+{\footnotesize\ttfamily int Preferences\+::negative\+\_\+allows\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\label{classPreferences_ac22010b49e7c5386f98f35cc248103d0}} 
+\index{Preferences@{Preferences}!negative\_denies@{negative\_denies}}
+\index{negative\_denies@{negative\_denies}!Preferences@{Preferences}}
+\doxyparagraph{negative\_denies}
+{\footnotesize\ttfamily int Preferences\+::negative\+\_\+denies\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\label{classPreferences_a85f352eb02d6ebf2f0e6cea6578a43ae}} 
+\index{Preferences@{Preferences}!negative\_scores@{negative\_scores}}
+\index{negative\_scores@{negative\_scores}!Preferences@{Preferences}}
+\doxyparagraph{negative\_scores}
+{\footnotesize\ttfamily int Preferences\+::negative\+\_\+scores\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\label{classPreferences_ad95657188d0fbb0fed7bc661c3865bbb}} 
+\index{Preferences@{Preferences}!norm@{norm}}
+\index{norm@{norm}!Preferences@{Preferences}}
+\doxyparagraph{norm}
+{\footnotesize\ttfamily bool Preferences\+::norm\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\label{classPreferences_a5d131246c4eed2e033e3af972532175d}} 
+\index{Preferences@{Preferences}!prefs\_file\_name@{prefs\_file\_name}}
+\index{prefs\_file\_name@{prefs\_file\_name}!Preferences@{Preferences}}
+\doxyparagraph{prefs\_file\_name}
+{\footnotesize\ttfamily string Preferences\+::prefs\+\_\+file\+\_\+name\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\label{classPreferences_a2334e988652eedd1d15e1b03374af320}} 
+\index{Preferences@{Preferences}!prefs\_stream@{prefs\_stream}}
+\index{prefs\_stream@{prefs\_stream}!Preferences@{Preferences}}
+\doxyparagraph{prefs\_stream}
+{\footnotesize\ttfamily ifstream Preferences\+::prefs\+\_\+stream\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\label{classPreferences_a713d423c626220c94e95208b9d896bab}} 
+\index{Preferences@{Preferences}!ret\_status@{ret\_status}}
+\index{ret\_status@{ret\_status}!Preferences@{Preferences}}
+\doxyparagraph{ret\_status}
+{\footnotesize\ttfamily bool Preferences\+::ret\+\_\+status\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\label{classPreferences_a1a45e20df7963123112b6518b5f5fe2e}} 
+\index{Preferences@{Preferences}!rreg\_type@{rreg\_type}}
+\index{rreg\_type@{rreg\_type}!Preferences@{Preferences}}
+\doxyparagraph{rreg\_type}
+{\footnotesize\ttfamily int Preferences\+::rreg\+\_\+type\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\label{classPreferences_abc1d6bd5f0c2f924fb988304bc95d15d}} 
+\index{Preferences@{Preferences}!scores@{scores}}
+\index{scores@{scores}!Preferences@{Preferences}}
+\doxyparagraph{scores}
+{\footnotesize\ttfamily vector$<$\textbf{ Score}$>$ Preferences\+::scores\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\label{classPreferences_a5260cb45cb821dd24ab12a4816f40f86}} 
+\index{Preferences@{Preferences}!show\_headers@{show\_headers}}
+\index{show\_headers@{show\_headers}!Preferences@{Preferences}}
+\doxyparagraph{show\_headers}
+{\footnotesize\ttfamily bool Preferences\+::show\+\_\+headers\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\label{classPreferences_acd0890b029c3eb860b86eb88d0e12141}} 
+\index{Preferences@{Preferences}!size\_score@{size\_score}}
+\index{size\_score@{size\_score}!Preferences@{Preferences}}
+\doxyparagraph{size\_score}
+{\footnotesize\ttfamily \textbf{ Size\+\_\+score} Preferences\+::size\+\_\+score\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\label{classPreferences_a5ed08eca23db43e3e717119bfb2a277e}} 
+\index{Preferences@{Preferences}!test@{test}}
+\index{test@{test}!Preferences@{Preferences}}
+\doxyparagraph{test}
+{\footnotesize\ttfamily bool Preferences\+::test\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\label{classPreferences_a55ba027c13ed59260f5b6a81534e7a9d}} 
+\index{Preferences@{Preferences}!test\_changed@{test\_changed}}
+\index{test\_changed@{test\_changed}!Preferences@{Preferences}}
+\doxyparagraph{test\_changed}
+{\footnotesize\ttfamily bool Preferences\+::test\+\_\+changed\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\label{classPreferences_af7f2776dd59475a43314fa2fb27e300b}} 
+\index{Preferences@{Preferences}!time\_out\_val@{time\_out\_val}}
+\index{time\_out\_val@{time\_out\_val}!Preferences@{Preferences}}
+\doxyparagraph{time\_out\_val}
+{\footnotesize\ttfamily unsigned Preferences\+::time\+\_\+out\+\_\+val\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\label{classPreferences_a5ed276d8b447d58049db610a0defe05b}} 
+\index{Preferences@{Preferences}!verbosity@{verbosity}}
+\index{verbosity@{verbosity}!Preferences@{Preferences}}
+\doxyparagraph{verbosity}
+{\footnotesize\ttfamily int Preferences\+::verbosity\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\label{classPreferences_a7516e6b40a41f6d846bf4c35f6a2ad76}} 
+\index{Preferences@{Preferences}!verbosity\_changed@{verbosity\_changed}}
+\index{verbosity\_changed@{verbosity\_changed}!Preferences@{Preferences}}
+\doxyparagraph{verbosity\_changed}
+{\footnotesize\ttfamily bool Preferences\+::verbosity\+\_\+changed\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\textbf{ preferences.\+hh}\item 
+\textbf{ preferences.\+cc}\end{DoxyCompactItemize}

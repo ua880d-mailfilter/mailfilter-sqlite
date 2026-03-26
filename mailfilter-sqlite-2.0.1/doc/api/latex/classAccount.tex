@@ -1,0 +1,184 @@
+\doxysubsection{Account Class Reference}
+\label{classAccount}\index{Account@{Account}}
+
+
+{\ttfamily \#include $<$account.\+hh$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \textbf{ clear} (void)
+\item 
+string \textbf{ server} (void)
+\item 
+void \textbf{ set\+\_\+server} (\textbf{ const} char $\ast$)
+\item 
+string \textbf{ usr} (void)
+\item 
+void \textbf{ set\+\_\+usr} (\textbf{ const} char $\ast$)
+\item 
+string \textbf{ passwd} (void)
+\item 
+void \textbf{ set\+\_\+passwd} (\textbf{ const} char $\ast$)
+\item 
+unsigned int \textbf{ port} (void)
+\item 
+void \textbf{ set\+\_\+port} (unsigned int)
+\item 
+void \textbf{ set\+\_\+protocol} (unsigned int)
+\item 
+unsigned int \textbf{ protocol} (void)
+\item 
+void \textbf{ set\+\_\+connection} (unsigned int=POSIX\+\_\+\+SOCKETS) \+\_\+\+\_\+attribute\+\_\+\+\_\+((unused))
+\item 
+int \textbf{ check} (void)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+string \textbf{ serv}
+\item 
+string \textbf{ user}
+\item 
+string \textbf{ pass}
+\item 
+int \textbf{ the\+\_\+port}
+\item 
+vector$<$ string $>$ \textbf{ msg\+\_\+ids}
+\item 
+\textbf{ Protocol} $\ast$ \textbf{ proto}
+\item 
+\textbf{ Connection} $\ast$ \textbf{ conn}
+\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Member Function Documentation}
+\mbox{\label{classAccount_adf5024f4417af54a47002a923e5a2eff}} 
+\index{Account@{Account}!check@{check}}
+\index{check@{check}!Account@{Account}}
+\doxyparagraph{check()}
+{\footnotesize\ttfamily int Account\+::check (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\label{classAccount_aab526ed969bf48bfeb859788a01fde89}} 
+\index{Account@{Account}!clear@{clear}}
+\index{clear@{clear}!Account@{Account}}
+\doxyparagraph{clear()}
+{\footnotesize\ttfamily void Account\+::clear (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\label{classAccount_a7f25ed19eb6c0027a90f6cc88dc8edbe}} 
+\index{Account@{Account}!passwd@{passwd}}
+\index{passwd@{passwd}!Account@{Account}}
+\doxyparagraph{passwd()}
+{\footnotesize\ttfamily string Account\+::passwd (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\label{classAccount_acd6ca787c1999663b0932960c37e7212}} 
+\index{Account@{Account}!port@{port}}
+\index{port@{port}!Account@{Account}}
+\doxyparagraph{port()}
+{\footnotesize\ttfamily unsigned int Account\+::port (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\label{classAccount_af52be96397b609899ef92a4f81ce0318}} 
+\index{Account@{Account}!protocol@{protocol}}
+\index{protocol@{protocol}!Account@{Account}}
+\doxyparagraph{protocol()}
+{\footnotesize\ttfamily unsigned int Account\+::protocol (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\label{classAccount_a4a25379a5d5e31925b4ed760b733f843}} 
+\index{Account@{Account}!server@{server}}
+\index{server@{server}!Account@{Account}}
+\doxyparagraph{server()}
+{\footnotesize\ttfamily string Account\+::server (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\label{classAccount_aed2c0897fcc20fe0bf6f0f61152c6506}} 
+\index{Account@{Account}!set\_connection@{set\_connection}}
+\index{set\_connection@{set\_connection}!Account@{Account}}
+\doxyparagraph{set\_connection()}
+{\footnotesize\ttfamily void Account\+::set\+\_\+connection (\begin{DoxyParamCaption}\item[{unsigned int}]{the\+\_\+connection\+\_\+type = {\ttfamily POSIX\+\_\+SOCKETS} }\end{DoxyParamCaption})}
+
+\mbox{\label{classAccount_a0b95866300803c8731e5731b1babcefa}} 
+\index{Account@{Account}!set\_passwd@{set\_passwd}}
+\index{set\_passwd@{set\_passwd}!Account@{Account}}
+\doxyparagraph{set\_passwd()}
+{\footnotesize\ttfamily void Account\+::set\+\_\+passwd (\begin{DoxyParamCaption}\item[{\textbf{ const} char $\ast$}]{s }\end{DoxyParamCaption})}
+
+\mbox{\label{classAccount_a06bd6489cd330825647040028df6a8f0}} 
+\index{Account@{Account}!set\_port@{set\_port}}
+\index{set\_port@{set\_port}!Account@{Account}}
+\doxyparagraph{set\_port()}
+{\footnotesize\ttfamily void Account\+::set\+\_\+port (\begin{DoxyParamCaption}\item[{unsigned int}]{p }\end{DoxyParamCaption})}
+
+\mbox{\label{classAccount_a931770ba3852d9242d2855806c8f1ce5}} 
+\index{Account@{Account}!set\_protocol@{set\_protocol}}
+\index{set\_protocol@{set\_protocol}!Account@{Account}}
+\doxyparagraph{set\_protocol()}
+{\footnotesize\ttfamily void Account\+::set\+\_\+protocol (\begin{DoxyParamCaption}\item[{unsigned int}]{prot }\end{DoxyParamCaption})}
+
+\mbox{\label{classAccount_add86acef57f14b961902da7d7a3fd76f}} 
+\index{Account@{Account}!set\_server@{set\_server}}
+\index{set\_server@{set\_server}!Account@{Account}}
+\doxyparagraph{set\_server()}
+{\footnotesize\ttfamily void Account\+::set\+\_\+server (\begin{DoxyParamCaption}\item[{\textbf{ const} char $\ast$}]{s }\end{DoxyParamCaption})}
+
+\mbox{\label{classAccount_acdaf877c2d2b079a2db16ad55f4bfae9}} 
+\index{Account@{Account}!set\_usr@{set\_usr}}
+\index{set\_usr@{set\_usr}!Account@{Account}}
+\doxyparagraph{set\_usr()}
+{\footnotesize\ttfamily void Account\+::set\+\_\+usr (\begin{DoxyParamCaption}\item[{\textbf{ const} char $\ast$}]{s }\end{DoxyParamCaption})}
+
+\mbox{\label{classAccount_a8de162812b38ad6684fff4e30c719450}} 
+\index{Account@{Account}!usr@{usr}}
+\index{usr@{usr}!Account@{Account}}
+\doxyparagraph{usr()}
+{\footnotesize\ttfamily string Account\+::usr (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsubsection{Member Data Documentation}
+\mbox{\label{classAccount_a4b5f5c83f5b3f0d2e6ce9c9358f76385}} 
+\index{Account@{Account}!conn@{conn}}
+\index{conn@{conn}!Account@{Account}}
+\doxyparagraph{conn}
+{\footnotesize\ttfamily \textbf{ Connection}$\ast$ Account\+::conn\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\label{classAccount_a53b312e8085daefa3bb18744e809bab0}} 
+\index{Account@{Account}!msg\_ids@{msg\_ids}}
+\index{msg\_ids@{msg\_ids}!Account@{Account}}
+\doxyparagraph{msg\_ids}
+{\footnotesize\ttfamily vector$<$string$>$ Account\+::msg\+\_\+ids\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\label{classAccount_aaf19d39e46cbf2b9191eed809efc5be2}} 
+\index{Account@{Account}!pass@{pass}}
+\index{pass@{pass}!Account@{Account}}
+\doxyparagraph{pass}
+{\footnotesize\ttfamily string Account\+::pass\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\label{classAccount_adc82f1839409153a48769e5b219959e9}} 
+\index{Account@{Account}!proto@{proto}}
+\index{proto@{proto}!Account@{Account}}
+\doxyparagraph{proto}
+{\footnotesize\ttfamily \textbf{ Protocol}$\ast$ Account\+::proto\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\label{classAccount_a4f91e37f28b4580d63cac1458fcae39d}} 
+\index{Account@{Account}!serv@{serv}}
+\index{serv@{serv}!Account@{Account}}
+\doxyparagraph{serv}
+{\footnotesize\ttfamily string Account\+::serv\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\label{classAccount_a0e5cb33c4ca7248fb6efa372286cad25}} 
+\index{Account@{Account}!the\_port@{the\_port}}
+\index{the\_port@{the\_port}!Account@{Account}}
+\doxyparagraph{the\_port}
+{\footnotesize\ttfamily int Account\+::the\+\_\+port\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\label{classAccount_ac579ebb833a6f1be4be9a2b7185cf03e}} 
+\index{Account@{Account}!user@{user}}
+\index{user@{user}!Account@{Account}}
+\doxyparagraph{user}
+{\footnotesize\ttfamily string Account\+::user\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\textbf{ account.\+hh}\item 
+\textbf{ account.\+cc}\end{DoxyCompactItemize}

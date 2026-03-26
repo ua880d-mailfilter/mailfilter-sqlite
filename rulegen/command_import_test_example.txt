@@ -1,0 +1,19 @@
+####Beispiele für den Import von Testdaten (Email)
+# import .eml .txt .hdr
+
+./mailfilter-header-import.pl \
+  --db /var/spool/filter/mailheader-test.sqlite3 \
+  --schema-from /var/spool/filter/mailheader.log.sqlite3 \
+  --input /tmp/spam-samples \
+  --decision deny \
+  --id-prefix tst
+
+## Import SPAM Beispiel
+./mailfilter-header-import.pl --db mailheader-stress.sqlite3 \
+    --schema-from /var/spool/filter/mailheader.log.sqlite3 \
+    --input ./spam --decision deny --id-prefix tstspam --reset
+
+## Import HAM Beispiel
+./mailfilter-header-import.pl --db mailheader-stress.sqlite3 \
+    --schema-from /var/spool/filter/mailheader.log.sqlite3 \
+    --input ./ham --decision pass --id-prefix tstham

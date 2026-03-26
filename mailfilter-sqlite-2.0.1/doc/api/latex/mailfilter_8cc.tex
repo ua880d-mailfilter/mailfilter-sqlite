@@ -1,0 +1,133 @@
+\doxysubsection{mailfilter.\+cc File Reference}
+\label{mailfilter_8cc}\index{mailfilter.cc@{mailfilter.cc}}
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$sstream$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$cstring$>$}\newline
+{\ttfamily \#include $<$cstdlib$>$}\newline
+{\ttfamily \#include $<$cstdio$>$}\newline
+{\ttfamily \#include $<$csignal$>$}\newline
+{\ttfamily \#include $<$stdexcept$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include \char`\"{}mailfilter.\+hh\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}preferences.\+hh\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}feedback.\+hh\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}weeder.\+hh\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}time.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}getopt.\+h\char`\"{}}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \textbf{ init\+\_\+app} (void)
+\item 
+bool \textbf{ open\+\_\+prefs} (string)
+\item 
+void \textbf{ get\+\_\+opts} (int argc, char $\ast$argv[$\,$])
+\item 
+void \textbf{ override\+\_\+prefs} (string)
+\item 
+int \textbf{ cmp\+\_\+no\+\_\+case} (\textbf{ const} string \&, \textbf{ const} string \&)
+\item 
+int \textbf{ precompile\+\_\+expressions} (void)
+\item 
+void \textbf{ connect\+\_\+sigint} (int)
+\item 
+string \textbf{ int\+\_\+to\+\_\+string} (int)
+\item 
+int \textbf{ main} (int argc, char $\ast$argv[$\,$])
+\item 
+string \textbf{ exec\+\_\+shell} (\textbf{ const} char $\ast$command)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+struct sigaction \textbf{ sigact}
+\item 
+Weeder \textbf{ weeder}
+\item 
+int \textbf{ mailbox\+\_\+status}
+\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Function Documentation}
+\mbox{\label{mailfilter_8cc_afb83c30b29c387537092966aa333c78e}} 
+\index{mailfilter.cc@{mailfilter.cc}!cmp\_no\_case@{cmp\_no\_case}}
+\index{cmp\_no\_case@{cmp\_no\_case}!mailfilter.cc@{mailfilter.cc}}
+\doxyparagraph{cmp\_no\_case()}
+{\footnotesize\ttfamily int cmp\+\_\+no\+\_\+case (\begin{DoxyParamCaption}\item[{\textbf{ const} string \&}]{s,  }\item[{\textbf{ const} string \&}]{s2 }\end{DoxyParamCaption})}
+
+\mbox{\label{mailfilter_8cc_a42c0c83467bf8024561a6d3df70eb95e}} 
+\index{mailfilter.cc@{mailfilter.cc}!connect\_sigint@{connect\_sigint}}
+\index{connect\_sigint@{connect\_sigint}!mailfilter.cc@{mailfilter.cc}}
+\doxyparagraph{connect\_sigint()}
+{\footnotesize\ttfamily void connect\+\_\+sigint (\begin{DoxyParamCaption}\item[{int}]{signo }\end{DoxyParamCaption})}
+
+\mbox{\label{mailfilter_8cc_a5a9ad2e87ba6c60a00cbe9f67e011dc8}} 
+\index{mailfilter.cc@{mailfilter.cc}!exec\_shell@{exec\_shell}}
+\index{exec\_shell@{exec\_shell}!mailfilter.cc@{mailfilter.cc}}
+\doxyparagraph{exec\_shell()}
+{\footnotesize\ttfamily string exec\+\_\+shell (\begin{DoxyParamCaption}\item[{\textbf{ const} char $\ast$}]{command }\end{DoxyParamCaption})}
+
+\mbox{\label{mailfilter_8cc_ac637252f69fe0ea66e9d27c72b8db2b1}} 
+\index{mailfilter.cc@{mailfilter.cc}!get\_opts@{get\_opts}}
+\index{get\_opts@{get\_opts}!mailfilter.cc@{mailfilter.cc}}
+\doxyparagraph{get\_opts()}
+{\footnotesize\ttfamily void get\+\_\+opts (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$}]{argv[$\,$] }\end{DoxyParamCaption})}
+
+\mbox{\label{mailfilter_8cc_a58365390a2f6d58ce8173e26f693d999}} 
+\index{mailfilter.cc@{mailfilter.cc}!init\_app@{init\_app}}
+\index{init\_app@{init\_app}!mailfilter.cc@{mailfilter.cc}}
+\doxyparagraph{init\_app()}
+{\footnotesize\ttfamily void init\+\_\+app (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\mbox{\label{mailfilter_8cc_aac5566abbb83233a9d5daa9d32ed2112}} 
+\index{mailfilter.cc@{mailfilter.cc}!int\_to\_string@{int\_to\_string}}
+\index{int\_to\_string@{int\_to\_string}!mailfilter.cc@{mailfilter.cc}}
+\doxyparagraph{int\_to\_string()}
+{\footnotesize\ttfamily string int\+\_\+to\+\_\+string (\begin{DoxyParamCaption}\item[{int}]{val }\end{DoxyParamCaption})}
+
+\mbox{\label{mailfilter_8cc_a0ddf1224851353fc92bfbff6f499fa97}} 
+\index{mailfilter.cc@{mailfilter.cc}!main@{main}}
+\index{main@{main}!mailfilter.cc@{mailfilter.cc}}
+\doxyparagraph{main()}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$}]{argv[$\,$] }\end{DoxyParamCaption})}
+
+\mbox{\label{mailfilter_8cc_ac02d124f8fa9e015fb98e14cc9cb5070}} 
+\index{mailfilter.cc@{mailfilter.cc}!open\_prefs@{open\_prefs}}
+\index{open\_prefs@{open\_prefs}!mailfilter.cc@{mailfilter.cc}}
+\doxyparagraph{open\_prefs()}
+{\footnotesize\ttfamily bool open\+\_\+prefs (\begin{DoxyParamCaption}\item[{string}]{ }\end{DoxyParamCaption})}
+
+\mbox{\label{mailfilter_8cc_a531fcb6645da6100d824da9d52d64ceb}} 
+\index{mailfilter.cc@{mailfilter.cc}!override\_prefs@{override\_prefs}}
+\index{override\_prefs@{override\_prefs}!mailfilter.cc@{mailfilter.cc}}
+\doxyparagraph{override\_prefs()}
+{\footnotesize\ttfamily void override\+\_\+prefs (\begin{DoxyParamCaption}\item[{string}]{ }\end{DoxyParamCaption})}
+
+\mbox{\label{mailfilter_8cc_a2db2b680ca9c7976043a616dcb98e22f}} 
+\index{mailfilter.cc@{mailfilter.cc}!precompile\_expressions@{precompile\_expressions}}
+\index{precompile\_expressions@{precompile\_expressions}!mailfilter.cc@{mailfilter.cc}}
+\doxyparagraph{precompile\_expressions()}
+{\footnotesize\ttfamily int precompile\+\_\+expressions (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsubsection{Variable Documentation}
+\mbox{\label{mailfilter_8cc_acd4537e46d80e3511292706d88b868f0}} 
+\index{mailfilter.cc@{mailfilter.cc}!mailbox\_status@{mailbox\_status}}
+\index{mailbox\_status@{mailbox\_status}!mailfilter.cc@{mailfilter.cc}}
+\doxyparagraph{mailbox\_status}
+{\footnotesize\ttfamily int mailbox\+\_\+status}
+
+\mbox{\label{mailfilter_8cc_a737d54f440be21a1dd889b62719de138}} 
+\index{mailfilter.cc@{mailfilter.cc}!sigact@{sigact}}
+\index{sigact@{sigact}!mailfilter.cc@{mailfilter.cc}}
+\doxyparagraph{sigact}
+{\footnotesize\ttfamily struct sigaction sigact}
+
+\mbox{\label{mailfilter_8cc_aa366ad0c1ab3b661b0df659697a5e10f}} 
+\index{mailfilter.cc@{mailfilter.cc}!weeder@{weeder}}
+\index{weeder@{weeder}!mailfilter.cc@{mailfilter.cc}}
+\doxyparagraph{weeder}
+{\footnotesize\ttfamily Weeder weeder}
+

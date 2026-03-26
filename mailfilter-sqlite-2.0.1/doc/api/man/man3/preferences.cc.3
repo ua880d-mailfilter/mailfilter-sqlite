@@ -1,0 +1,64 @@
+.TH "preferences.cc" 3 "Sun Sep 4 2022" "Version 0.8.9" "mailfilter" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+preferences.cc
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <string>\fP
+.br
+\fC#include <cstring>\fP
+.br
+\fC#include <cstdlib>\fP
+.br
+\fC#include <cctype>\fP
+.br
+\fC#include <fstream>\fP
+.br
+\fC#include <vector>\fP
+.br
+\fC#include <stdexcept>\fP
+.br
+\fC#include <cstdio>\fP
+.br
+\fC#include 'preferences\&.hh'\fP
+.br
+\fC#include 'filter\&.hh'\fP
+.br
+\fC#include 'mailfilter\&.hh'\fP
+.br
+\fC#include 'account\&.hh'\fP
+.br
+\fC#include 'protocol\&.hh'\fP
+.br
+\fC#include 'score\&.hh'\fP
+.br
+\fC#include 'rcfile\&.hh'\fP
+.br
+\fC#include <wordexp\&.h>\fP
+.br
+\fC#include <sys/types\&.h>\fP
+.br
+\fC#include <regex\&.h>\fP
+.br
+
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "int \fBrcparse\fP (void *)"
+.br
+.ti -1c
+.RI "int \fBcmp_no_case\fP (\fBconst\fP string &, \fBconst\fP string &)"
+.br
+.in -1c
+.SH "Function Documentation"
+.PP 
+.SS "int cmp_no_case (\fBconst\fP string & s, \fBconst\fP string & s2)"
+
+.SS "int rcparse (void *)"
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for mailfilter from the source code\&.

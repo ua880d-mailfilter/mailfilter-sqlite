@@ -1,0 +1,169 @@
+# -----------------------------------------------------------
+# Example configuration based upon the INSTALL document, but
+# showing some advanced features such as 'Negative Filters',
+# extended Regular Expressions, etc.
+# -----------------------------------------------------------
+
+# -----------------------------------------------------------
+# Logile path (be sure you have write permission in this
+# directory; you MUST specify a logfile)
+
+LOGFILE="/var/log/mailfilter.log"
+
+# -----------------------------------------------------------
+# Level of verbosity
+
+VERBOSE=3
+
+# -----------------------------------------------------------
+# Normalises the subject strings before parsing, e.g.
+# ',L.E-G,A.L; ,C.A-B`L`E, +.B-O`X` ;D`E`S,C;R,A.MB;L,E.R-]'
+# becomes 'LEGAL CABLE BOX DESCRAMBLER' which can be filtered.
+#NORMAL = "yes"
+
+# Speichert Mailheader in ein File
+SHOW_HEADERS = "/var/spool/filter/mailheader.log"
+
+# Speichert Mailheader strukturiert in eine sqlite3-DB
+LOG_HEADERS_SQLITE3 = "/var/spool/filter/mailheader.log.sqlite3"
+
+# -----------------------------------------------------------
+# POP3 server list (do not change the order of the fields!)
+# Note: Port 110 is usually the port POP3 servers use.
+#       Currently only POP3 is supported.
+
+
+
+#SERVER="mx.freenet.de"
+#USER=""
+#PASS=""
+#PROTOCOL="pop3/ssl"
+#PORT=995
+
+#SERVER="pop.gmail.com"
+#USER=""
+#PASS=""
+#PROTOCOL="pop3/ssl"
+#PORT=995
+
+#SERVER="securepop.t-online.de"
+#USER=""
+#PASS=""
+#PROTOCOL="pop3/ssl"
+#PORT=995
+
+# sonstige Einstellungen
+REG_CASE="no"
+REG_TYPE="extended"
+MAXLENGTH=2998
+NORMAL="yes"
+HIGHSCORE=100
+
+# ="="="="="="="="="="="="="="="="="="="="="="="="="="="="="="="="="="="="="="="="="="="
+# Formale Spamindikatoren
+# ="="="="="="="="="="="="="="="="="="="="="="="="="="="="="="="="="="="="="="="="="="="
+# unwahrscheinliche Mailadresse (mit Leerzeichen im Namen)
+DENY="^From: *.*<[^ ]* [^ ]*@.*>"
+
+# Mailadresse beginnt mit Zahlen
+SCORE +75="^From: *".*" *<[[:digit:]].*@"
+SCORE +75="^From: *[[:digit:]]+[[:alnum:]_.-]*@"
+
+# verdaechtige Mailadresse (Unterstriche am Ende des Namens)
+SCORE +50="^From: *.*_+@"
+
+# Zahlen in der Mailadresse
+SCORE +40="^From: <?[^[:digit:] \"]+[[:digit:]]+[^[[:digit:] \"]*@"
+
+# Sender schreibt seinen Namen nur mit Grossbuchstaben
+#DENY_CASE="^From: *\"([[:upper:][:space:]\!\?,.-]+ *)+\""
+
+# enthaelt eine Menge aufeinander folgende Leerzeichen/Tabs
+DENY="^Subject: .*[ \t]{5}"
+
+# gar keine Betreffzeile vorhanden (nicht konform zu RFC 822)
+SCORE +75<>"^Subject:"
+
+# leere Betreffzeile, oder nur Leerzeichen (kommt leider oft vor)
+SCORE +25="^Subject: *$"
+
+# Betreffzeile enthaelt ! oder ?
+SCORE +25="^Subject:.*[!?]"
+
+# Betreffzeile enthaelt viele -,=",.
+SCORE +40="^Subject:.*([-=".].*){4}"
+
+# Betreff ist nur in Grossbuchstaben geschrieben
+SCORE_CASE +60="^Subject: *([[:upper:][:space:]\!\?,.]+ *)+$"
+
+# Kein Leerzeichen nach Re oder Fwd
+# (so etwas macht kein Mailprogramm, dass ich kenne)
+DENY_CASE="^Subject: ([Rr]e|[Ff]wd):[^ ]"
+
+
+# Unerwuenschte Betreffzeilen
+DENY="^Subject:.*Get penis enlargement"
+DENY="^Subject:.*WIN MONEY"
+
+#Spam
+DENY="^From:.*\.(ar|br|cl|ee|ro|cn|kr|id|TU|AC|TH)[ \>\)]"
+DENY="^(From|Subject):.*="?(big5|koi8|GB2312)"
+# fuer Westeuropa geht das"
+DENY="^Received:.*\[20[02]\."
+# blendet Suedamerika und Suedostasien aus
+DENY="^From:.*<>"
+# kein Absender-URL
+# keine richtige Message-ID, kein Datum 
+DENY="^(Date|Message-ID):.*added"
+
+DENY_CASE="^Subject:.*(ADV|URGENT|HELP|NEEDED|VIRUS|SPY|LETTER)"
+
+
+# erwischt "*@ms.com" und "*@xxx.ms.com" usw."
+DENY_CASE="^From:.*([mM]icrosoft|MS[- ])"
+DENY="^From:.*(Inet|Internet|Message|Security)"
+DENY="^From:.*(Dice|Casino|Royal|Lindsay|Latham|Gracie|Gaming-Sensation|Drugs\.com)"
+#DENY="^Subject:.*virus\ alert"
+
+# -------------------------------------------
+# charset
+# -------------------------------------------
+DENY="^Subject:.*(big5|GB2312)"
+DENY="^Content-Type:.*(GB2312|ks_c|euc_kr|big5)"
+DENY="^charset="(big5|gb2312|euc-kr|ks_c)"
+
+
+# ="="="="="="="="="="="="="="="="="="="="="="="="="="="="="="="="="="="="="="="="="="="
+# Ausnahmen, Whitelist
+# ="="="="="="="="="="="="="="="="="="="="="="="="="="="="="="="="="="="="="="="="="="="
+
+ALLOW="^(From|To):.*(debian\.org)"
+# Of course we allow e-mail from anyone who has something to say about
+
+# mailfilter:
+ALLOW="^Subject:.*mailfilter"
+
+# We also let our girlfriend send any e-mail she wants:
+ALLOW="^(From|To|Cc):.*dosforum\.de"
+ALLOW="^From:.*aktuell\.conrad\.de"
+
+
+#================== from rulegen ===================================
+
+###### RULES vom Regelgenerator erzeugt (dynamisch, standard, harder)
+
+
+#INCLUDE="/etc/mailfilter/generated-rules.conf"
+
+###### RULES vom Regelgenerator erzeugt (dynamisch, conservativ)
+
+
+#INCLUDE="/etc/mailfilter/generated-conservative-rules.conf"
+
+###### RULES vom Regelgenerator erzeugt (dynamisch, aggressiv)
+
+
+#INCLUDE="/etc/mailfilter/generated-aggressive-rules.conf"
+
+
+

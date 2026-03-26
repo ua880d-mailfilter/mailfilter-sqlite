@@ -1,0 +1,38 @@
+Mailfilter AUTHORS
+-=-=-=-=-=-=-=-=-=
+
+Andreas Bauer          <baueran@gmail.com>
+(Main developer, German translation)
+
+Rico Dummis <ua880d@gmail.com>
+SQLite header logging extension, rule generation & analyse system, bug fixes
+
+Ron Day                <ronmon@bellsouth.net>
+(Maintainer of Mailfilter package for Slackware Linux)
+
+Etienne Herlent        <eherlent@easynet.fr>
+(French translation, Maintainer of Mailfilter package for Mac OS X)
+
+Joerg Jaspert          <joerg@debian.org>
+(Maintainer of Mailfilter package for Debian Linux)
+
+Ilgiz Kalmetev         <ilgiz@bashtelecom.ru>
+(Russian translation)
+
+Dimitris Kamenopoulos  <d.kamenopoulos_nospam@mail.ntua.gr>
+(Greek translation)
+
+Frederic L. W. Meunier <0@pervalidus.net>
+(Portuguese translation)
+
+Matteo Merli           <merlim@libero.it>
+(Italian translation)
+
+Bob Paddock            <bpaddock@csonline.net>
+(Maintainer of Mailfilter package for MS-Windows)
+
+Mike Polniak           <mikpolniak@adelphia.net>
+(Maintainer of Mailfilter package for Gentoo Linux)
+
+Carlos Valdivia Yagüe  <valyag@hotpop.com>
+(Spanish translation)
