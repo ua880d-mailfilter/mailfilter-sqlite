@@ -20,7 +20,7 @@ Mailfilter is released under the GPL with the additional exemption
 that compiling, linking, and/or using OpenSSL is allowed.  For more
 information, see the COPYING file provided with the Mailfilter program.
 
-The latest releases of Mailfilter can be obtained from this web page:
+The latest releases of original Mailfilter can be obtained from this web page:
 
        http://mailfilter.sourceforge.net/
 
@@ -36,8 +36,6 @@ Enjoy Mailfilter!
 mailfilter-sqlite-2.0.1 (sqlite extension)
 
 This version (2.0.1) extends the last original mailfilter 0.8.9 with:
-
-This version extends the original mailfilter with:
 
 - SQLite-based structured header logging
 - rule generation subsystem (external scripts)
