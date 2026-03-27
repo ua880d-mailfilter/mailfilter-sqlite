@@ -188,7 +188,7 @@ Start here:
 
 ##  Attribution
 
-Based on the original **mailfilter** by Andreas Bauer.
+**mailfilter-sqlite** is an extended fork of the original **mailfilter** https://mailfilter.sourceforge.io/ (C) by Andreas Bauer.
 
 Extended with:
 
