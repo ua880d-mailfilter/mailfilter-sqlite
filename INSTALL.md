@@ -29,7 +29,7 @@ Extract the source archive:
     tar xzf mailfilter-sqlite-2.0.1.tar.gz
     cd mailfilter-sqlite-2.0.1
 
-### 2. Generate configure script (if needed!)
+### 2. Generate configure script (needed!)
 
     autoreconf -fi
 
