@@ -14,6 +14,10 @@
   <i>Explainable. Predictable. No black box.</i>
 </p>
 
+<p align="center">
+  <b>Abstract: </b>The system extends the classic mailfilter with an SQLite-based evaluation layer. This transforms mailfilter not only into a filter, but also into a header crawler, an analysis tool, and a generator for dynamic additional rules. The separation between the live database, test databases, and rule files included via includes makes the concept manageable and scalable.
+</p>
+
 <br>
 
 <!-- Screenshot -->
