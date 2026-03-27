@@ -206,8 +206,8 @@ Run:
 
 ##  Versioning Concept
 
-* mailfilter 0.8.x ? classic filtering
-* mailfilter-sqlite 2.x ? data-driven generation
+* mailfilter 0.8.x -> classic filtering
+* mailfilter-sqlite 2.x -> data-driven generation
 
  This is a **new generation**, not just an extension
 
