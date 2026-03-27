@@ -1,4 +1,8 @@
-# mailfilter-sqlite        ![mailfilter-sqlite Logo](docs/images/logo/mf-sqlite-logo2-128p.png)
+<p align="center">
+  <img src="docs/images/logo/mf-sqlite-logo2-128p.png" width="128"/>
+</p>
+
+<h1 align="center">mailfilter-sqlite</h1>
 
 **A deterministic mail pre-filter with offline rule generation and SQLite-based header analysis.**
 
