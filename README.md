@@ -20,84 +20,121 @@
 
 <br>
 
-<!-- Screenshot -->
+---
+
+##  Core Idea
+
+Collect real-world mail header data ? analyze it ? generate better rules.
+
+**mailfilter-sqlite turns experience into rules.**
+Based on the original **mailfilter** https://mailfilter.sourceforge.io/ (C) by Andreas Bauer.
+
+---
+
+##  What makes this different
+
+mailfilter-sqlite is no longer just a mail filter.
+
+It is:
+
+* a header crawler
+* a structured data collector
+* a campaign analysis engine
+* a deterministic rule generator
+
+ It transforms mail filtering from reactive filtering into **proactive rule engineering**
+
+---
 
 ##  Example: Generated Analysis Candidate
 
 ![Generated Candidate Example](docs/images/candidates/testset-bewertungsblock.png)
 
-**mailfilter-sqlite** is an extended fork of the original **mailfilter** https://mailfilter.sourceforge.io/ (C) by Andreas Bauer.
+The system automatically detects:
 
-The example above demonstrates:
+* phishing campaigns
+* fake brand domains (e.g. `amaz0n`, `paypa1`)
+* recurring infrastructure patterns
+* risk levels and confidence
 
-* automatic phishing campaign detection
-* fake brand recognition (e.g. `github-security-check.example`)
-* risk classification and confidence scoring
-* automatic rule suggestion generation
+…and generates **ready-to-use rule suggestions**
 
 ---
 
-##  Why this project exists
+##  Offline Rule Engineering
 
-Traditional mail filtering often happens too late in the pipeline.
+Rules are **NOT modified automatically at runtime**.
 
-**mailfilter-sqlite shifts detection to the earliest possible stage:**
+Instead:
 
-* headers are analyzed before full message retrieval
-* spam campaigns are identified offline
-* rules are generated proactively
-* unwanted messages can be blocked before reaching MTA or SpamAssassin
+1. headers are collected
+2. patterns are analyzed
+3. rules are suggested
+4. rules are reviewed and deployed
 
- Result: **less load, more control, full transparency**
+ ensures:
+
+* stability
+* transparency
+* auditability
+* zero unexpected behavior
+
+---
+
+##  SQLite as Intelligence Layer
+
+The SQLite database is the core of the system.
+
+It stores:
+
+* parsed header structures
+* rule hit history
+* scoring decisions
+* campaign patterns
+
+ enables:
+
+* reproducible analysis
+* statistical evaluation
+* long-term pattern detection
+
+---
+
+##  Campaign Detection
+
+Messages are grouped into campaign signatures based on:
+
+* sender domains
+* infrastructure (Received hosts)
+* subject patterns
+
+ Detects **spam waves instead of single emails**
+
+---
+
+##  False Positive Protection
+
+The system is conservative by design:
+
+* protected domains are never blindly blocked
+* bulk providers are handled carefully
+* weak signals are filtered
+* legitimate language patterns are recognized
+
+ Focus: **precision over aggressiveness**
 
 ---
 
 ##  Key Features
 
-* **Header-first filtering**
-
-  * no message body required
-  * fast and lightweight
-
-* **SQLite integration**
-
-  * structured storage of:
-
-    * messages
-    * header entries
-    * rule hits
-    * final decisions
-
-* **Offline rule generation**
-
-  * no live self-modifying behavior
-  * rules are generated in controlled batches
-
-* **Campaign detection**
-
-  * subject similarity
-  * sender domains
-  * received hosts
-  * repeated infrastructure patterns
-
-* **Fake-brand / typosquatting detection**
-
-  * examples:
-
-    * `arnazon`, `amaz0n`, `paypa1`, `g00gle`, `micr0soft`
-
-* **False-positive protection**
-
-  * ALLOW proximity
-  * protected domains
-  * bulk provider awareness
-  * conservative export logic
-
-* **Deterministic behavior**
-
-  * same input ? same output
-  * no hidden heuristics
-  * no machine learning required
+* Header-only analysis (no body required)
+* SQLite-based structured logging
+* Deterministic rule generation
+* Campaign clustering
+* Fake-brand detection (typosquatting)
+* Rule suggestion system (DENY / SCORE)
+* Externalized policy configuration
+* Fully explainable decisions
 
 ---
 
@@ -107,21 +144,20 @@ Traditional mail filtering often happens too late in the pipeline.
 mailfilter -> SQLite -> rulegen -> rules -> mailfilter
 ```
 
-**Pipeline:**
+### Pipeline
 
 1. **Collection**
 
-   * mailfilter retrieves and parses headers
-   * headers are logged to SQLite
+   * mailfilter reads headers
+   * logs into SQLite
 
 2. **Analysis**
 
-   * `rulegen` evaluates domains, subjects, campaigns and infrastructure
+   * rulegen evaluates patterns and campaigns
 
 3. **Deployment**
 
-   * rules are exported into include files
-   * mailfilter applies them on later runs
+   * rules are exported and included
 
 ---
 
@@ -133,13 +169,7 @@ mkdir -p /etc/mailfilter/rulegen
 mkdir -p /var/spool/filter
 ```
 
-Prepare a SQLite database (choose one):
-
-* copy a provided schema template
-* let mailfilter create it automatically
-* or build a test database using `.eml` datasets
-
-Add to your `mailfilterrc`:
+Add to `.mailfilterrc`:
 
 ```conf
 INCLUDE="/etc/mailfilter/generated-rules.conf"
@@ -148,8 +178,6 @@ INCLUDE="/etc/mailfilter/generated-rules.conf"
 Run:
 
 ```bash
-cd /etc/mailfilter
-
 ./mailfilter-rulegen.sh \
   --db /var/spool/filter/mailheader.sqlite3 \
   --mailfilterrc /etc/mailfilter/.mailfilterrc \
@@ -166,39 +194,56 @@ cd /etc/mailfilter
 
 ---
 
+##  Reproducible Testing
+
+* import headers from `.eml` files
+* use separate SQLite test databases
+* compare outputs across datasets
+
+ Safe rule development without affecting production
+
+---
+
+##  Versioning Concept
+
+* mailfilter 0.8.x ? classic filtering
+* mailfilter-sqlite 2.x ? data-driven generation
+
+ This is a **new generation**, not just an extension
+
+---
+
 ##  Documentation
 
-Start here:
-
-* **QUICKSTART.md** — fastest setup
-* **INSTALL.md** — build & deployment
-* **CONFIGURATION.md** — policy files
-* **RULEGEN.md** — analysis logic
-* **EXAMPLES.md** — real rules
-* **DESIGN.md** — philosophy
-* **SQLITE_INTEGRATION.md** — implementation details
+* QUICKSTART.md
+* INSTALL.md
+* CONFIGURATION.md
+* RULEGEN.md
+* SQLITE_INTEGRATION.md
+* USECASES.md
 
 ---
 
 ##  What this project is not
 
-* not a machine-learning spam filter
+* not machine learning
 * not a black box
-* not a live self-learning system
+* not self-modifying at runtime
 
- Rules are generated **offline and deliberately applied**
+ Everything is **controlled and explainable**
 
 ---
 
 ##  Attribution
 
-**mailfilter-sqlite** is an extended fork of the original **mailfilter** https://mailfilter.sourceforge.io/ (C) by Andreas Bauer.
+**mailfilter-sqlite** Based on the original **mailfilter** https://mailfilter.sourceforge.io/ (C) by Andreas Bauer.
 
 Extended with:
 
-* SQLite-based structured logging
-* rule generation subsystem
-* additional fixes and enhancements
+* SQLite logging
+* rule generation system
+* campaign analysis
+* bug fixes and enhancements
 
 ---
 
@@ -206,4 +251,4 @@ Extended with:
 
 GNU General Public License (GPL)
 
-Original copyright notices are preserved.
+Original copyrights preserved.
