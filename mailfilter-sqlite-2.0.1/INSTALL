@@ -41,6 +41,7 @@ proceed the following steps.  Change to the Mailfilter distribution
 directory (where the INSTALL file can be found,
 e.g. /home/tux/mailfilter-x.y.z) and run
 
+       autoreconf -fi 
       ./configure
 
 For a list of available options for configuration, call configure with
@@ -55,7 +56,8 @@ debugging information included or things like that.
 This version includes optional SQLite-based header logging.
 Enable at build time:
 
-    ./configure --enable-sqlite3-headerlog
+      autoreconf fi
+      ./configure --enable-sqlite3-headerlog
 
 This will automatically enable SQLite3 support.
 
