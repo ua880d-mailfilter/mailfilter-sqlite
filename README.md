@@ -4,7 +4,7 @@
 
 ![Generated Candidate Example](docs/images/candidates/testset-bewertungsblock.png)
 
-mailfilter-sqlite is an extended fork of the original **mailfilter** by Andreas Bauer.
+mailfilter-sqlite is an extended fork of the original **mailfilter** https://mailfilter.sourceforge.io/ (C) by Andreas Bauer.
 
 The example above demonstrates:
 
