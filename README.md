@@ -24,7 +24,7 @@
 
 ##  Core Idea
 
-Collect real-world mail header data ? analyze it ? generate better rules.
+Collect real-world mail header data -> analyze it -> generate better rules.
 
 **mailfilter-sqlite turns experience into rules.**
 Based on the original **mailfilter** https://mailfilter.sourceforge.io/ (C) by Andreas Bauer.
