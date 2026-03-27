@@ -1,6 +1,28 @@
 Mailfilter NEWS (Summary)
 -=-=-=-=-=-=-=-=-=-=-=-=-
 
+mailfilter-sqlite 2.0.1 (Fr 27. Mar 10:10:26 CEST 2026)
+
+    - Added SQLite-based header logging (optional) --enable-sqlite3-headerlog
+    - Introduced LOG_HEADERS_SQLITE3 configuration option
+    - Implemented structured logging (messages, header_entries, rule_hits)
+    - Added rule generation subsystem (external scripts: mailfilter-rulegen.sh...)
+    - No semantic changes to core filtering logic (non-intrusive extension)
+
+    - Fixed SSL communication issue with certain POP3/IMAP servers
+      (e.g. t-online mail servers) in src/socket.cc
+
+      Problem:
+        Incomplete or unsafe termination condition in read loop could lead
+        to incorrect buffer access and potential crashes during SSL handshake.
+
+      Fix:
+        Replaced unsafe boundary checks with length-safe condition ensuring
+        correct POP3/IMAP response termination handling.
+
+      Result:
+        Stable SSL communication confirmed in testing environments (no more crash by t-online servers).
+
 mailfilter 0.8.9 (So 4. Sep 13:04:45 CEST 2022)
 
   - Fix gentoo build issue: https://bugs.gentoo.org/859514
@@ -270,7 +292,7 @@ mailfilter 0.3.1  (Sun Dec  2 11:11:52 GMT 2001) [development version]
      doc/FAQ, as a couple of Linux distributors use(d) a broken version
      of flex!)
   
-  - Spanish translation (courtesy Carlos Valdivia Yagüe)
+  - Spanish translation (courtesy Carlos Valdivia YagÃ¼e)
 
   - Updated and corrected the program's FAQ (e. g. thanks to Brian
     Hall we have now an example shell script that shows how Mailfilter
