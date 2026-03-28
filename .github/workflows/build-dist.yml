@@ -6,6 +6,9 @@ on:
     tags:
       - 'v*'
 
+env:
+  PACKAGE_VERSION: 2.0.1
+
 jobs:
   build-release:
     runs-on: ubuntu-latest
@@ -29,15 +32,6 @@ jobs:
             libsqlite3-dev \
             libssl-dev
 
-      - name: Show tool versions
-        run: |
-          gcc --version
-          g++ --version
-          autoconf --version
-          automake --version
-          flex --version
-          bison --version
-
       - name: Generate configure
         working-directory: mailfilter-sqlite-2.0.1
         run: autoreconf -fi
@@ -56,7 +50,7 @@ jobs:
 
       - name: Build full project tarball
         run: |
-          FULLDIR="mailfilter-sqlite-full-${GITHUB_REF_NAME#v}"
+          FULLDIR="mailfilter-sqlite-full-${PACKAGE_VERSION}"
           rm -rf "$FULLDIR"
           mkdir -p "$FULLDIR"
 
@@ -90,19 +84,19 @@ jobs:
 
           tar czf "${FULLDIR}.tar.gz" "$FULLDIR"
 
-      - name: Find generated tarballs
-        run: find . -maxdepth 2 -name "*.tar.gz" -type f -ls
+      - name: Show generated tarballs
+        run: find . -name "*.tar.gz" -type f
 
-      - name: Upload core tarball as artifact
+      - name: Upload core tarball
         uses: actions/upload-artifact@v4
         with:
-          name: mailfilter-sqlite-core-dist
+          name: mailfilter-sqlite-core
           path: mailfilter-sqlite-2.0.1/*.tar.gz
 
-      - name: Upload full tarball as artifact
+      - name: Upload full tarball
         uses: actions/upload-artifact@v4
         with:
-          name: mailfilter-sqlite-full-dist
+          name: mailfilter-sqlite-full
           path: mailfilter-sqlite-full-*.tar.gz
 
       - name: Create GitHub Release
