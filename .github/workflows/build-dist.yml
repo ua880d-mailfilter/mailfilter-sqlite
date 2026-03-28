@@ -55,6 +55,7 @@ jobs:
         run: make dist
 
       - name: List artifacts (debug)
+        working-directory: mailfilter-sqlite-2.0.1
         run: ls -lh *.tar.gz
 
       - name: Upload tarball as artifact
