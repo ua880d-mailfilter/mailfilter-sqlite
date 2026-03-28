@@ -59,6 +59,14 @@ The system automatically detects:
 
 …and generates **ready-to-use rule suggestions**
 
+## 📂 Real Output Examples
+
+See real generated rule candidates:
+
+👉 [output-examples](output-examples/)
+
+These examples demonstrate real-world campaign detection and rule suggestions.
+
 ---
 
 ##  Offline Rule Engineering
