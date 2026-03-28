@@ -169,6 +169,147 @@ mailfilter -> SQLite -> rulegen -> rules -> mailfilter
 
 ---
 
+## Rule Loop / Data Flow
+
+mailfilter-sqlite extends the classic mailfilter workflow into a controlled, database-driven rule engineering loop.
+
+Unlike traditional spam filters, this system separates **data collection**, **analysis**, and **rule application** into distinct stages.
+
+Mail source / POP3 / securepop3
+          |
+          v
++----------------------+
+|      mailfilter      |
+|----------------------|
+| parses headers       |
+| applies ALLOW/DENY   |
+| scores / decides     |
+| logs to SQLite       |
++----------------------+
+          |
+          v
++----------------------+
+|   SQLite database    |
+|----------------------|
+| messages             |
+| header_entries       |
+| rule_hits            |
++----------------------+
+          |
+          v
++----------------------+
+| mailfilter-rulegen.sh|
+|----------------------|
+| extracts data        |
+| prepares analysis    |
++----------------------+
+          |
+          v
++----------------------+
+| mailfilter-rulegen.pl|
+|----------------------|
+| campaign detection   |
+| fake-brand analysis  |
+| time-based scoring   |
+| rule comparison      |
+| false-positive guard |
++----------------------+
+          |                 +-------------------------------+
+          |                 | policy / control files        |
+          |                 |-------------------------------|
+          |<----------------| protected_domains.conf        |
+          |                 | allow_subject_tokens.conf     |
+          |                 | bulk_mail_providers.conf      |
+          |                 | weak_subject_tokens.conf      |
+          |                 | brand_domains.conf            |
+          |                 +-------------------------------+
+          |
+          +----------------------------+
+          |                            |
+          v                            v
++----------------------+    +-------------------------------+
+| generated-candidates |    | exported rule files           |
+|----------------------|    |-------------------------------|
+| risk / confidence    |    | generated-rules.conf          |
+| reasons / examples   |    | generated-conservative-...    |
+| campaign signatures  |    | generated-aggressive-...      |
++----------------------+    +-------------------------------+
+                                             |
+                                             v
+                                  +--------------------------+
+                                  |       .mailfilterrc      |
+                                  | INCLUDE="..."            |
+                                  | existing rules loaded    |
+                                  +--------------------------+
+                                             |
+                                             v
+                                  +--------------------------+
+                                  | next mailfilter run      |
+                                  | applies new rules        |
+                                  +--------------------------+
+
+
+### Controlled Rule Generation
+
+The rule generator does not operate in isolation.
+
+It evaluates structured header data stored in SQLite against:
+
+- existing rules from `.mailfilterrc`
+- policy/control files (e.g. `protected_domains.conf`)
+- statistical and structural patterns observed in real traffic
+
+Instead of modifying rules automatically at runtime, it produces:
+
+- `generated-candidates.conf` (annotated analysis output)
+- optional exported rule files for controlled inclusion
+
+This creates a **transparent and auditable rule loop**.
+
+---
+
+### The Role of `.mailfilterrc`
+
+The `.mailfilterrc` file is part of the feedback loop:
+
+- Existing ALLOW/DENY rules are parsed and respected during analysis
+- Newly generated rules are reintroduced via `INCLUDE="..."`
+
+This ensures:
+
+- no blind overwriting of existing logic
+- consistent behavior across iterations
+- safe incremental rule evolution
+
+---
+
+### Why `generated-candidates.conf` matters
+
+The candidate file is not just an intermediate artifact.
+
+It contains:
+
+- risk scores and confidence levels
+- explanation of why a candidate was generated
+- detected patterns and campaign indicators
+- suggested rule types (DENY / SCORE)
+
+This allows manual validation before rules are activated.
+
+---
+
+### Policy / Control Files
+
+Policy files actively influence rule generation:
+
+- `protected_domains.conf` prevents false positives on trusted domains
+- `allow_subject_tokens.conf` supports contextual ALLOW logic
+- `bulk_mail_providers.conf` reduces overly aggressive infrastructure blocking
+- `weak_subject_tokens.conf` filters low-value candidates
+- `brand_domains.conf` improves fake-brand detection
+
+These files are a key part of the system's precision.
+
 ##  Quick Start
 
 ```bash
