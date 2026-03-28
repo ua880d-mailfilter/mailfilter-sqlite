@@ -23,6 +23,7 @@ jobs:
             libtool \
             build-essential \
             flex \
+            libfl-dev \
             bison \
             pkg-config \
             libsqlite3-dev \
