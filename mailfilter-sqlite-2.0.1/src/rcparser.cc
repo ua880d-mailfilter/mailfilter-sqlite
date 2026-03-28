@@ -200,65 +200,67 @@ enum yysymbol_kind_t
   YYSYMBOL_DENY = 9,                       /* DENY  */
   YYSYMBOL_HIGHSCORE = 10,                 /* HIGHSCORE  */
   YYSYMBOL_LOGFILE = 11,                   /* LOGFILE  */
-  YYSYMBOL_MAXLENGTH = 12,                 /* MAXLENGTH  */
-  YYSYMBOL_MAXSIZE_ALLOW = 13,             /* MAXSIZE_ALLOW  */
-  YYSYMBOL_MAXSIZE_DENY = 14,              /* MAXSIZE_DENY  */
-  YYSYMBOL_MAXSIZE_SCORE = 15,             /* MAXSIZE_SCORE  */
-  YYSYMBOL_NORMAL = 16,                    /* NORMAL  */
-  YYSYMBOL_SERVER = 17,                    /* SERVER  */
-  YYSYMBOL_USER = 18,                      /* USER  */
-  YYSYMBOL_PASS = 19,                      /* PASS  */
-  YYSYMBOL_PROTOCOL = 20,                  /* PROTOCOL  */
-  YYSYMBOL_PORT = 21,                      /* PORT  */
-  YYSYMBOL_REG_CASE = 22,                  /* REG_CASE  */
-  YYSYMBOL_REG_TYPE = 23,                  /* REG_TYPE  */
-  YYSYMBOL_SHOW_HEADERS = 24,              /* SHOW_HEADERS  */
-  YYSYMBOL_SCORE = 25,                     /* SCORE  */
-  YYSYMBOL_SCORE_CASE = 26,                /* SCORE_CASE  */
-  YYSYMBOL_SCORE_NOCASE = 27,              /* SCORE_NOCASE  */
-  YYSYMBOL_TIMEOUT = 28,                   /* TIMEOUT  */
-  YYSYMBOL_TEST = 29,                      /* TEST  */
-  YYSYMBOL_VERBOSE = 30,                   /* VERBOSE  */
-  YYSYMBOL_EXP = 31,                       /* EXP  */
-  YYSYMBOL_YES_NO_ID = 32,                 /* YES_NO_ID  */
-  YYSYMBOL_TEXT_ID = 33,                   /* TEXT_ID  */
-  YYSYMBOL_NUM_ID = 34,                    /* NUM_ID  */
-  YYSYMBOL_SHELL_CMD = 35,                 /* SHELL_CMD  */
-  YYSYMBOL_ENV_VAR = 36,                   /* ENV_VAR  */
-  YYSYMBOL_CTRL_CHAR = 37,                 /* CTRL_CHAR  */
-  YYSYMBOL_NOT_EQUAL = 38,                 /* NOT_EQUAL  */
-  YYSYMBOL_39_ = 39,                       /* '='  */
-  YYSYMBOL_40_ = 40,                       /* '"'  */
-  YYSYMBOL_YYACCEPT = 41,                  /* $accept  */
-  YYSYMBOL_commands = 42,                  /* commands  */
-  YYSYMBOL_command = 43,                   /* command  */
-  YYSYMBOL_exps = 44,                      /* exps  */
-  YYSYMBOL_exp = 45,                       /* exp  */
-  YYSYMBOL_str_arg = 46,                   /* str_arg  */
-  YYSYMBOL_yes_no_arg = 47,                /* yes_no_arg  */
-  YYSYMBOL_num_arg = 48,                   /* num_arg  */
-  YYSYMBOL_allow_rule = 49,                /* allow_rule  */
-  YYSYMBOL_del_duplicates = 50,            /* del_duplicates  */
-  YYSYMBOL_deny_rule = 51,                 /* deny_rule  */
-  YYSYMBOL_highscore = 52,                 /* highscore  */
-  YYSYMBOL_logfile = 53,                   /* logfile  */
-  YYSYMBOL_maxlength = 54,                 /* maxlength  */
-  YYSYMBOL_maxsize_allow = 55,             /* maxsize_allow  */
-  YYSYMBOL_maxsize_deny = 56,              /* maxsize_deny  */
-  YYSYMBOL_maxsize_score = 57,             /* maxsize_score  */
-  YYSYMBOL_normal = 58,                    /* normal  */
-  YYSYMBOL_server = 59,                    /* server  */
-  YYSYMBOL_user = 60,                      /* user  */
-  YYSYMBOL_pass = 61,                      /* pass  */
-  YYSYMBOL_protocol = 62,                  /* protocol  */
-  YYSYMBOL_port = 63,                      /* port  */
-  YYSYMBOL_reg_case = 64,                  /* reg_case  */
-  YYSYMBOL_reg_type = 65,                  /* reg_type  */
-  YYSYMBOL_show_headers = 66,              /* show_headers  */
-  YYSYMBOL_score = 67,                     /* score  */
-  YYSYMBOL_test = 68,                      /* test  */
-  YYSYMBOL_timeout = 69,                   /* timeout  */
-  YYSYMBOL_verbose = 70                    /* verbose  */
+  YYSYMBOL_LOG_HEADERS_SQLITE3 = 12,       /* LOG_HEADERS_SQLITE3  */
+  YYSYMBOL_MAXLENGTH = 13,                 /* MAXLENGTH  */
+  YYSYMBOL_MAXSIZE_ALLOW = 14,             /* MAXSIZE_ALLOW  */
+  YYSYMBOL_MAXSIZE_DENY = 15,              /* MAXSIZE_DENY  */
+  YYSYMBOL_MAXSIZE_SCORE = 16,             /* MAXSIZE_SCORE  */
+  YYSYMBOL_NORMAL = 17,                    /* NORMAL  */
+  YYSYMBOL_SERVER = 18,                    /* SERVER  */
+  YYSYMBOL_USER = 19,                      /* USER  */
+  YYSYMBOL_PASS = 20,                      /* PASS  */
+  YYSYMBOL_PROTOCOL = 21,                  /* PROTOCOL  */
+  YYSYMBOL_PORT = 22,                      /* PORT  */
+  YYSYMBOL_REG_CASE = 23,                  /* REG_CASE  */
+  YYSYMBOL_REG_TYPE = 24,                  /* REG_TYPE  */
+  YYSYMBOL_SHOW_HEADERS = 25,              /* SHOW_HEADERS  */
+  YYSYMBOL_SCORE = 26,                     /* SCORE  */
+  YYSYMBOL_SCORE_CASE = 27,                /* SCORE_CASE  */
+  YYSYMBOL_SCORE_NOCASE = 28,              /* SCORE_NOCASE  */
+  YYSYMBOL_TIMEOUT = 29,                   /* TIMEOUT  */
+  YYSYMBOL_TEST = 30,                      /* TEST  */
+  YYSYMBOL_VERBOSE = 31,                   /* VERBOSE  */
+  YYSYMBOL_EXP = 32,                       /* EXP  */
+  YYSYMBOL_YES_NO_ID = 33,                 /* YES_NO_ID  */
+  YYSYMBOL_TEXT_ID = 34,                   /* TEXT_ID  */
+  YYSYMBOL_NUM_ID = 35,                    /* NUM_ID  */
+  YYSYMBOL_SHELL_CMD = 36,                 /* SHELL_CMD  */
+  YYSYMBOL_ENV_VAR = 37,                   /* ENV_VAR  */
+  YYSYMBOL_CTRL_CHAR = 38,                 /* CTRL_CHAR  */
+  YYSYMBOL_NOT_EQUAL = 39,                 /* NOT_EQUAL  */
+  YYSYMBOL_40_ = 40,                       /* '='  */
+  YYSYMBOL_41_ = 41,                       /* '"'  */
+  YYSYMBOL_YYACCEPT = 42,                  /* $accept  */
+  YYSYMBOL_commands = 43,                  /* commands  */
+  YYSYMBOL_command = 44,                   /* command  */
+  YYSYMBOL_exps = 45,                      /* exps  */
+  YYSYMBOL_exp = 46,                       /* exp  */
+  YYSYMBOL_str_arg = 47,                   /* str_arg  */
+  YYSYMBOL_yes_no_arg = 48,                /* yes_no_arg  */
+  YYSYMBOL_num_arg = 49,                   /* num_arg  */
+  YYSYMBOL_allow_rule = 50,                /* allow_rule  */
+  YYSYMBOL_del_duplicates = 51,            /* del_duplicates  */
+  YYSYMBOL_deny_rule = 52,                 /* deny_rule  */
+  YYSYMBOL_highscore = 53,                 /* highscore  */
+  YYSYMBOL_logfile = 54,                   /* logfile  */
+  YYSYMBOL_maxlength = 55,                 /* maxlength  */
+  YYSYMBOL_maxsize_allow = 56,             /* maxsize_allow  */
+  YYSYMBOL_maxsize_deny = 57,              /* maxsize_deny  */
+  YYSYMBOL_maxsize_score = 58,             /* maxsize_score  */
+  YYSYMBOL_normal = 59,                    /* normal  */
+  YYSYMBOL_server = 60,                    /* server  */
+  YYSYMBOL_user = 61,                      /* user  */
+  YYSYMBOL_pass = 62,                      /* pass  */
+  YYSYMBOL_protocol = 63,                  /* protocol  */
+  YYSYMBOL_port = 64,                      /* port  */
+  YYSYMBOL_reg_case = 65,                  /* reg_case  */
+  YYSYMBOL_reg_type = 66,                  /* reg_type  */
+  YYSYMBOL_show_headers = 67,              /* show_headers  */
+  YYSYMBOL_log_headers_sqlite3 = 68,       /* log_headers_sqlite3  */
+  YYSYMBOL_score = 69,                     /* score  */
+  YYSYMBOL_test = 70,                      /* test  */
+  YYSYMBOL_timeout = 71,                   /* timeout  */
+  YYSYMBOL_verbose = 72                    /* verbose  */
 };
 typedef enum yysymbol_kind_t yysymbol_kind_t;
 
@@ -586,19 +588,19 @@ union yyalloc
 /* YYFINAL -- State number of the termination state.  */
 #define YYFINAL  2
 /* YYLAST -- Last index in YYTABLE.  */
-#define YYLAST   118
+#define YYLAST   121
 
 /* YYNTOKENS -- Number of terminals.  */
-#define YYNTOKENS  41
+#define YYNTOKENS  42
 /* YYNNTS -- Number of nonterminals.  */
-#define YYNNTS  30
+#define YYNNTS  31
 /* YYNRULES -- Number of rules.  */
-#define YYNRULES  71
+#define YYNRULES  73
 /* YYNSTATES -- Number of states.  */
-#define YYNSTATES  145
+#define YYNSTATES  149
 
 /* YYMAXUTOK -- Last valid token kind.  */
-#define YYMAXUTOK   293
+#define YYMAXUTOK   294
 
 
 /* YYTRANSLATE(TOKEN-NUM) -- Symbol number corresponding to TOKEN-NUM
@@ -615,10 +617,10 @@ static const yytype_int8 yytranslate[] =
        0,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
-       2,     2,     2,     2,    40,     2,     2,     2,     2,     2,
+       2,     2,     2,     2,    41,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
-       2,    39,     2,     2,     2,     2,     2,     2,     2,     2,
+       2,    40,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
@@ -641,21 +643,21 @@ static const yytype_int8 yytranslate[] =
        5,     6,     7,     8,     9,    10,    11,    12,    13,    14,
       15,    16,    17,    18,    19,    20,    21,    22,    23,    24,
       25,    26,    27,    28,    29,    30,    31,    32,    33,    34,
-      35,    36,    37,    38
+      35,    36,    37,    38,    39
 };
 
 #if RCDEBUG
 /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_int16 yyrline[] =
 {
-       0,   160,   160,   161,   164,   165,   166,   167,   168,   169,
-     170,   171,   172,   173,   174,   175,   176,   177,   178,   179,
-     180,   181,   182,   183,   184,   185,   188,   190,   207,   212,
-     213,   214,   217,   220,   223,   227,   231,   235,   239,   243,
-     247,   254,   261,   265,   269,   273,   277,   281,   288,   295,
-     302,   309,   316,   323,   331,   338,   345,   352,   359,   371,
-     378,   385,   392,   399,   404,   409,   414,   419,   424,   431,
-     438,   445
+       0,   161,   161,   162,   165,   166,   167,   168,   169,   170,
+     171,   172,   173,   174,   175,   176,   177,   178,   179,   180,
+     181,   182,   183,   184,   185,   186,   187,   190,   192,   209,
+     214,   215,   216,   219,   222,   225,   229,   233,   237,   241,
+     245,   249,   256,   263,   267,   271,   275,   279,   283,   290,
+     297,   304,   311,   318,   325,   333,   340,   347,   354,   361,
+     373,   380,   387,   394,   401,   408,   413,   418,   423,   428,
+     433,   440,   447,   454
 };
 #endif
 
@@ -673,17 +675,18 @@ static const char *const yytname[] =
 {
   "\"end of file\"", "error", "\"invalid token\"", "ALLOW", "ALLOW_CASE",
   "ALLOW_NOCASE", "DEL_DUPLICATES", "DENY_NOCASE", "DENY_CASE", "DENY",
-  "HIGHSCORE", "LOGFILE", "MAXLENGTH", "MAXSIZE_ALLOW", "MAXSIZE_DENY",
-  "MAXSIZE_SCORE", "NORMAL", "SERVER", "USER", "PASS", "PROTOCOL", "PORT",
-  "REG_CASE", "REG_TYPE", "SHOW_HEADERS", "SCORE", "SCORE_CASE",
-  "SCORE_NOCASE", "TIMEOUT", "TEST", "VERBOSE", "EXP", "YES_NO_ID",
-  "TEXT_ID", "NUM_ID", "SHELL_CMD", "ENV_VAR", "CTRL_CHAR", "NOT_EQUAL",
-  "'='", "'\"'", "$accept", "commands", "command", "exps", "exp",
-  "str_arg", "yes_no_arg", "num_arg", "allow_rule", "del_duplicates",
-  "deny_rule", "highscore", "logfile", "maxlength", "maxsize_allow",
-  "maxsize_deny", "maxsize_score", "normal", "server", "user", "pass",
-  "protocol", "port", "reg_case", "reg_type", "show_headers", "score",
-  "test", "timeout", "verbose", YY_NULLPTR
+  "HIGHSCORE", "LOGFILE", "LOG_HEADERS_SQLITE3", "MAXLENGTH",
+  "MAXSIZE_ALLOW", "MAXSIZE_DENY", "MAXSIZE_SCORE", "NORMAL", "SERVER",
+  "USER", "PASS", "PROTOCOL", "PORT", "REG_CASE", "REG_TYPE",
+  "SHOW_HEADERS", "SCORE", "SCORE_CASE", "SCORE_NOCASE", "TIMEOUT", "TEST",
+  "VERBOSE", "EXP", "YES_NO_ID", "TEXT_ID", "NUM_ID", "SHELL_CMD",
+  "ENV_VAR", "CTRL_CHAR", "NOT_EQUAL", "'='", "'\"'", "$accept",
+  "commands", "command", "exps", "exp", "str_arg", "yes_no_arg", "num_arg",
+  "allow_rule", "del_duplicates", "deny_rule", "highscore", "logfile",
+  "maxlength", "maxsize_allow", "maxsize_deny", "maxsize_score", "normal",
+  "server", "user", "pass", "protocol", "port", "reg_case", "reg_type",
+  "show_headers", "log_headers_sqlite3", "score", "test", "timeout",
+  "verbose", YY_NULLPTR
 };
 
 static const char *
@@ -693,7 +696,7 @@ yysymbol_name (yysymbol_kind_t yysymbol)
 }
 #endif
 
-#define YYPACT_NINF (-60)
+#define YYPACT_NINF (-63)
 
 #define yypact_value_is_default(Yyn) \
   ((Yyn) == YYPACT_NINF)
@@ -707,21 +710,21 @@ yysymbol_name (yysymbol_kind_t yysymbol)
    STATE-NUM.  */
 static const yytype_int8 yypact[] =
 {
-     -60,    82,   -60,   -21,   -19,     9,   -31,    11,    13,    17,
-     -17,   -12,    -7,    -3,    14,    28,    27,    34,    35,    36,
-      37,    38,    39,    40,    41,    28,    28,    28,    42,    44,
-      74,   -60,   -60,   -60,   -60,   -60,   -60,   -60,   -60,   -60,
-     -60,   -60,   -60,   -60,   -60,   -60,   -60,   -60,   -60,   -60,
-     -60,   -60,   -60,   -60,     3,     3,     3,     3,     3,     3,
-      75,     3,     3,     3,     3,     3,     3,    28,     3,    28,
-      28,    28,   -60,    77,    75,     3,     3,     3,     3,    28,
-      75,     3,     3,    19,    21,    26,    28,    75,    28,     4,
-     -60,   -60,   -60,   -60,   -60,   -60,    85,   -60,   -60,   -60,
-     -60,   -60,   -60,   -60,   -60,   -60,   -60,   -60,   -60,    28,
-     -60,   -60,   -60,   -60,   -60,   -60,   -60,   -60,   -60,     3,
-       3,     3,     3,     3,     3,   -60,   -60,   -60,   -60,   -60,
-     -60,   -60,    -2,   -60,    78,   -60,   -60,   -60,   -60,   -60,
-     -60,   -60,   -60,   -60,   -60
+     -63,    85,   -63,   -21,   -17,     5,   -32,    10,    12,    14,
+     -20,   -11,    -7,    -3,    15,    24,    31,    27,    28,    35,
+      36,    37,    38,    39,    40,    41,    31,    31,    31,    42,
+      43,    44,   -63,   -63,   -63,   -63,   -63,   -63,   -63,   -63,
+     -63,   -63,   -63,   -63,   -63,   -63,   -63,   -63,   -63,   -63,
+     -63,   -63,   -63,   -63,   -63,   -63,    45,    45,    45,    45,
+      45,    45,    76,    45,    45,    45,    45,    45,    45,    31,
+      45,    45,    31,    31,    31,   -63,    78,    76,    45,    45,
+      45,    45,    31,    76,    45,    45,    18,    20,    22,    31,
+      76,    31,     4,   -63,   -63,   -63,   -63,   -63,   -63,    86,
+     -63,   -63,   -63,   -63,   -63,   -63,   -63,   -63,   -63,   -63,
+     -63,   -63,   -63,    31,   -63,   -63,   -63,   -63,   -63,   -63,
+     -63,   -63,   -63,    45,    45,    45,    45,    45,    45,   -63,
+     -63,   -63,   -63,   -63,   -63,   -63,    -2,   -63,    79,   -63,
+     -63,   -63,   -63,   -63,   -63,   -63,   -63,   -63,   -63
 };
 
 /* YYDEFACT[STATE-NUM] -- Default reduction number in state STATE-NUM.
@@ -732,34 +735,36 @@ static const yytype_int8 yydefact[] =
        2,     0,     1,     0,     0,     0,     0,     0,     0,     0,
        0,     0,     0,     0,     0,     0,     0,     0,     0,     0,
        0,     0,     0,     0,     0,     0,     0,     0,     0,     0,
-       0,     3,     4,     5,     6,     7,     8,     9,    10,    11,
+       0,     0,     3,     4,     5,     6,     7,     8,    10,    11,
       12,    13,    14,    15,    16,    17,    18,    19,    20,    21,
-      22,    23,    24,    25,     0,     0,     0,     0,     0,     0,
+      22,     9,    23,    24,    25,    26,     0,     0,     0,     0,
        0,     0,     0,     0,     0,     0,     0,     0,     0,     0,
-       0,     0,    34,     0,     0,     0,     0,     0,     0,     0,
+       0,     0,     0,     0,     0,    35,     0,     0,     0,     0,
        0,     0,     0,     0,     0,     0,     0,     0,     0,     0,
-      36,    35,    38,    37,    40,    39,     0,    41,    47,    46,
-      45,    44,    43,    42,    48,    49,    50,    51,    52,     0,
-      54,    55,    56,    57,    58,    59,    60,    61,    62,     0,
-       0,     0,     0,     0,     0,    70,    69,    71,    30,    28,
-      29,    31,     0,    26,     0,    53,    64,    63,    66,    65,
-      68,    67,    32,    27,    33
+       0,     0,     0,    37,    36,    39,    38,    41,    40,     0,
+      42,    48,    47,    46,    45,    44,    43,    49,    50,    64,
+      51,    52,    53,     0,    55,    56,    57,    58,    59,    60,
+      61,    62,    63,     0,     0,     0,     0,     0,     0,    72,
+      71,    73,    31,    29,    30,    32,     0,    27,     0,    54,
+      66,    65,    68,    67,    70,    69,    33,    28,    34
 };
 
 /* YYPGOTO[NTERM-NUM].  */
 static const yytype_int8 yypgoto[] =
 {
-     -60,   -60,   -60,   -60,   -18,   -52,   -59,   -25,   -60,   -60,
-     -60,   -60,   -60,   -60,   -60,   -60,   -60,   -60,   -60,   -60,
-     -60,   -60,   -60,   -60,   -60,   -60,   -60,   -60,   -60,   -60
+     -63,   -63,   -63,   -63,   -15,   -54,   -62,   -26,   -63,   -63,
+     -63,   -63,   -63,   -63,   -63,   -63,   -63,   -63,   -63,   -63,
+     -63,   -63,   -63,   -63,   -63,   -63,   -63,   -63,   -63,   -63,
+     -63
 };
 
 /* YYDEFGOTO[NTERM-NUM].  */
 static const yytype_uint8 yydefgoto[] =
 {
-       0,     1,    31,   132,   133,    90,    97,    73,    32,    33,
-      34,    35,    36,    37,    38,    39,    40,    41,    42,    43,
-      44,    45,    46,    47,    48,    49,    50,    51,    52,    53
+       0,     1,    32,   136,   137,    93,   100,    76,    33,    34,
+      35,    36,    37,    38,    39,    40,    41,    42,    43,    44,
+      45,    46,    47,    48,    49,    50,    51,    52,    53,    54,
+      55
 };
 
 /* YYTABLE[YYPACT[STATE-NUM]] -- What to do in state STATE-NUM.  If
@@ -767,68 +772,70 @@ static const yytype_uint8 yydefgoto[] =
    number is the opposite.  If YYTABLE_NINF, syntax error.  */
 static const yytype_uint8 yytable[] =
 {
-      83,    84,    85,    91,    92,    93,    94,    95,    60,    98,
-      99,   100,   101,   102,   103,   110,   105,    54,    55,    56,
-      57,   116,    67,   111,   112,   113,   114,    68,   126,   117,
-     118,   128,    69,   129,   130,   131,    70,   128,   142,   129,
-     130,   131,   104,    89,   106,   107,   108,    58,    59,    61,
-      62,    63,    64,    71,   115,    65,    66,   119,   120,   121,
-     122,   125,    72,   127,   123,   124,    74,   136,   137,   138,
-     139,   140,   141,    75,    76,    77,    78,    79,    80,    81,
-      82,    86,     2,    87,   135,     3,     4,     5,     6,     7,
-       8,     9,    10,    11,    12,    13,    14,    15,    16,    17,
-      18,    19,    20,    21,    22,    23,    24,    25,    26,    27,
-      28,    29,    30,    88,   143,    96,   109,   134,   144
+      86,    87,    88,    94,    95,    96,    97,    98,    62,   101,
+     102,   103,   104,   105,   106,   114,   108,   109,    56,    57,
+      69,   120,    58,    59,   115,   116,   117,   118,   130,    70,
+     121,   122,   132,    71,   133,   134,   135,    72,   132,   146,
+     133,   134,   135,   107,    60,    61,   110,   111,   112,    63,
+      64,    65,    66,    67,    68,    73,   119,   123,   124,   125,
+     126,   127,   128,   129,    74,   131,    75,    77,    78,   140,
+     141,   142,   143,   144,   145,    79,    80,    81,    82,    83,
+      84,    85,    89,    90,    91,     2,    92,   139,     3,     4,
+       5,     6,     7,     8,     9,    10,    11,    12,    13,    14,
+      15,    16,    17,    18,    19,    20,    21,    22,    23,    24,
+      25,    26,    27,    28,    29,    30,    31,    99,   113,   138,
+     148,   147
 };
 
 static const yytype_uint8 yycheck[] =
 {
-      25,    26,    27,    55,    56,    57,    58,    59,    39,    61,
-      62,    63,    64,    65,    66,    74,    68,    38,    39,    38,
-      39,    80,    39,    75,    76,    77,    78,    39,    87,    81,
-      82,    33,    39,    35,    36,    37,    39,    33,    40,    35,
-      36,    37,    67,    40,    69,    70,    71,    38,    39,    38,
-      39,    38,    39,    39,    79,    38,    39,    38,    39,    38,
-      39,    86,    34,    88,    38,    39,    39,   119,   120,   121,
-     122,   123,   124,    39,    39,    39,    39,    39,    39,    39,
-      39,    39,     0,    39,   109,     3,     4,     5,     6,     7,
-       8,     9,    10,    11,    12,    13,    14,    15,    16,    17,
-      18,    19,    20,    21,    22,    23,    24,    25,    26,    27,
-      28,    29,    30,    39,   132,    40,    39,    32,    40
+      26,    27,    28,    57,    58,    59,    60,    61,    40,    63,
+      64,    65,    66,    67,    68,    77,    70,    71,    39,    40,
+      40,    83,    39,    40,    78,    79,    80,    81,    90,    40,
+      84,    85,    34,    40,    36,    37,    38,    40,    34,    41,
+      36,    37,    38,    69,    39,    40,    72,    73,    74,    39,
+      40,    39,    40,    39,    40,    40,    82,    39,    40,    39,
+      40,    39,    40,    89,    40,    91,    35,    40,    40,   123,
+     124,   125,   126,   127,   128,    40,    40,    40,    40,    40,
+      40,    40,    40,    40,    40,     0,    41,   113,     3,     4,
+       5,     6,     7,     8,     9,    10,    11,    12,    13,    14,
+      15,    16,    17,    18,    19,    20,    21,    22,    23,    24,
+      25,    26,    27,    28,    29,    30,    31,    41,    40,    33,
+      41,   136
 };
 
 /* YYSTOS[STATE-NUM] -- The symbol kind of the accessing symbol of
    state STATE-NUM.  */
 static const yytype_int8 yystos[] =
 {
-       0,    42,     0,     3,     4,     5,     6,     7,     8,     9,
+       0,    43,     0,     3,     4,     5,     6,     7,     8,     9,
       10,    11,    12,    13,    14,    15,    16,    17,    18,    19,
       20,    21,    22,    23,    24,    25,    26,    27,    28,    29,
-      30,    43,    49,    50,    51,    52,    53,    54,    55,    56,
+      30,    31,    44,    50,    51,    52,    53,    54,    55,    56,
       57,    58,    59,    60,    61,    62,    63,    64,    65,    66,
-      67,    68,    69,    70,    38,    39,    38,    39,    38,    39,
-      39,    38,    39,    38,    39,    38,    39,    39,    39,    39,
-      39,    39,    34,    48,    39,    39,    39,    39,    39,    39,
-      39,    39,    39,    48,    48,    48,    39,    39,    39,    40,
-      46,    46,    46,    46,    46,    46,    40,    47,    46,    46,
-      46,    46,    46,    46,    48,    46,    48,    48,    48,    39,
-      47,    46,    46,    46,    46,    48,    47,    46,    46,    38,
-      39,    38,    39,    38,    39,    48,    47,    48,    33,    35,
-      36,    37,    44,    45,    32,    48,    46,    46,    46,    46,
-      46,    46,    40,    45,    40
+      67,    68,    69,    70,    71,    72,    39,    40,    39,    40,
+      39,    40,    40,    39,    40,    39,    40,    39,    40,    40,
+      40,    40,    40,    40,    40,    35,    49,    40,    40,    40,
+      40,    40,    40,    40,    40,    40,    49,    49,    49,    40,
+      40,    40,    41,    47,    47,    47,    47,    47,    47,    41,
+      48,    47,    47,    47,    47,    47,    47,    49,    47,    47,
+      49,    49,    49,    40,    48,    47,    47,    47,    47,    49,
+      48,    47,    47,    39,    40,    39,    40,    39,    40,    49,
+      48,    49,    34,    36,    37,    38,    45,    46,    33,    49,
+      47,    47,    47,    47,    47,    47,    41,    46,    41
 };
 
 /* YYR1[RULE-NUM] -- Symbol kind of the left-hand side of rule RULE-NUM.  */
 static const yytype_int8 yyr1[] =
 {
-       0,    41,    42,    42,    43,    43,    43,    43,    43,    43,
-      43,    43,    43,    43,    43,    43,    43,    43,    43,    43,
-      43,    43,    43,    43,    43,    43,    44,    44,    45,    45,
-      45,    45,    46,    47,    48,    49,    49,    49,    49,    49,
-      49,    50,    51,    51,    51,    51,    51,    51,    52,    53,
+       0,    42,    43,    43,    44,    44,    44,    44,    44,    44,
+      44,    44,    44,    44,    44,    44,    44,    44,    44,    44,
+      44,    44,    44,    44,    44,    44,    44,    45,    45,    46,
+      46,    46,    46,    47,    48,    49,    50,    50,    50,    50,
+      50,    50,    51,    52,    52,    52,    52,    52,    52,    53,
       54,    55,    56,    57,    58,    59,    60,    61,    62,    63,
-      64,    65,    66,    67,    67,    67,    67,    67,    67,    68,
-      69,    70
+      64,    65,    66,    67,    68,    69,    69,    69,    69,    69,
+      69,    70,    71,    72
 };
 
 /* YYR2[RULE-NUM] -- Number of symbols on the right-hand side of rule RULE-NUM.  */
@@ -836,12 +843,12 @@ static const yytype_int8 yyr2[] =
 {
        0,     2,     0,     2,     1,     1,     1,     1,     1,     1,
        1,     1,     1,     1,     1,     1,     1,     1,     1,     1,
-       1,     1,     1,     1,     1,     1,     1,     2,     1,     1,
-       1,     1,     3,     3,     1,     3,     3,     3,     3,     3,
+       1,     1,     1,     1,     1,     1,     1,     1,     2,     1,
+       1,     1,     1,     3,     3,     1,     3,     3,     3,     3,
        3,     3,     3,     3,     3,     3,     3,     3,     3,     3,
-       3,     3,     3,     4,     3,     3,     3,     3,     3,     3,
-       3,     3,     3,     4,     4,     4,     4,     4,     4,     3,
-       3,     3
+       3,     3,     3,     3,     4,     3,     3,     3,     3,     3,
+       3,     3,     3,     3,     3,     4,     4,     4,     4,     4,
+       4,     3,     3,     3
 };
 
 
@@ -1306,14 +1313,14 @@ yyreduce:
   YY_REDUCE_PRINT (yyn);
   switch (yyn)
     {
-  case 26: /* exps: exp  */
-#line 189 "rcfile.yy"
+  case 27: /* exps: exp  */
+#line 191 "rcfile.yy"
                 { (yyval.sval) = (yyvsp[0].sval); }
-#line 1313 "rc.tab.c"
+#line 1320 "rc.tab.c"
     break;
 
-  case 27: /* exps: exps exp  */
-#line 191 "rcfile.yy"
+  case 28: /* exps: exps exp  */
+#line 193 "rcfile.yy"
                 { char* tmp = (char*)malloc ((strlen ((yyvsp[-1].sval)) + strlen ((yyvsp[0].sval)) + 2)
 						* sizeof (char));
 		  if (tmp)
@@ -1328,241 +1335,241 @@ yyreduce:
 		      exit (-1);
                     }
 		}
-#line 1332 "rc.tab.c"
+#line 1339 "rc.tab.c"
     break;
 
-  case 28: /* exp: SHELL_CMD  */
-#line 208 "rcfile.yy"
+  case 29: /* exp: SHELL_CMD  */
+#line 210 "rcfile.yy"
                 { strip_shell ((yyvsp[0].sval));
 		  (yyval.sval) = strdup (exec_shell ((yyvsp[0].sval)).c_str ());
 		  free ((yyvsp[0].sval));
 		}
-#line 1341 "rc.tab.c"
+#line 1348 "rc.tab.c"
     break;
 
-  case 29: /* exp: ENV_VAR  */
-#line 212 "rcfile.yy"
-                                  { (yyval.sval) = (yyvsp[0].sval); }
-#line 1347 "rc.tab.c"
-    break;
-
-  case 30: /* exp: TEXT_ID  */
-#line 213 "rcfile.yy"
-                                  { (yyval.sval) = (yyvsp[0].sval); }
-#line 1353 "rc.tab.c"
-    break;
-
-  case 31: /* exp: CTRL_CHAR  */
+  case 30: /* exp: ENV_VAR  */
 #line 214 "rcfile.yy"
                                   { (yyval.sval) = (yyvsp[0].sval); }
-#line 1359 "rc.tab.c"
+#line 1354 "rc.tab.c"
     break;
 
-  case 32: /* str_arg: '"' exps '"'  */
-#line 217 "rcfile.yy"
+  case 31: /* exp: TEXT_ID  */
+#line 215 "rcfile.yy"
+                                  { (yyval.sval) = (yyvsp[0].sval); }
+#line 1360 "rc.tab.c"
+    break;
+
+  case 32: /* exp: CTRL_CHAR  */
+#line 216 "rcfile.yy"
+                                  { (yyval.sval) = (yyvsp[0].sval); }
+#line 1366 "rc.tab.c"
+    break;
+
+  case 33: /* str_arg: '"' exps '"'  */
+#line 219 "rcfile.yy"
                                   { (yyval.sval) = (yyvsp[-1].sval); }
-#line 1365 "rc.tab.c"
+#line 1372 "rc.tab.c"
     break;
 
-  case 33: /* yes_no_arg: '"' YES_NO_ID '"'  */
-#line 220 "rcfile.yy"
+  case 34: /* yes_no_arg: '"' YES_NO_ID '"'  */
+#line 222 "rcfile.yy"
                                   { (yyval.sval) = (yyvsp[-1].sval); }
-#line 1371 "rc.tab.c"
+#line 1378 "rc.tab.c"
     break;
 
-  case 34: /* num_arg: NUM_ID  */
-#line 223 "rcfile.yy"
+  case 35: /* num_arg: NUM_ID  */
+#line 225 "rcfile.yy"
                                   { (yyval.ival) = (yyvsp[0].ival); }
-#line 1377 "rc.tab.c"
+#line 1384 "rc.tab.c"
     break;
 
-  case 35: /* allow_rule: ALLOW '=' str_arg  */
-#line 228 "rcfile.yy"
+  case 36: /* allow_rule: ALLOW '=' str_arg  */
+#line 230 "rcfile.yy"
                 { P_DEBUG_MSG((yyvsp[-2].sval) + (string)(yyvsp[-1].sval) + (yyvsp[0].sval));
                   Preferences :: Instance ().add_allow_rule ((yyvsp[-2].sval), (yyvsp[-1].sval), (yyvsp[0].sval)); 
 		  free ((yyvsp[-2].sval)); free ((yyvsp[-1].sval)); free ((yyvsp[0].sval)); }
-#line 1385 "rc.tab.c"
+#line 1392 "rc.tab.c"
     break;
 
-  case 36: /* allow_rule: ALLOW NOT_EQUAL str_arg  */
-#line 232 "rcfile.yy"
+  case 37: /* allow_rule: ALLOW NOT_EQUAL str_arg  */
+#line 234 "rcfile.yy"
                 { P_DEBUG_MSG((yyvsp[-2].sval) + (string)(yyvsp[-1].sval) + (yyvsp[0].sval));
                   Preferences :: Instance ().add_allow_rule ((yyvsp[-2].sval), (yyvsp[-1].sval), (yyvsp[0].sval));
 		  free ((yyvsp[-2].sval)); free ((yyvsp[-1].sval)); free ((yyvsp[0].sval)); }
-#line 1393 "rc.tab.c"
+#line 1400 "rc.tab.c"
     break;
 
-  case 37: /* allow_rule: ALLOW_CASE '=' str_arg  */
-#line 236 "rcfile.yy"
+  case 38: /* allow_rule: ALLOW_CASE '=' str_arg  */
+#line 238 "rcfile.yy"
                 { P_DEBUG_MSG((yyvsp[-2].sval) + (string)(yyvsp[-1].sval) + (yyvsp[0].sval));
                   Preferences :: Instance ().add_allow_rule ((yyvsp[-2].sval), (yyvsp[-1].sval), (yyvsp[0].sval));
 		  free ((yyvsp[-2].sval)); free ((yyvsp[-1].sval)); free ((yyvsp[0].sval)); }
-#line 1401 "rc.tab.c"
+#line 1408 "rc.tab.c"
     break;
 
-  case 38: /* allow_rule: ALLOW_CASE NOT_EQUAL str_arg  */
-#line 240 "rcfile.yy"
+  case 39: /* allow_rule: ALLOW_CASE NOT_EQUAL str_arg  */
+#line 242 "rcfile.yy"
                 { P_DEBUG_MSG((yyvsp[-2].sval) + (string)(yyvsp[-1].sval) + (yyvsp[0].sval));
 	          Preferences :: Instance ().add_allow_rule ((yyvsp[-2].sval), (yyvsp[-1].sval), (yyvsp[0].sval));
 		  free ((yyvsp[-2].sval)); free ((yyvsp[-1].sval)); free ((yyvsp[0].sval)); }
-#line 1409 "rc.tab.c"
+#line 1416 "rc.tab.c"
     break;
 
-  case 39: /* allow_rule: ALLOW_NOCASE '=' str_arg  */
-#line 244 "rcfile.yy"
+  case 40: /* allow_rule: ALLOW_NOCASE '=' str_arg  */
+#line 246 "rcfile.yy"
                 { P_DEBUG_MSG((yyvsp[-2].sval) + (string)(yyvsp[-1].sval) + (yyvsp[0].sval));
                   Preferences :: Instance ().add_allow_rule ((yyvsp[-2].sval), (yyvsp[-1].sval), (yyvsp[0].sval));
 		  free ((yyvsp[-2].sval)); free ((yyvsp[-1].sval)); free ((yyvsp[0].sval)); }
-#line 1417 "rc.tab.c"
+#line 1424 "rc.tab.c"
     break;
 
-  case 40: /* allow_rule: ALLOW_NOCASE NOT_EQUAL str_arg  */
-#line 248 "rcfile.yy"
+  case 41: /* allow_rule: ALLOW_NOCASE NOT_EQUAL str_arg  */
+#line 250 "rcfile.yy"
                 { P_DEBUG_MSG((yyvsp[-2].sval) + (string)(yyvsp[-1].sval) + (yyvsp[0].sval));
                   Preferences :: Instance ().add_allow_rule ((yyvsp[-2].sval), (yyvsp[-1].sval), (yyvsp[0].sval));
 		  free ((yyvsp[-2].sval)); free ((yyvsp[-1].sval)); free ((yyvsp[0].sval)); }
-#line 1425 "rc.tab.c"
+#line 1432 "rc.tab.c"
     break;
 
-  case 41: /* del_duplicates: DEL_DUPLICATES '=' yes_no_arg  */
-#line 255 "rcfile.yy"
+  case 42: /* del_duplicates: DEL_DUPLICATES '=' yes_no_arg  */
+#line 257 "rcfile.yy"
                 { P_DEBUG_MSG((yyvsp[-2].sval) + (string)(yyvsp[-1].sval) + (yyvsp[0].sval));
 		  Preferences :: Instance ().set_del_duplicates ((yyvsp[0].sval));
 		  free ((yyvsp[-2].sval)); free ((yyvsp[-1].sval)); free ((yyvsp[0].sval)); }
-#line 1433 "rc.tab.c"
+#line 1440 "rc.tab.c"
     break;
 
-  case 42: /* deny_rule: DENY '=' str_arg  */
-#line 262 "rcfile.yy"
+  case 43: /* deny_rule: DENY '=' str_arg  */
+#line 264 "rcfile.yy"
                 { P_DEBUG_MSG((yyvsp[-2].sval) + (string)(yyvsp[-1].sval) + (yyvsp[0].sval));
                   Preferences :: Instance ().add_deny_rule ((yyvsp[-2].sval), (yyvsp[-1].sval), (yyvsp[0].sval));
  		  free ((yyvsp[-2].sval)); free ((yyvsp[-1].sval)); free ((yyvsp[0].sval)); }
-#line 1441 "rc.tab.c"
+#line 1448 "rc.tab.c"
     break;
 
-  case 43: /* deny_rule: DENY NOT_EQUAL str_arg  */
-#line 266 "rcfile.yy"
+  case 44: /* deny_rule: DENY NOT_EQUAL str_arg  */
+#line 268 "rcfile.yy"
                 { P_DEBUG_MSG((yyvsp[-2].sval) + (string)(yyvsp[-1].sval) + (yyvsp[0].sval));
                   Preferences :: Instance ().add_deny_rule ((yyvsp[-2].sval), (yyvsp[-1].sval), (yyvsp[0].sval));
 		  free ((yyvsp[-2].sval)); free ((yyvsp[-1].sval)); free ((yyvsp[0].sval)); }
-#line 1449 "rc.tab.c"
+#line 1456 "rc.tab.c"
     break;
 
-  case 44: /* deny_rule: DENY_CASE '=' str_arg  */
-#line 270 "rcfile.yy"
+  case 45: /* deny_rule: DENY_CASE '=' str_arg  */
+#line 272 "rcfile.yy"
                 { P_DEBUG_MSG((yyvsp[-2].sval) + (string)(yyvsp[-1].sval) + (yyvsp[0].sval));
                   Preferences :: Instance ().add_deny_rule ((yyvsp[-2].sval), (yyvsp[-1].sval), (yyvsp[0].sval));
 		  free ((yyvsp[-2].sval)); free ((yyvsp[-1].sval)); free ((yyvsp[0].sval)); }
-#line 1457 "rc.tab.c"
+#line 1464 "rc.tab.c"
     break;
 
-  case 45: /* deny_rule: DENY_CASE NOT_EQUAL str_arg  */
-#line 274 "rcfile.yy"
+  case 46: /* deny_rule: DENY_CASE NOT_EQUAL str_arg  */
+#line 276 "rcfile.yy"
                 { P_DEBUG_MSG((yyvsp[-2].sval) + (string)(yyvsp[-1].sval) + (yyvsp[0].sval));
                   Preferences :: Instance ().add_deny_rule ((yyvsp[-2].sval), (yyvsp[-1].sval), (yyvsp[0].sval));
 		  free ((yyvsp[-2].sval)); free ((yyvsp[-1].sval)); free ((yyvsp[0].sval)); }
-#line 1465 "rc.tab.c"
+#line 1472 "rc.tab.c"
     break;
 
-  case 46: /* deny_rule: DENY_NOCASE '=' str_arg  */
-#line 278 "rcfile.yy"
+  case 47: /* deny_rule: DENY_NOCASE '=' str_arg  */
+#line 280 "rcfile.yy"
                 { P_DEBUG_MSG((yyvsp[-2].sval) + (string)(yyvsp[-1].sval) + (yyvsp[0].sval));
                   Preferences :: Instance ().add_deny_rule ((yyvsp[-2].sval), (yyvsp[-1].sval), (yyvsp[0].sval));
 		  free ((yyvsp[-2].sval)); free ((yyvsp[-1].sval)); free ((yyvsp[0].sval)); }
-#line 1473 "rc.tab.c"
+#line 1480 "rc.tab.c"
     break;
 
-  case 47: /* deny_rule: DENY_NOCASE NOT_EQUAL str_arg  */
-#line 282 "rcfile.yy"
+  case 48: /* deny_rule: DENY_NOCASE NOT_EQUAL str_arg  */
+#line 284 "rcfile.yy"
                 { P_DEBUG_MSG((yyvsp[-2].sval) + (string)(yyvsp[-1].sval) + (yyvsp[0].sval));
                   Preferences :: Instance ().add_deny_rule ((yyvsp[-2].sval), (yyvsp[-1].sval), (yyvsp[0].sval));
 		  free ((yyvsp[-2].sval)); free ((yyvsp[-1].sval)); free ((yyvsp[0].sval)); }
-#line 1481 "rc.tab.c"
+#line 1488 "rc.tab.c"
     break;
 
-  case 48: /* highscore: HIGHSCORE '=' num_arg  */
-#line 289 "rcfile.yy"
+  case 49: /* highscore: HIGHSCORE '=' num_arg  */
+#line 291 "rcfile.yy"
                 { P_DEBUG_MSG((yyvsp[-2].sval) + (string)(yyvsp[-1].sval) + int_to_string (rclval.ival));
 		  Preferences :: Instance ().set_highscore ((yyvsp[0].ival));
 		  free ((yyvsp[-2].sval)); free ((yyvsp[-1].sval)); }
-#line 1489 "rc.tab.c"
+#line 1496 "rc.tab.c"
     break;
 
-  case 49: /* logfile: LOGFILE '=' str_arg  */
-#line 296 "rcfile.yy"
+  case 50: /* logfile: LOGFILE '=' str_arg  */
+#line 298 "rcfile.yy"
                 { P_DEBUG_MSG((yyvsp[-2].sval) + (string)(yyvsp[-1].sval) + (yyvsp[0].sval));
                   Preferences :: Instance ().set_log_file ((yyvsp[0].sval));
 		  free ((yyvsp[-2].sval)); free ((yyvsp[-1].sval)); free ((yyvsp[0].sval));  }
-#line 1497 "rc.tab.c"
+#line 1504 "rc.tab.c"
     break;
 
-  case 50: /* maxlength: MAXLENGTH '=' num_arg  */
-#line 303 "rcfile.yy"
+  case 51: /* maxlength: MAXLENGTH '=' num_arg  */
+#line 305 "rcfile.yy"
                 { P_DEBUG_MSG((yyvsp[-2].sval) + (string)(yyvsp[-1].sval) + int_to_string (rclval.ival));
 		  Preferences :: Instance ().set_maxlength ((yyvsp[0].ival));
 		  free ((yyvsp[-2].sval)); free ((yyvsp[-1].sval)); }
-#line 1505 "rc.tab.c"
+#line 1512 "rc.tab.c"
     break;
 
-  case 51: /* maxsize_allow: MAXSIZE_ALLOW '=' num_arg  */
-#line 310 "rcfile.yy"
+  case 52: /* maxsize_allow: MAXSIZE_ALLOW '=' num_arg  */
+#line 312 "rcfile.yy"
                 { P_DEBUG_MSG((yyvsp[-2].sval) + (string)(yyvsp[-1].sval) + int_to_string (rclval.ival));
 		  Preferences :: Instance ().set_max_size_allow ((yyvsp[0].ival));
 		  free ((yyvsp[-2].sval)); free ((yyvsp[-1].sval)); }
-#line 1513 "rc.tab.c"
+#line 1520 "rc.tab.c"
     break;
 
-  case 52: /* maxsize_deny: MAXSIZE_DENY '=' num_arg  */
-#line 317 "rcfile.yy"
+  case 53: /* maxsize_deny: MAXSIZE_DENY '=' num_arg  */
+#line 319 "rcfile.yy"
                 { P_DEBUG_MSG((yyvsp[-2].sval) + (string)(yyvsp[-1].sval) + int_to_string (rclval.ival));
 		  Preferences :: Instance ().set_max_size_deny ((yyvsp[0].ival));
 		  free ((yyvsp[-2].sval)); free ((yyvsp[-1].sval)); }
-#line 1521 "rc.tab.c"
+#line 1528 "rc.tab.c"
     break;
 
-  case 53: /* maxsize_score: MAXSIZE_SCORE num_arg '=' num_arg  */
-#line 324 "rcfile.yy"
+  case 54: /* maxsize_score: MAXSIZE_SCORE num_arg '=' num_arg  */
+#line 326 "rcfile.yy"
                 { P_DEBUG_MSG((yyvsp[-3].sval) + int_to_string (rclval.ival)
                               + (string)(yyvsp[-1].sval) + int_to_string (rclval.ival));
 		  Preferences :: Instance ().set_max_size_score ((yyvsp[-2].ival), (yyvsp[0].ival));
 		  free ((yyvsp[-3].sval)); free ((yyvsp[-1].sval)); }
-#line 1530 "rc.tab.c"
+#line 1537 "rc.tab.c"
     break;
 
-  case 54: /* normal: NORMAL '=' yes_no_arg  */
-#line 332 "rcfile.yy"
+  case 55: /* normal: NORMAL '=' yes_no_arg  */
+#line 334 "rcfile.yy"
                 { P_DEBUG_MSG((yyvsp[-2].sval) + (string)(yyvsp[-1].sval) + (yyvsp[0].sval));
 		  Preferences :: Instance ().set_normal ((yyvsp[0].sval));
 		  free ((yyvsp[-2].sval)); free ((yyvsp[-1].sval)); free ((yyvsp[0].sval)); }
-#line 1538 "rc.tab.c"
+#line 1545 "rc.tab.c"
     break;
 
-  case 55: /* server: SERVER '=' str_arg  */
-#line 339 "rcfile.yy"
+  case 56: /* server: SERVER '=' str_arg  */
+#line 341 "rcfile.yy"
                 { P_DEBUG_MSG((yyvsp[-2].sval) + (string)(yyvsp[-1].sval) + (yyvsp[0].sval));
 		  Preferences :: Instance ().set_server ((yyvsp[0].sval));
 		  free ((yyvsp[-2].sval)); free ((yyvsp[-1].sval)); free ((yyvsp[0].sval)); }
-#line 1546 "rc.tab.c"
+#line 1553 "rc.tab.c"
     break;
 
-  case 56: /* user: USER '=' str_arg  */
-#line 346 "rcfile.yy"
+  case 57: /* user: USER '=' str_arg  */
+#line 348 "rcfile.yy"
                 { P_DEBUG_MSG((yyvsp[-2].sval) + (string)(yyvsp[-1].sval) + (yyvsp[0].sval));
 		  Preferences :: Instance ().set_usr ((yyvsp[0].sval));
 		  free ((yyvsp[-2].sval)); free ((yyvsp[-1].sval)); free ((yyvsp[0].sval)); }
-#line 1554 "rc.tab.c"
+#line 1561 "rc.tab.c"
     break;
 
-  case 57: /* pass: PASS '=' str_arg  */
-#line 353 "rcfile.yy"
+  case 58: /* pass: PASS '=' str_arg  */
+#line 355 "rcfile.yy"
                 { P_DEBUG_MSG((yyvsp[-2].sval) + (string)(yyvsp[-1].sval) + (yyvsp[0].sval));
 		  Preferences :: Instance ().set_passwd ((yyvsp[0].sval));
 		  free ((yyvsp[-2].sval)); free ((yyvsp[-1].sval)); free ((yyvsp[0].sval)); }
-#line 1562 "rc.tab.c"
+#line 1569 "rc.tab.c"
     break;
 
-  case 58: /* protocol: PROTOCOL '=' str_arg  */
-#line 360 "rcfile.yy"
+  case 59: /* protocol: PROTOCOL '=' str_arg  */
+#line 362 "rcfile.yy"
                 { P_DEBUG_MSG((yyvsp[-2].sval) + (string)(yyvsp[-1].sval) + (yyvsp[0].sval));
 		  Preferences :: Instance ().set_protocol ((yyvsp[0].sval));
 
@@ -1571,121 +1578,129 @@ yyreduce:
 
                   Preferences :: Instance ().set_connection ();
 		  free ((yyvsp[-2].sval)); free ((yyvsp[-1].sval)); free ((yyvsp[0].sval)); }
-#line 1575 "rc.tab.c"
+#line 1582 "rc.tab.c"
     break;
 
-  case 59: /* port: PORT '=' num_arg  */
-#line 372 "rcfile.yy"
+  case 60: /* port: PORT '=' num_arg  */
+#line 374 "rcfile.yy"
                 { P_DEBUG_MSG((yyvsp[-2].sval) + (string)(yyvsp[-1].sval) + int_to_string (rclval.ival));
 		  Preferences :: Instance ().set_port ((unsigned int)(yyvsp[0].ival));
 		  free ((yyvsp[-2].sval)); free ((yyvsp[-1].sval)); }
-#line 1583 "rc.tab.c"
+#line 1590 "rc.tab.c"
     break;
 
-  case 60: /* reg_case: REG_CASE '=' yes_no_arg  */
-#line 379 "rcfile.yy"
+  case 61: /* reg_case: REG_CASE '=' yes_no_arg  */
+#line 381 "rcfile.yy"
                 { P_DEBUG_MSG((yyvsp[-2].sval) + (string)(yyvsp[-1].sval) + (yyvsp[0].sval));
 		  Preferences :: Instance ().set_default_case ((yyvsp[0].sval));
 		  free ((yyvsp[-2].sval)); free ((yyvsp[-1].sval)); free ((yyvsp[0].sval)); }
-#line 1591 "rc.tab.c"
+#line 1598 "rc.tab.c"
     break;
 
-  case 61: /* reg_type: REG_TYPE '=' str_arg  */
-#line 386 "rcfile.yy"
+  case 62: /* reg_type: REG_TYPE '=' str_arg  */
+#line 388 "rcfile.yy"
                 { P_DEBUG_MSG((yyvsp[-2].sval) + (string)(yyvsp[-1].sval) + (yyvsp[0].sval));
 		  Preferences :: Instance ().set_reg_type ((yyvsp[0].sval));
 		  free ((yyvsp[-2].sval)); free ((yyvsp[-1].sval)); free ((yyvsp[0].sval)); }
-#line 1599 "rc.tab.c"
+#line 1606 "rc.tab.c"
     break;
 
-  case 62: /* show_headers: SHOW_HEADERS '=' str_arg  */
-#line 393 "rcfile.yy"
+  case 63: /* show_headers: SHOW_HEADERS '=' str_arg  */
+#line 395 "rcfile.yy"
                 { P_DEBUG_MSG((yyvsp[-2].sval) + (string)(yyvsp[-1].sval) + (yyvsp[0].sval));
                   Preferences :: Instance ().set_headers_file ((yyvsp[0].sval));
 		  free ((yyvsp[-2].sval)); free ((yyvsp[-1].sval)); free ((yyvsp[0].sval));  }
-#line 1607 "rc.tab.c"
+#line 1614 "rc.tab.c"
     break;
 
-  case 63: /* score: SCORE num_arg '=' str_arg  */
-#line 400 "rcfile.yy"
+  case 64: /* log_headers_sqlite3: LOG_HEADERS_SQLITE3 '=' str_arg  */
+#line 402 "rcfile.yy"
+                { P_DEBUG_MSG((yyvsp[-2].sval) + (string)(yyvsp[-1].sval) + (yyvsp[0].sval));
+                  Preferences :: Instance ().set_headers_sqlite3_file ((yyvsp[0].sval));
+		  free ((yyvsp[-2].sval)); free ((yyvsp[-1].sval)); free ((yyvsp[0].sval));  }
+#line 1622 "rc.tab.c"
+    break;
+
+  case 65: /* score: SCORE num_arg '=' str_arg  */
+#line 409 "rcfile.yy"
                 { P_DEBUG_MSG((yyvsp[-3].sval) + int_to_string (rclval.ival)
                               + (string)(yyvsp[-1].sval) + (yyvsp[0].sval));
 		  Preferences :: Instance ().add_score ((yyvsp[-3].sval), (yyvsp[-2].ival), (yyvsp[-1].sval), (yyvsp[0].sval));
 		  free ((yyvsp[-3].sval)); free ((yyvsp[-1].sval)); free ((yyvsp[0].sval)); }
-#line 1616 "rc.tab.c"
+#line 1631 "rc.tab.c"
     break;
 
-  case 64: /* score: SCORE num_arg NOT_EQUAL str_arg  */
-#line 405 "rcfile.yy"
+  case 66: /* score: SCORE num_arg NOT_EQUAL str_arg  */
+#line 414 "rcfile.yy"
                 { P_DEBUG_MSG((yyvsp[-3].sval) + int_to_string (rclval.ival)
 	                      + (string)(yyvsp[-1].sval) + (yyvsp[0].sval));
 		  Preferences :: Instance ().add_score ((yyvsp[-3].sval), (yyvsp[-2].ival), (yyvsp[-1].sval), (yyvsp[0].sval));
 		  free ((yyvsp[-3].sval)); free ((yyvsp[-1].sval)); free ((yyvsp[0].sval)); }
-#line 1625 "rc.tab.c"
+#line 1640 "rc.tab.c"
     break;
 
-  case 65: /* score: SCORE_CASE num_arg '=' str_arg  */
-#line 410 "rcfile.yy"
+  case 67: /* score: SCORE_CASE num_arg '=' str_arg  */
+#line 419 "rcfile.yy"
                 { P_DEBUG_MSG((yyvsp[-3].sval) + int_to_string (rclval.ival)
 			      + (string)(yyvsp[-1].sval) + (yyvsp[0].sval));
 		  Preferences :: Instance ().add_score ((yyvsp[-3].sval), (yyvsp[-2].ival), (yyvsp[-1].sval), (yyvsp[0].sval));
 		  free ((yyvsp[-3].sval)); free ((yyvsp[-1].sval)); free ((yyvsp[0].sval)); }
-#line 1634 "rc.tab.c"
+#line 1649 "rc.tab.c"
     break;
 
-  case 66: /* score: SCORE_CASE num_arg NOT_EQUAL str_arg  */
-#line 415 "rcfile.yy"
+  case 68: /* score: SCORE_CASE num_arg NOT_EQUAL str_arg  */
+#line 424 "rcfile.yy"
                 { P_DEBUG_MSG((yyvsp[-3].sval) + int_to_string (rclval.ival)
 			      + (string)(yyvsp[-1].sval) + (yyvsp[0].sval));
 		  Preferences :: Instance ().add_score ((yyvsp[-3].sval), (yyvsp[-2].ival), (yyvsp[-1].sval), (yyvsp[0].sval));
 		  free ((yyvsp[-3].sval)); free ((yyvsp[-1].sval)); free ((yyvsp[0].sval)); }
-#line 1643 "rc.tab.c"
+#line 1658 "rc.tab.c"
     break;
 
-  case 67: /* score: SCORE_NOCASE num_arg '=' str_arg  */
-#line 420 "rcfile.yy"
+  case 69: /* score: SCORE_NOCASE num_arg '=' str_arg  */
+#line 429 "rcfile.yy"
                 { P_DEBUG_MSG((yyvsp[-3].sval) + int_to_string (rclval.ival)
 			      + (string)(yyvsp[-1].sval) + (yyvsp[0].sval));
 		  Preferences :: Instance ().add_score ((yyvsp[-3].sval), (yyvsp[-2].ival), (yyvsp[-1].sval), (yyvsp[0].sval));
 		  free ((yyvsp[-3].sval)); free ((yyvsp[-1].sval)); free ((yyvsp[0].sval)); }
-#line 1652 "rc.tab.c"
+#line 1667 "rc.tab.c"
     break;
 
-  case 68: /* score: SCORE_NOCASE num_arg NOT_EQUAL str_arg  */
-#line 425 "rcfile.yy"
+  case 70: /* score: SCORE_NOCASE num_arg NOT_EQUAL str_arg  */
+#line 434 "rcfile.yy"
                 { P_DEBUG_MSG((yyvsp[-3].sval) + int_to_string (rclval.ival)
 			      + (string)(yyvsp[-1].sval) + (yyvsp[0].sval));
 		  Preferences :: Instance ().add_score ((yyvsp[-3].sval), (yyvsp[-2].ival), (yyvsp[-1].sval), (yyvsp[0].sval));
 		  free ((yyvsp[-3].sval)); free ((yyvsp[-1].sval)); free ((yyvsp[0].sval)); }
-#line 1661 "rc.tab.c"
+#line 1676 "rc.tab.c"
     break;
 
-  case 69: /* test: TEST '=' yes_no_arg  */
-#line 432 "rcfile.yy"
+  case 71: /* test: TEST '=' yes_no_arg  */
+#line 441 "rcfile.yy"
                 { P_DEBUG_MSG((yyvsp[-2].sval) + (string)(yyvsp[-1].sval) + (yyvsp[0].sval));
 		  Preferences :: Instance ().set_test_mode ((yyvsp[0].sval));
 		  free ((yyvsp[-2].sval)); free ((yyvsp[-1].sval)); free ((yyvsp[0].sval)); }
-#line 1669 "rc.tab.c"
+#line 1684 "rc.tab.c"
     break;
 
-  case 70: /* timeout: TIMEOUT '=' num_arg  */
-#line 439 "rcfile.yy"
+  case 72: /* timeout: TIMEOUT '=' num_arg  */
+#line 448 "rcfile.yy"
                 { P_DEBUG_MSG((yyvsp[-2].sval) + (string)(yyvsp[-1].sval) + int_to_string (rclval.ival));
 		  Preferences :: Instance ().set_time_out ((unsigned int)(yyvsp[0].ival));
 		  free ((yyvsp[-2].sval)); free ((yyvsp[-1].sval)); }
-#line 1677 "rc.tab.c"
+#line 1692 "rc.tab.c"
     break;
 
-  case 71: /* verbose: VERBOSE '=' num_arg  */
-#line 446 "rcfile.yy"
+  case 73: /* verbose: VERBOSE '=' num_arg  */
+#line 455 "rcfile.yy"
                 { P_DEBUG_MSG((yyvsp[-2].sval) + (string)(yyvsp[-1].sval) + int_to_string (rclval.ival));
 		  Preferences :: Instance ().set_verbose_level ((yyvsp[0].ival));
 		  free ((yyvsp[-2].sval)); free ((yyvsp[-1].sval)); }
-#line 1685 "rc.tab.c"
+#line 1700 "rc.tab.c"
     break;
 
 
-#line 1689 "rc.tab.c"
+#line 1704 "rc.tab.c"
 
       default: break;
     }
@@ -1878,7 +1893,7 @@ yyreturnlab:
   return yyresult;
 }
 
-#line 450 "rcfile.yy"
+#line 459 "rcfile.yy"
 
 
 /* This function strips the leading, and trailing quotation marks

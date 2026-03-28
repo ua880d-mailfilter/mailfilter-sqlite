@@ -71,33 +71,34 @@ extern int rcdebug;
     DENY = 264,                    /* DENY  */
     HIGHSCORE = 265,               /* HIGHSCORE  */
     LOGFILE = 266,                 /* LOGFILE  */
-    MAXLENGTH = 267,               /* MAXLENGTH  */
-    MAXSIZE_ALLOW = 268,           /* MAXSIZE_ALLOW  */
-    MAXSIZE_DENY = 269,            /* MAXSIZE_DENY  */
-    MAXSIZE_SCORE = 270,           /* MAXSIZE_SCORE  */
-    NORMAL = 271,                  /* NORMAL  */
-    SERVER = 272,                  /* SERVER  */
-    USER = 273,                    /* USER  */
-    PASS = 274,                    /* PASS  */
-    PROTOCOL = 275,                /* PROTOCOL  */
-    PORT = 276,                    /* PORT  */
-    REG_CASE = 277,                /* REG_CASE  */
-    REG_TYPE = 278,                /* REG_TYPE  */
-    SHOW_HEADERS = 279,            /* SHOW_HEADERS  */
-    SCORE = 280,                   /* SCORE  */
-    SCORE_CASE = 281,              /* SCORE_CASE  */
-    SCORE_NOCASE = 282,            /* SCORE_NOCASE  */
-    TIMEOUT = 283,                 /* TIMEOUT  */
-    TEST = 284,                    /* TEST  */
-    VERBOSE = 285,                 /* VERBOSE  */
-    EXP = 286,                     /* EXP  */
-    YES_NO_ID = 287,               /* YES_NO_ID  */
-    TEXT_ID = 288,                 /* TEXT_ID  */
-    NUM_ID = 289,                  /* NUM_ID  */
-    SHELL_CMD = 290,               /* SHELL_CMD  */
-    ENV_VAR = 291,                 /* ENV_VAR  */
-    CTRL_CHAR = 292,               /* CTRL_CHAR  */
-    NOT_EQUAL = 293                /* NOT_EQUAL  */
+    LOG_HEADERS_SQLITE3 = 267,     /* LOG_HEADERS_SQLITE3  */
+    MAXLENGTH = 268,               /* MAXLENGTH  */
+    MAXSIZE_ALLOW = 269,           /* MAXSIZE_ALLOW  */
+    MAXSIZE_DENY = 270,            /* MAXSIZE_DENY  */
+    MAXSIZE_SCORE = 271,           /* MAXSIZE_SCORE  */
+    NORMAL = 272,                  /* NORMAL  */
+    SERVER = 273,                  /* SERVER  */
+    USER = 274,                    /* USER  */
+    PASS = 275,                    /* PASS  */
+    PROTOCOL = 276,                /* PROTOCOL  */
+    PORT = 277,                    /* PORT  */
+    REG_CASE = 278,                /* REG_CASE  */
+    REG_TYPE = 279,                /* REG_TYPE  */
+    SHOW_HEADERS = 280,            /* SHOW_HEADERS  */
+    SCORE = 281,                   /* SCORE  */
+    SCORE_CASE = 282,              /* SCORE_CASE  */
+    SCORE_NOCASE = 283,            /* SCORE_NOCASE  */
+    TIMEOUT = 284,                 /* TIMEOUT  */
+    TEST = 285,                    /* TEST  */
+    VERBOSE = 286,                 /* VERBOSE  */
+    EXP = 287,                     /* EXP  */
+    YES_NO_ID = 288,               /* YES_NO_ID  */
+    TEXT_ID = 289,                 /* TEXT_ID  */
+    NUM_ID = 290,                  /* NUM_ID  */
+    SHELL_CMD = 291,               /* SHELL_CMD  */
+    ENV_VAR = 292,                 /* ENV_VAR  */
+    CTRL_CHAR = 293,               /* CTRL_CHAR  */
+    NOT_EQUAL = 294                /* NOT_EQUAL  */
   };
   typedef enum rctokentype rctoken_kind_t;
 #endif
@@ -115,33 +116,34 @@ extern int rcdebug;
 #define DENY 264
 #define HIGHSCORE 265
 #define LOGFILE 266
-#define MAXLENGTH 267
-#define MAXSIZE_ALLOW 268
-#define MAXSIZE_DENY 269
-#define MAXSIZE_SCORE 270
-#define NORMAL 271
-#define SERVER 272
-#define USER 273
-#define PASS 274
-#define PROTOCOL 275
-#define PORT 276
-#define REG_CASE 277
-#define REG_TYPE 278
-#define SHOW_HEADERS 279
-#define SCORE 280
-#define SCORE_CASE 281
-#define SCORE_NOCASE 282
-#define TIMEOUT 283
-#define TEST 284
-#define VERBOSE 285
-#define EXP 286
-#define YES_NO_ID 287
-#define TEXT_ID 288
-#define NUM_ID 289
-#define SHELL_CMD 290
-#define ENV_VAR 291
-#define CTRL_CHAR 292
-#define NOT_EQUAL 293
+#define LOG_HEADERS_SQLITE3 267
+#define MAXLENGTH 268
+#define MAXSIZE_ALLOW 269
+#define MAXSIZE_DENY 270
+#define MAXSIZE_SCORE 271
+#define NORMAL 272
+#define SERVER 273
+#define USER 274
+#define PASS 275
+#define PROTOCOL 276
+#define PORT 277
+#define REG_CASE 278
+#define REG_TYPE 279
+#define SHOW_HEADERS 280
+#define SCORE 281
+#define SCORE_CASE 282
+#define SCORE_NOCASE 283
+#define TIMEOUT 284
+#define TEST 285
+#define VERBOSE 286
+#define EXP 287
+#define YES_NO_ID 288
+#define TEXT_ID 289
+#define NUM_ID 290
+#define SHELL_CMD 291
+#define ENV_VAR 292
+#define CTRL_CHAR 293
+#define NOT_EQUAL 294
 
 /* Value type.  */
 #if ! defined RCSTYPE && ! defined RCSTYPE_IS_DECLARED
@@ -153,7 +155,7 @@ union rc
   int   ival;
   char* sval;
 
-#line 157 "rcparser.hh"
+#line 159 "rcparser.hh"
 
 };
 #line 106 "rcfile.yy"
