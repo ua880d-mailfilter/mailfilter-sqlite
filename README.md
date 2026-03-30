@@ -169,6 +169,92 @@ mailfilter -> SQLite -> rulegen -> rules -> mailfilter
 
 ---
 
+## Rule Loop / Data Flow
+
+mailfilter-sqlite extends the classic mailfilter workflow into a controlled, database-driven rule engineering loop.
+
+Unlike traditional spam filters, this system separates **data collection**, **analysis**, and **rule application** into distinct stages.
+
+```text
+Mail source / POP3 / securepop3
+          |
+          v
++----------------------+
+|      mailfilter      |
+|----------------------|
+| parses headers       |
+| applies ALLOW/DENY   |
+| scores / decides     |
+| logs to SQLite       |
++----------------------+
+          |
+          v
++----------------------+
+|   SQLite database    |
+|----------------------|
+| messages             |
+| header_entries       |
+| rule_hits            |
++----------------------+
+          |
+          v
++----------------------+
+| mailfilter-rulegen.sh|
+|----------------------|
+| extract subjects     |
+| extract headers      |
+| prepare input data   |
++----------------------+
+          |
+          v
++----------------------+
+| mailfilter-rulegen.pl|
+|----------------------|
+| campaign detection   |
+| fake-brand analysis  |
+| time-based scoring   |
+| rule comparison      |
+| false-positive guard |
++----------------------+
+          |
+          | uses
+          v
++----------------------------------+
+| policy / control files           |
+|----------------------------------|
+| protected_domains.conf           |
+| allow_subject_tokens.conf        |
+| bulk_mail_providers.conf         |
+| weak_subject_tokens.conf         |
+| brand_domains.conf               |
++----------------------------------+
+          |
+          +-----------------------------+
+          |                             |
+          v                             v
++----------------------+    +-------------------------------+
+| generated-candidates |    | exported rule files           |
+|----------------------|    |-------------------------------|
+| risk / confidence    |    | generated-rules.conf          |
+| reasons / examples   |    | generated-conservative-...    |
+| campaign signatures  |    | generated-aggressive-...      |
++----------------------+    +-------------------------------+
+                                             |
+                                             v
+                                  +--------------------------+
+                                  |       .mailfilterrc      |
+                                  |--------------------------|
+                                  | INCLUDE="..."            |
+                                  | existing rules loaded    |
+                                  +--------------------------+
+                                             |
+                                             v
+                                  +--------------------------+
+                                  | next mailfilter run      |
+                                  | applies new rules        |
+                                  +--------------------------+
+```
+
 ### Controlled Rule Generation
 
 The rule generator does not operate in isolation.
@@ -229,6 +315,8 @@ Policy files actively influence rule generation:
 - `brand_domains.conf` improves fake-brand detection
 
 These files are a key part of the system's precision.
+
+---
 
 ##  Quick Start
 
