@@ -1,5 +1,13 @@
 #!/bin/bash
-
+#
+# This file is part of mailfilter-sqlite!
+# mailfilter-sqlite is based on the original mailfilter project by (C) Andreas Bauer.
+#
+# Copyright (C) 2026 Rico Dummis <ua880d@gmail.com>
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License ...
+#
 ###############################################################################
 #
 # mailfilter-stats-html.sh

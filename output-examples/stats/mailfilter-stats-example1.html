@@ -1,0 +1,1250 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>mailfilter SQLite statistics</title>
+<style>
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    background: #f4f6f8;
+    color: #1f2937;
+  }
+  .wrap {
+    max-width: 1400px;
+    margin: 32px auto;
+    padding: 0 20px 40px;
+  }
+  header {
+    background: white;
+    border: 1px solid #d7dee7;
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin-bottom: 24px;
+  }
+  h1 {
+    margin: 0 0 8px;
+    font-size: 30px;
+  }
+  .meta {
+    color: #475569;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+    gap: 18px;
+  }
+  .card {
+    background: white;
+    border: 1px solid #d7dee7;
+    border-radius: 12px;
+    padding: 16px 18px 18px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    overflow-x: auto;
+  }
+  .card h2 {
+    margin: 0 0 12px;
+    font-size: 20px;
+    color: #0f3d75;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    table-layout: auto;
+  }
+  th, td {
+    padding: 8px 10px;
+    border-bottom: 1px solid #e5e7eb;
+    text-align: left;
+    vertical-align: top;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+  th {
+    background: #eef4fb;
+    color: #0f3d75;
+  }
+  th.num, td.num {
+   white-space: nowrap;
+    width: 1%;
+    min-width: 70px;
+    text-align: right;
+  }
+  tr:hover td {
+    background: #fafcff;
+  }
+  footer {
+    margin-top: 24px;
+    color: #64748b;
+    font-size: 13px;
+    text-align: center;
+  }
+  code {
+    background: #eef4fb;
+    padding: 2px 6px;
+    border-radius: 4px;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>mailfilter SQLite statistics</h1>
+    <div class="meta">
+      <strong>Database:</strong> /var/spool/filter/mailheader-test-1.sqlite3<br>
+      <strong>Generated:</strong> 2026-03-30 22:30:55<br>
+      <strong>Row limit per section:</strong> 50
+    </div>
+  </header>
+
+  <div class="grid">
+<section class="card">
+  <h2>Decisions</h2>
+  <table>
+    <thead><tr>
+      <th>Decision</th>
+      <th class="num">Count</th>
+    </tr></thead>
+    <tbody>
+      <tr>
+        <td>deny</td>
+        <td class="num">7369</td>
+      </tr>
+      <tr>
+        <td>pass</td>
+        <td class="num">924</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+<section class="card">
+  <h2>Top Header Tags</h2>
+  <table>
+    <thead><tr>
+      <th>Header Tag</th>
+      <th class="num">Count</th>
+    </tr></thead>
+    <tbody>
+      <tr>
+        <td>Received</td>
+        <td class="num">15796</td>
+      </tr>
+      <tr>
+        <td>Subject</td>
+        <td class="num">8296</td>
+      </tr>
+      <tr>
+        <td>From</td>
+        <td class="num">8284</td>
+      </tr>
+      <tr>
+        <td>To</td>
+        <td class="num">8245</td>
+      </tr>
+      <tr>
+        <td>Date</td>
+        <td class="num">8124</td>
+      </tr>
+      <tr>
+        <td>Content-Type</td>
+        <td class="num">7980</td>
+      </tr>
+      <tr>
+        <td>MIME-Version</td>
+        <td class="num">6370</td>
+      </tr>
+      <tr>
+        <td>X-Mailer</td>
+        <td class="num">3921</td>
+      </tr>
+      <tr>
+        <td>Reply-To</td>
+        <td class="num">3669</td>
+      </tr>
+      <tr>
+        <td>X-Priority</td>
+        <td class="num">3023</td>
+      </tr>
+      <tr>
+        <td>Message-ID</td>
+        <td class="num">2977</td>
+      </tr>
+      <tr>
+        <td>Content-Transfer-Encoding</td>
+        <td class="num">2574</td>
+      </tr>
+      <tr>
+        <td>Message-Id</td>
+        <td class="num">2242</td>
+      </tr>
+      <tr>
+        <td>X-MSMail-Priority</td>
+        <td class="num">1891</td>
+      </tr>
+      <tr>
+        <td>X-MimeOLE</td>
+        <td class="num">1878</td>
+      </tr>
+      <tr>
+        <td>User-Agent</td>
+        <td class="num">1439</td>
+      </tr>
+      <tr>
+        <td>Return-Path</td>
+        <td class="num">1043</td>
+      </tr>
+      <tr>
+        <td>Delivered-To</td>
+        <td class="num">957</td>
+      </tr>
+      <tr>
+        <td>Mime-Version</td>
+        <td class="num">930</td>
+      </tr>
+      <tr>
+        <td>X-Unsent</td>
+        <td class="num">680</td>
+      </tr>
+      <tr>
+        <td>Importance</td>
+        <td class="num">630</td>
+      </tr>
+      <tr>
+        <td>Sender</td>
+        <td class="num">336</td>
+      </tr>
+      <tr>
+        <td>X-AntiAbuse</td>
+        <td class="num">331</td>
+      </tr>
+      <tr>
+        <td>Content-type</td>
+        <td class="num">249</td>
+      </tr>
+      <tr>
+        <td>MIME-version</td>
+        <td class="num">201</td>
+      </tr>
+      <tr>
+        <td>Content-Length</td>
+        <td class="num">178</td>
+      </tr>
+      <tr>
+        <td>X-Accept-Language</td>
+        <td class="num">170</td>
+      </tr>
+      <tr>
+        <td>Organization</td>
+        <td class="num">164</td>
+      </tr>
+      <tr>
+        <td>Lines</td>
+        <td class="num">140</td>
+      </tr>
+      <tr>
+        <td>In-Reply-To</td>
+        <td class="num">137</td>
+      </tr>
+      <tr>
+        <td>X-Sender</td>
+        <td class="num">136</td>
+      </tr>
+      <tr>
+        <td>X-Qmail-Scanner-Message-ID</td>
+        <td class="num">120</td>
+      </tr>
+      <tr>
+        <td>X-Message-Info</td>
+        <td class="num">119</td>
+      </tr>
+      <tr>
+        <td>Cc</td>
+        <td class="num">117</td>
+      </tr>
+      <tr>
+        <td>References</td>
+        <td class="num">116</td>
+      </tr>
+      <tr>
+        <td>X-OriginalArrivalTime</td>
+        <td class="num">102</td>
+      </tr>
+      <tr>
+        <td>Content-transfer-encoding</td>
+        <td class="num">89</td>
+      </tr>
+      <tr>
+        <td>Content-Class</td>
+        <td class="num">81</td>
+      </tr>
+      <tr>
+        <td>X-Source-Dir</td>
+        <td class="num">68</td>
+      </tr>
+      <tr>
+        <td>X-Source-Args</td>
+        <td class="num">68</td>
+      </tr>
+      <tr>
+        <td>X-Source</td>
+        <td class="num">68</td>
+      </tr>
+      <tr>
+        <td>X-Originating-IP</td>
+        <td class="num">65</td>
+      </tr>
+      <tr>
+        <td>Auto-Submitted</td>
+        <td class="num">58</td>
+      </tr>
+      <tr>
+        <td>Comments</td>
+        <td class="num">50</td>
+      </tr>
+      <tr>
+        <td>Thread-Index</td>
+        <td class="num">47</td>
+      </tr>
+      <tr>
+        <td>Message-id</td>
+        <td class="num">47</td>
+      </tr>
+      <tr>
+        <td>Status</td>
+        <td class="num">45</td>
+      </tr>
+      <tr>
+        <td>Language</td>
+        <td class="num">43</td>
+      </tr>
+      <tr>
+        <td>Content-Disposition</td>
+        <td class="num">36</td>
+      </tr>
+      <tr>
+        <td>Location</td>
+        <td class="num">35</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+<section class="card">
+  <h2>Top From Addresses</h2>
+  <table>
+    <thead><tr>
+      <th>From</th>
+      <th class="num">Count</th>
+    </tr></thead>
+    <tbody>
+      <tr>
+        <td>&quot;F&gt;ree Gadgets&quot; &lt;gadgets@zoolant.com&gt;</td>
+        <td class="num">171</td>
+      </tr>
+      <tr>
+        <td>&quot;GoTo My Meeting&quot; &lt;meeting@zoolant.com&gt;</td>
+        <td class="num">165</td>
+      </tr>
+      <tr>
+        <td>&quot;Idiot Proof Diet&quot; &lt;WeightLoss@zoolant.com&gt;</td>
+        <td class="num">137</td>
+      </tr>
+      <tr>
+        <td>&quot;Sit Stay Fetch&quot; &lt;Training@zoolant.com&gt;</td>
+        <td class="num">113</td>
+      </tr>
+      <tr>
+        <td>&quot;Pure Postcards&quot; &lt;purepostcards@qznet.biz&gt;</td>
+        <td class="num">99</td>
+      </tr>
+      <tr>
+        <td>&quot;Elite Equity Marketing&quot; &lt;eliteequitymktg@dfzmail.info&gt;</td>
+        <td class="num">96</td>
+      </tr>
+      <tr>
+        <td>&quot;Computer Shopping Network&quot; &lt;csn@qzmail.info&gt;</td>
+        <td class="num">95</td>
+      </tr>
+      <tr>
+        <td>&quot;Quick Business Solutions&quot; &lt;qbs@dfzmail.net&gt;</td>
+        <td class="num">89</td>
+      </tr>
+      <tr>
+        <td>&quot;Emerging Growth Alert&quot; &lt;obdp@frzmail.com&gt;</td>
+        <td class="num">84</td>
+      </tr>
+      <tr>
+        <td>&quot;Pure Postcards&quot; &lt;purepostcards@dfznet.info&gt;</td>
+        <td class="num">82</td>
+      </tr>
+      <tr>
+        <td>&quot;Neateye&quot; &lt;nitaigouranga@aol.com&gt;</td>
+        <td class="num">80</td>
+      </tr>
+      <tr>
+        <td>&quot;Gadgets&quot; &lt;Gadgets@zoolant.com&gt;</td>
+        <td class="num">65</td>
+      </tr>
+      <tr>
+        <td>&quot;Burn the Fat&quot; &lt;burnfat@zoolant.com&gt;</td>
+        <td class="num">52</td>
+      </tr>
+      <tr>
+        <td>&quot;Halal Financial Services&quot; &lt;drcinc@qznet.biz&gt;</td>
+        <td class="num">36</td>
+      </tr>
+      <tr>
+        <td>&quot;cindygreen@adqueen.com&quot; &lt;back@adqueen.com&gt;</td>
+        <td class="num">31</td>
+      </tr>
+      <tr>
+        <td>&quot;Tina Peritti&quot; &lt;tina@christianhealthcenter.info&gt;</td>
+        <td class="num">21</td>
+      </tr>
+      <tr>
+        <td>shaun.a@tcigp.com</td>
+        <td class="num">19</td>
+      </tr>
+      <tr>
+        <td>Reza Abdulla &lt;rezaabdulla@netscape.net&gt;</td>
+        <td class="num">19</td>
+      </tr>
+      <tr>
+        <td>&quot;service@paypal.com&quot; &lt;service@paypal.com&gt;</td>
+        <td class="num">19</td>
+      </tr>
+      <tr>
+        <td>&quot;Vanessa Lintner&quot; &lt;reply@seekercenter.net&gt;</td>
+        <td class="num">19</td>
+      </tr>
+      <tr>
+        <td>&quot;Computer Shopping Network&quot; &lt;csn@dfznet.info&gt;</td>
+        <td class="num">19</td>
+      </tr>
+      <tr>
+        <td>&lt;yoysearch@yoysearch.com&gt;</td>
+        <td class="num">18</td>
+      </tr>
+      <tr>
+        <td>&quot;Knobias Smallcap ClipReport&quot; &lt;knobias@qzmail.biz&gt;</td>
+        <td class="num">18</td>
+      </tr>
+      <tr>
+        <td>&quot;Scott&quot; &lt;scott@netcom3global.net&gt;</td>
+        <td class="num">17</td>
+      </tr>
+      <tr>
+        <td>&quot;Business Skills Seminar&quot; &lt;mbaseminar@dfznet.info&gt;</td>
+        <td class="num">17</td>
+      </tr>
+      <tr>
+        <td>&quot;secure@southtrust.com&quot; &lt;secure@southtrust.com&gt;</td>
+        <td class="num">15</td>
+      </tr>
+      <tr>
+        <td>&quot;Steve&quot; &lt;Steve@netcom3global.net&gt;</td>
+        <td class="num">15</td>
+      </tr>
+      <tr>
+        <td>anthony@tcigp.com</td>
+        <td class="num">14</td>
+      </tr>
+      <tr>
+        <td>Lasalle Bank &lt;unlock@lasallebank.com&gt;</td>
+        <td class="num">14</td>
+      </tr>
+      <tr>
+        <td>&quot;Terry Reynolds&quot; &lt;terry@christianhealthcenter.info&gt;</td>
+        <td class="num">14</td>
+      </tr>
+      <tr>
+        <td>&quot;ShirleySpark@workmiracle.com&quot; &lt;bounce@workmiracle.com&gt;</td>
+        <td class="num">14</td>
+      </tr>
+      <tr>
+        <td>&quot;Sergio&quot; &lt;sergio@netcom3global.net&gt;</td>
+        <td class="num">14</td>
+      </tr>
+      <tr>
+        <td>&quot;About Your Website&quot; &lt;scott@netcom3global.net&gt;</td>
+        <td class="num">14</td>
+      </tr>
+      <tr>
+        <td>1powerpromo1@verizon.net</td>
+        <td class="num">13</td>
+      </tr>
+      <tr>
+        <td>&quot;Steve&quot; &lt;kzl456@freemail.soim.com&gt;</td>
+        <td class="num">13</td>
+      </tr>
+      <tr>
+        <td>&quot;About Your Website&quot; &lt;Scott@netcom3global.net&gt;</td>
+        <td class="num">13</td>
+      </tr>
+      <tr>
+        <td>jammewu@yahoo.com.cn</td>
+        <td class="num">12</td>
+      </tr>
+      <tr>
+        <td>&quot;eyeQ&quot; &lt;livemercial@qznet.org&gt;</td>
+        <td class="num">12</td>
+      </tr>
+      <tr>
+        <td>&quot;aw-confirm@ebay.com&quot; &lt;aw-confirm@ebay.com&gt;</td>
+        <td class="num">12</td>
+      </tr>
+      <tr>
+        <td>&quot;Millionaires Concierge&quot; &lt;info@millionaires-concierge.com&gt;</td>
+        <td class="num">12</td>
+      </tr>
+      <tr>
+        <td>&quot;Jobslog.com&quot; &lt;jobslog@frzmail.biz&gt;</td>
+        <td class="num">12</td>
+      </tr>
+      <tr>
+        <td>&quot;Elite Equity Marketing&quot; &lt;eliteequitymktg@dfzmail.net&gt;</td>
+        <td class="num">12</td>
+      </tr>
+      <tr>
+        <td>security@paypal.com &lt;service@paypal.com&gt;</td>
+        <td class="num">11</td>
+      </tr>
+      <tr>
+        <td>&quot;Steve&quot; &lt;steve@netcom3global.net&gt;</td>
+        <td class="num">11</td>
+      </tr>
+      <tr>
+        <td>&quot;Hot Stock Alert&quot; &lt;hotstock3414@frzmail.info&gt;</td>
+        <td class="num">11</td>
+      </tr>
+      <tr>
+        <td>Reza Abdulla &lt;rezaabdu@netscape.net &gt;</td>
+        <td class="num">10</td>
+      </tr>
+      <tr>
+        <td>&quot;SmallCap Breaking News&quot; &lt;irsolutions@frznet.net&gt;</td>
+        <td class="num">10</td>
+      </tr>
+      <tr>
+        <td>&quot;Lasalle Bank&quot; &lt;security@lasallebank.com&gt;</td>
+        <td class="num">10</td>
+      </tr>
+      <tr>
+        <td>&quot;American Medical&quot; &lt;amerimed@zinetmail.info&gt;</td>
+        <td class="num">10</td>
+      </tr>
+      <tr>
+        <td>star05@max-po.com</td>
+        <td class="num">9</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+<section class="card">
+  <h2>Top Reply-To Values</h2>
+  <table>
+    <thead><tr>
+      <th>Reply-To</th>
+      <th class="num">Count</th>
+    </tr></thead>
+    <tbody>
+      <tr>
+        <td>gadgets@zoolant.com</td>
+        <td class="num">171</td>
+      </tr>
+      <tr>
+        <td>meeting@zoolant.com</td>
+        <td class="num">165</td>
+      </tr>
+      <tr>
+        <td>WeightLoss@zoolant.com</td>
+        <td class="num">137</td>
+      </tr>
+      <tr>
+        <td>Training@zoolant.com</td>
+        <td class="num">113</td>
+      </tr>
+      <tr>
+        <td>purepostcards@qznet.biz</td>
+        <td class="num">99</td>
+      </tr>
+      <tr>
+        <td>eliteequitymktg@dfzmail.info</td>
+        <td class="num">96</td>
+      </tr>
+      <tr>
+        <td>csn@qzmail.info</td>
+        <td class="num">95</td>
+      </tr>
+      <tr>
+        <td>qbs@dfzmail.net</td>
+        <td class="num">89</td>
+      </tr>
+      <tr>
+        <td>obdp@frzmail.com</td>
+        <td class="num">84</td>
+      </tr>
+      <tr>
+        <td>purepostcards@dfznet.info</td>
+        <td class="num">82</td>
+      </tr>
+      <tr>
+        <td>&quot;Neateye&quot; &lt;nitaigouranga@aol.com&gt;</td>
+        <td class="num">80</td>
+      </tr>
+      <tr>
+        <td>Gadgets@zoolant.com</td>
+        <td class="num">65</td>
+      </tr>
+      <tr>
+        <td>burnfat@zoolant.com</td>
+        <td class="num">52</td>
+      </tr>
+      <tr>
+        <td>drcinc@qznet.biz</td>
+        <td class="num">36</td>
+      </tr>
+      <tr>
+        <td>scott@netcom3global.net</td>
+        <td class="num">32</td>
+      </tr>
+      <tr>
+        <td>Cindy Green &lt;cindygreen@adqueen.com&gt;</td>
+        <td class="num">31</td>
+      </tr>
+      <tr>
+        <td>tina@christianhealthcenter.info</td>
+        <td class="num">21</td>
+      </tr>
+      <tr>
+        <td>rezaabdulla@netscape.net</td>
+        <td class="num">19</td>
+      </tr>
+      <tr>
+        <td>csn@dfznet.info</td>
+        <td class="num">19</td>
+      </tr>
+      <tr>
+        <td>&quot;Vanessa Lintner&quot; &lt;vanessa@seekercenter.net&gt;</td>
+        <td class="num">19</td>
+      </tr>
+      <tr>
+        <td>yoysearch@yoysearch.com</td>
+        <td class="num">18</td>
+      </tr>
+      <tr>
+        <td>knobias@qzmail.biz</td>
+        <td class="num">18</td>
+      </tr>
+      <tr>
+        <td>mbaseminar@dfznet.info</td>
+        <td class="num">17</td>
+      </tr>
+      <tr>
+        <td class="num">17</td>
+      </tr>
+      <tr>
+        <td>sergio@netcom3global.net</td>
+        <td class="num">16</td>
+      </tr>
+      <tr>
+        <td>Steve@netcom3global.net</td>
+        <td class="num">15</td>
+      </tr>
+      <tr>
+        <td>Scott@netcom3global.net</td>
+        <td class="num">15</td>
+      </tr>
+      <tr>
+        <td>&quot;Jone&quot; &lt;kzl112233@enorth.com.cn&gt;</td>
+        <td class="num">15</td>
+      </tr>
+      <tr>
+        <td>terry@christianhealthcenter.info</td>
+        <td class="num">14</td>
+      </tr>
+      <tr>
+        <td>ShirleySpark &lt;shirleyspark@workmriacle.com&gt;</td>
+        <td class="num">14</td>
+      </tr>
+      <tr>
+        <td>&quot;Steve&quot; &lt;kzl112233@enorth.com.cn&gt;</td>
+        <td class="num">13</td>
+      </tr>
+      <tr>
+        <td>&quot;Allen&quot; &lt;kzl789@56.com&gt;</td>
+        <td class="num">13</td>
+      </tr>
+      <tr>
+        <td>rezaabdu@netscape.net</td>
+        <td class="num">12</td>
+      </tr>
+      <tr>
+        <td>livemercial@qznet.org</td>
+        <td class="num">12</td>
+      </tr>
+      <tr>
+        <td>jobslog@frzmail.biz</td>
+        <td class="num">12</td>
+      </tr>
+      <tr>
+        <td>jammewu@yahoo.com.cn</td>
+        <td class="num">12</td>
+      </tr>
+      <tr>
+        <td>info@millionaires-concierge.com</td>
+        <td class="num">12</td>
+      </tr>
+      <tr>
+        <td>eliteequitymktg@dfzmail.net</td>
+        <td class="num">12</td>
+      </tr>
+      <tr>
+        <td>&quot;service@paypal.com&quot; &lt;service@paypal.com&gt;</td>
+        <td class="num">12</td>
+      </tr>
+      <tr>
+        <td>steve@netcom3global.net</td>
+        <td class="num">11</td>
+      </tr>
+      <tr>
+        <td>hotstock3414@frzmail.info</td>
+        <td class="num">11</td>
+      </tr>
+      <tr>
+        <td>irsolutions@frznet.net</td>
+        <td class="num">10</td>
+      </tr>
+      <tr>
+        <td>drcinc@frzmail.net</td>
+        <td class="num">10</td>
+      </tr>
+      <tr>
+        <td>amerimed@zinetmail.info</td>
+        <td class="num">10</td>
+      </tr>
+      <tr>
+        <td>&quot;Business Diagnosis Institute&quot; &lt;DoNotReply@UseTheButton.InTheMessage&gt;</td>
+        <td class="num">10</td>
+      </tr>
+      <tr>
+        <td>training@zoolant.com</td>
+        <td class="num">9</td>
+      </tr>
+      <tr>
+        <td>Jobs@netcom3global.net</td>
+        <td class="num">9</td>
+      </tr>
+      <tr>
+        <td>&quot;aw-confirm@ebay.com&quot; &lt;aw-confirm@ebay.com&gt;</td>
+        <td class="num">9</td>
+      </tr>
+      <tr>
+        <td>&quot;LaSalle Bank&quot; &lt;account@lasallebank.com&gt;</td>
+        <td class="num">9</td>
+      </tr>
+      <tr>
+        <td>mbaseminar@frzmail.info</td>
+        <td class="num">8</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+<section class="card">
+  <h2>Top Return-Path Values</h2>
+  <table>
+    <thead><tr>
+      <th>Return-Path</th>
+      <th class="num">Count</th>
+    </tr></thead>
+    <tbody>
+      <tr>
+        <td>shaun.a@tcigp.com</td>
+        <td class="num">19</td>
+      </tr>
+      <tr>
+        <td>anthony@tcigp.com</td>
+        <td class="num">14</td>
+      </tr>
+      <tr>
+        <td>s.anthony@tcigp.com</td>
+        <td class="num">9</td>
+      </tr>
+      <tr>
+        <td>anthony.b@tcigp.com</td>
+        <td class="num">8</td>
+      </tr>
+      <tr>
+        <td>jacobo.ventura@imss.gob.mx</td>
+        <td class="num">6</td>
+      </tr>
+      <tr>
+        <td>&lt;projecthoneypot@projecthoneypot.org&gt;</td>
+        <td class="num">5</td>
+      </tr>
+      <tr>
+        <td>&lt;kzl789@citiz.net&gt;</td>
+        <td class="num">5</td>
+      </tr>
+      <tr>
+        <td>&lt;&gt;</td>
+        <td class="num">5</td>
+      </tr>
+      <tr>
+        <td>&lt;wwb@hom.com&gt;</td>
+        <td class="num">4</td>
+      </tr>
+      <tr>
+        <td>&lt;rcgf2lx@pon.net&gt;</td>
+        <td class="num">4</td>
+      </tr>
+      <tr>
+        <td>&lt;lsovhlmyxooenl@drpzone.net&gt;</td>
+        <td class="num">4</td>
+      </tr>
+      <tr>
+        <td>&lt;jwqsgwhubh@franz-stadelmann.ch&gt;</td>
+        <td class="num">4</td>
+      </tr>
+      <tr>
+        <td>&lt;gubcrf@yahoo.com&gt;</td>
+        <td class="num">4</td>
+      </tr>
+      <tr>
+        <td>&lt;envet@yahoo.com&gt;</td>
+        <td class="num">4</td>
+      </tr>
+      <tr>
+        <td>&lt;LuzHewitt@aventurenorthwest.com&gt;</td>
+        <td class="num">4</td>
+      </tr>
+      <tr>
+        <td>&lt;zjvkydwjs@free-hosting.lt&gt;</td>
+        <td class="num">3</td>
+      </tr>
+      <tr>
+        <td>&lt;wnxkymw@fx.ro&gt;</td>
+        <td class="num">3</td>
+      </tr>
+      <tr>
+        <td>&lt;ptlyxbjnjyka@forum.dk&gt;</td>
+        <td class="num">3</td>
+      </tr>
+      <tr>
+        <td>&lt;aynnaaske@myownemail.com&gt;</td>
+        <td class="num">3</td>
+      </tr>
+      <tr>
+        <td>&lt;autdymer@denis.as&gt;</td>
+        <td class="num">3</td>
+      </tr>
+      <tr>
+        <td>&lt;IN@casasyrentasinmobiliam.com&gt;</td>
+        <td class="num">3</td>
+      </tr>
+      <tr>
+        <td>enquiry@robhatah.com</td>
+        <td class="num">2</td>
+      </tr>
+      <tr>
+        <td>&lt;zermwzjwn@alink.net&gt;</td>
+        <td class="num">2</td>
+      </tr>
+      <tr>
+        <td>&lt;ykojeeiyw@ferraracompany.com&gt;</td>
+        <td class="num">2</td>
+      </tr>
+      <tr>
+        <td>&lt;yhsaheun@comatonse.com&gt;</td>
+        <td class="num">2</td>
+      </tr>
+      <tr>
+        <td>&lt;xjjhyfthpjj@eicher.com&gt;</td>
+        <td class="num">2</td>
+      </tr>
+      <tr>
+        <td>&lt;wqydyfitigztkq@wurldlink.net&gt;</td>
+        <td class="num">2</td>
+      </tr>
+      <tr>
+        <td>&lt;wood_31@cs.us.es&gt;</td>
+        <td class="num">2</td>
+      </tr>
+      <tr>
+        <td>&lt;werjiyl@auslandermusic.com&gt;</td>
+        <td class="num">2</td>
+      </tr>
+      <tr>
+        <td>&lt;wcvjsr@adslhome.dk&gt;</td>
+        <td class="num">2</td>
+      </tr>
+      <tr>
+        <td>&lt;vsehzd@digitalmigration.com&gt;</td>
+        <td class="num">2</td>
+      </tr>
+      <tr>
+        <td>&lt;vqdkqhvru@feightner.com&gt;</td>
+        <td class="num">2</td>
+      </tr>
+      <tr>
+        <td>&lt;travelagent@globallightning.com&gt;</td>
+        <td class="num">2</td>
+      </tr>
+      <tr>
+        <td>&lt;tlnsozrdsky@dssaa.org&gt;</td>
+        <td class="num">2</td>
+      </tr>
+      <tr>
+        <td>&lt;tfg11qx@olympus.net&gt;</td>
+        <td class="num">2</td>
+      </tr>
+      <tr>
+        <td>&lt;tar@pop.com&gt;</td>
+        <td class="num">2</td>
+      </tr>
+      <tr>
+        <td>&lt;sycefanem@freeproblem.com&gt;</td>
+        <td class="num">2</td>
+      </tr>
+      <tr>
+        <td>&lt;service@regions.com&gt;</td>
+        <td class="num">2</td>
+      </tr>
+      <tr>
+        <td>&lt;seabalastian@be.adoptionwise.com&gt;</td>
+        <td class="num">2</td>
+      </tr>
+      <tr>
+        <td>&lt;rvybbex@france.com&gt;</td>
+        <td class="num">2</td>
+      </tr>
+      <tr>
+        <td>&lt;rqaqg@dpsworld.com&gt;</td>
+        <td class="num">2</td>
+      </tr>
+      <tr>
+        <td>&lt;qxvbkdfpz@dreamnmaltese.com&gt;</td>
+        <td class="num">2</td>
+      </tr>
+      <tr>
+        <td>&lt;qsddo@britmal.com&gt;</td>
+        <td class="num">2</td>
+      </tr>
+      <tr>
+        <td>&lt;qodyzimym@flytecrew.com&gt;</td>
+        <td class="num">2</td>
+      </tr>
+      <tr>
+        <td>&lt;qkhatuwapc@clearm.com&gt;</td>
+        <td class="num">2</td>
+      </tr>
+      <tr>
+        <td>&lt;qinwglbhulscr@lycos.com&gt;</td>
+        <td class="num">2</td>
+      </tr>
+      <tr>
+        <td>&lt;qecrzt88ac@cnw.com&gt;</td>
+        <td class="num">2</td>
+      </tr>
+      <tr>
+        <td>&lt;pvnpt@flytecrew.com&gt;</td>
+        <td class="num">2</td>
+      </tr>
+      <tr>
+        <td>&lt;pudivelen@gundamfan.com&gt;</td>
+        <td class="num">2</td>
+      </tr>
+      <tr>
+        <td>&lt;publi_latin@hotmail.com&gt;</td>
+        <td class="num">2</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+<section class="card">
+  <h2>Top List-Unsubscribe Values</h2>
+  <table>
+    <thead><tr>
+      <th>List-Unsubscribe</th>
+      <th class="num">Count</th>
+    </tr></thead>
+    <tbody>
+      <tr>
+        <td>&lt;mailto:centrofotografico-unsubscribe@yahoogrupos.com.mx&gt;</td>
+        <td class="num">6</td>
+      </tr>
+      <tr>
+        <td>&lt;http://www.zinester.com/mpb/unsub.cgi?21556&amp;4952643&amp;011m0Mt8Q85oVa7rbXVn4A&gt;</td>
+        <td class="num">2</td>
+      </tr>
+      <tr>
+        <td>&lt;mailto:list-request@platinumadnetworks.com?subject=unsubscribe&gt;</td>
+        <td class="num">1</td>
+      </tr>
+      <tr>
+        <td>&lt;mailto:leave-announcements-13877455V@dfs.drsfostersmith.com&gt;</td>
+        <td class="num">1</td>
+      </tr>
+      <tr>
+        <td>&lt;mailto:Elise.Harding@evo-games.net&gt;</td>
+        <td class="num">1</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+<section class="card">
+  <h2>Top Subjects</h2>
+  <table>
+    <thead><tr>
+      <th>Subject</th>
+      <th class="num">Count</th>
+    </tr></thead>
+    <tbody>
+      <tr>
+        <td>5000 Full Color Postcards for $329</td>
+        <td class="num">200</td>
+      </tr>
+      <tr>
+        <td>F&gt;ree Gadgets for everyone!</td>
+        <td class="num">171</td>
+      </tr>
+      <tr>
+        <td>The next generation in online meetings!</td>
+        <td class="num">165</td>
+      </tr>
+      <tr>
+        <td>Loose your Fat in 9 Days</td>
+        <td class="num">137</td>
+      </tr>
+      <tr>
+        <td>Top Dog Training Secrets Revealed</td>
+        <td class="num">122</td>
+      </tr>
+      <tr>
+        <td>Are you ready to get it?</td>
+        <td class="num">113</td>
+      </tr>
+      <tr>
+        <td>Just to her...</td>
+        <td class="num">103</td>
+      </tr>
+      <tr>
+        <td>Suprise for your woman...</td>
+        <td class="num">100</td>
+      </tr>
+      <tr>
+        <td>Perfect logo &amp; identity is a key to your success</td>
+        <td class="num">99</td>
+      </tr>
+      <tr>
+        <td>1000&#39;s of Computer Products on Sale Now!</td>
+        <td class="num">98</td>
+      </tr>
+      <tr>
+        <td>Enjoy Media (EJYM) Enters Chinese TV Advertising Market</td>
+        <td class="num">95</td>
+      </tr>
+      <tr>
+        <td>Save your money buy getting this thing here</td>
+        <td class="num">93</td>
+      </tr>
+      <tr>
+        <td>Continued Growth at Orbit Drop, Inc. as Acquisitions and Changes take place, positioning OBDP for its next level</td>
+        <td class="num">88</td>
+      </tr>
+      <tr>
+        <td>All graphics software available, cheap OEM versions.</td>
+        <td class="num">87</td>
+      </tr>
+      <tr>
+        <td>Investor Alert SPNI UP 20%</td>
+        <td class="num">86</td>
+      </tr>
+      <tr>
+        <td>Localized software, all languages available.</td>
+        <td class="num">73</td>
+      </tr>
+      <tr>
+        <td>F R E E gadgets for everyone</td>
+        <td class="num">65</td>
+      </tr>
+      <tr>
+        <td>You don_t know how to attract customers to your website?</td>
+        <td class="num">53</td>
+      </tr>
+      <tr>
+        <td>Loose Weight Fast Guaranteed.</td>
+        <td class="num">52</td>
+      </tr>
+      <tr>
+        <td>In the Heart of Your Business!</td>
+        <td class="num">52</td>
+      </tr>
+      <tr>
+        <td>I have a question about your website?</td>
+        <td class="num">52</td>
+      </tr>
+      <tr>
+        <td>You don_t know how to get into search engine results?</td>
+        <td class="num">50</td>
+      </tr>
+      <tr>
+        <td>Are you listed in major search engines?</td>
+        <td class="num">47</td>
+      </tr>
+      <tr>
+        <td>failure notice</td>
+        <td class="num">46</td>
+      </tr>
+      <tr>
+        <td>Save your money by getting an OEM software!</td>
+        <td class="num">46</td>
+      </tr>
+      <tr>
+        <td>Does your business depend on the online success of your website?</td>
+        <td class="num">41</td>
+      </tr>
+      <tr>
+        <td>Your online sales are low because you don_t have enough visitors?</td>
+        <td class="num">39</td>
+      </tr>
+      <tr>
+        <td>Joint Business Alliance</td>
+        <td class="num">36</td>
+      </tr>
+      <tr>
+        <td>4 for 1 forward stock split-ends Monday</td>
+        <td class="num">36</td>
+      </tr>
+      <tr>
+        <td>an affordible health plan</td>
+        <td class="num">35</td>
+      </tr>
+      <tr>
+        <td>Gouranga hey</td>
+        <td class="num">35</td>
+      </tr>
+      <tr>
+        <td>Any med for your girl to be happy!</td>
+        <td class="num">35</td>
+      </tr>
+      <tr>
+        <td>New Health Plan - Only $85 a Month</td>
+        <td class="num">33</td>
+      </tr>
+      <tr>
+        <td>Gouranga</td>
+        <td class="num">32</td>
+      </tr>
+      <tr>
+        <td>Financial and Marketing Skills Seminar</td>
+        <td class="num">32</td>
+      </tr>
+      <tr>
+        <td>Charity sees the need not the cost...</td>
+        <td class="num">32</td>
+      </tr>
+      <tr>
+        <td>Innovative and effective design for you!</td>
+        <td class="num">31</td>
+      </tr>
+      <tr>
+        <td>Hot Summer Deals on Computers, Laptops, and More...</td>
+        <td class="num">29</td>
+      </tr>
+      <tr>
+        <td>Returned mail: see transcript for details</td>
+        <td class="num">28</td>
+      </tr>
+      <tr>
+        <td>I have a question about your website</td>
+        <td class="num">28</td>
+      </tr>
+      <tr>
+        <td>You want to submit your website to search engines but do not know how to do it?</td>
+        <td class="num">26</td>
+      </tr>
+      <tr>
+        <td>Mail delivery failed: returning message to sender</td>
+        <td class="num">25</td>
+      </tr>
+      <tr>
+        <td>Update Your Account Information</td>
+        <td class="num">24</td>
+      </tr>
+      <tr>
+        <td>=?iso-8859-1?B?V2luZG93cyBYUCArIE9mZmljZSBYUCA9ICQ4OS45NQ==?=</td>
+        <td class="num">24</td>
+      </tr>
+      <tr>
+        <td>Friendly notification</td>
+        <td class="num">23</td>
+      </tr>
+      <tr>
+        <td>Complimentary Smallcap ClipReport</td>
+        <td class="num">22</td>
+      </tr>
+      <tr>
+        <td>=?iso-8859-1?B?T2ZmaWNlIHNvZnR3YXJlIC0gYm90dG9tIHByaWNlcw==?=</td>
+        <td class="num">22</td>
+      </tr>
+      <tr>
+        <td>You launched a website but no one visits it?</td>
+        <td class="num">20</td>
+      </tr>
+      <tr>
+        <td>Security Alert - Confirm Your NCUA Information</td>
+        <td class="num">20</td>
+      </tr>
+      <tr>
+        <td>Undelivered Mail Returned to Sender</td>
+        <td class="num">19</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+<section class="card">
+  <h2>Top Deny Rules</h2>
+  <table>
+    <thead><tr>
+      <th>Expression</th>
+      <th class="num">Hits</th>
+    </tr></thead>
+    <tbody>
+    </tbody>
+  </table>
+</section>
+<section class="card">
+  <h2>Top Score Rules</h2>
+  <table>
+    <thead><tr>
+      <th>Expression</th>
+      <th>Hits</th>
+      <th class="num">Total Score Delta</th>
+    </tr></thead>
+    <tbody>
+    </tbody>
+  </table>
+</section>
+<section class="card">
+  <h2>Top Scored Messages</h2>
+  <table>
+    <thead><tr>
+      <th>Subject</th>
+      <th class="num">Final Score</th>
+    </tr></thead>
+    <tbody>
+    </tbody>
+  </table>
+</section>
+  </div>
+
+  <footer>
+    Generated by <code>mailfilter-stats-html.sh</code>
+  </footer>
+</div>
+</body>
+</html>
