@@ -177,7 +177,7 @@ Unlike traditional spam filters, this system separates **data collection**, **an
 
 <p align="center">
   <a href="docs/images/architecture/rule-loop.png">
-    <img src="docs/images/architecture/rule-loop-small.png" width="960">
+    <img src="docs/images/architecture/rule-loop-klein.png" width="960">
   </a>
 </p>
 
