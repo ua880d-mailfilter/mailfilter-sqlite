@@ -175,6 +175,12 @@ mailfilter-sqlite extends the classic mailfilter workflow into a controlled, dat
 
 Unlike traditional spam filters, this system separates **data collection**, **analysis**, and **rule application** into distinct stages.
 
+<p align="center">
+  <a href="docs/images/architecture/rule-loop.png">
+    <img src="docs/images/architecture/rule-loop-small.png" width="960">
+  </a>
+</p>
+
 ```text
 Mail source / POP3 / securepop3
           |
