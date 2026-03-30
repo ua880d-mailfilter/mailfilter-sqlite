@@ -255,6 +255,12 @@ Mail source / POP3 / securepop3
                                   +--------------------------+
 ```
 
+This architecture forms a controlled feedback loop:
+
+mailfilter → SQLite logging → analysis → rule generation → controlled inclusion → next filtering cycle
+
+---
+
 ### Controlled Rule Generation
 
 The rule generator does not operate in isolation.
