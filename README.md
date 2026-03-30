@@ -373,6 +373,12 @@ Run:
 
 ---
 
+## Statistics Tools
+
+ See: `rulegen/README-stats.md`
+
+---
+
 ##  Versioning Concept
 
 * mailfilter 0.8.x -> classic filtering
