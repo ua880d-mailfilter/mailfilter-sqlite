@@ -1,232 +1,275 @@
-# Architecture
+# Architecture Overview
 
-## Overview
+## 1. Design Goals
 
-The system is structured into three distinct layers:
+`mailfilter-sqlite` is not just a mail filter extension.  
+It is designed as a **header-centric analysis and rule feedback system**.
 
-1. **Collection**
-   - `mailfilter` retrieves email headers
-   - headers are parsed and stored in SQLite
+Core principles:
 
-2. **Analysis**
-   - SQL queries and Perl-based processing evaluate patterns
-   - messages are grouped, classified, and scored
+- **Header-only processing** (no body parsing)
+- **Deterministic rule evaluation**
+- **Structured logging (SQLite)**
+- **Offline analysis and rule generation**
+- **Human-controlled feedback loop**
+- **No self-modifying runtime behavior**
 
-3. **Rule Deployment**
-   - structured candidate blocks are generated
-   - rules are written to `generated-rules.conf`
-   - rules are included dynamically via `INCLUDE` in `mailfilterrc`
-
----
-
-## Design Principles
-
-- **Header-only processing**
-  - no message body required
-  - fast and lightweight
-
-- **Minimal core modification**
-  - original mailfilter behavior preserved
-  - SQLite logging added without altering core logic
-
-- **External intelligence layer**
-  - all adaptive logic is implemented outside the core
-  - rule generation handled via scripts (Perl + shell)
-
-- **Deterministic behavior**
-  - no machine learning required
-  - all decisions are explainable and reproducible
+The system separates **runtime filtering** from **rule generation and analysis**.
 
 ---
 
-## Data Flow
+## 2. High-Level Architecture
 
-1. mailfilter retrieves headers
-2. headers are split into structured components
-3. data is stored in SQLite
-4. analysis pipeline evaluates patterns
-5. campaigns and anomalies are detected
-6. rule candidates are generated
-7. rules are exported and included into runtime configuration
+```
+Incoming Mail
+     │
+     ▼
+ mailfilter (runtime)
+     │
+     ├── Rule evaluation (ALLOW / DENY / SCORE)
+     │
+     └── Structured logging → SQLite database
+                             │
+                             ▼
+                    Analysis / Rulegen
+                             │
+                             ▼
+                   Generated rule files
+                             │
+                             ▼
+                     mailfilterrc (INCLUDE)
+                             │
+                             ▼
+                        Runtime reuse
+```
 
----
-
-## SQLite Schema
-
-### messages
-
-Stores one row per message:
-
-- `msg_log_id`
-- `message_id`
-- `from_addr`
-- `to_addr`
-- `subject`
-- `normal_subject`
-- `date_hdr`
-- `msg_size`
-- `decision`
-- `final_score`
+This forms a **controlled feedback loop**, not an autonomous system.
 
 ---
 
-### header_entries
+## 3. Runtime Layer (mailfilter)
 
-Stores parsed header fields:
+At runtime, `mailfilter`:
 
-- `msg_log_id`
-- `ordinal`
-- `tag`
-- `body`
+1. Parses email headers (RFC822)
+2. Applies rules from `mailfilterrc`
+3. Evaluates decisions:
+   - `pass`
+   - `deny`
+   - `score-deny`
+   - `deny-maxlength`
+4. Logs structured data into SQLite (optional, configurable)
+
+### Key property
+
+The runtime remains:
+
+- fast
+- deterministic
+- independent of rule generation logic
+
+---
+
+## 4. Database Layer (SQLite)
+
+The SQLite database is the **central analysis component**.
+
+It is not just a log — it is a **data source for rule generation**.
+
+### Typical tables
+
+- `messages`
+  - decision
+  - final_score
+  - subject
+- `header_entries`
+  - tag (From, Subject, etc.)
+  - body
+- `rule_hits`
+  - phase (deny / score)
+  - expression
+  - matched
+  - score_delta
+
+### Purpose
+
+- detect patterns
+- identify frequent senders/domains
+- evaluate rule effectiveness
+- support data-driven rule generation
 
 ---
 
-### rule_hits
-
-Tracks rule evaluation results:
-
-- `msg_log_id`
-- `phase`
-- `expression`
-- `matched`
-
----
-
-## rulegen Subsystem
-
-The rule generation subsystem acts as the intelligence layer.
-
-### Responsibilities
-
-- campaign detection
-- clustering similar messages
-- fake-brand detection
-- temporal scoring (recent / aged / stale)
-- false-positive reduction
-- rule suggestion and scoring
-- rule export
-
----
+## 5. Analysis & Rule Generation
 
 ### Components
 
-#### mailfilter-rulegen.sh
+- `mailfilter-rulegen.sh`
+  - data preparation
+  - SQL extraction
+- `mailfilter-rulegen.pl`
+  - core logic
+  - decision engine
 
-- orchestrates SQL queries
-- controls pipeline execution
+### Inputs
 
-#### mailfilter-rulegen.pl
+- SQLite database
+- Existing rules (`mailfilterrc`)
+- Policy/config files:
+  - `protected_domains.conf`
+  - `allow_subject_tokens.conf`
+  - `weak_subject_tokens.conf`
+  - `bulk_mail_providers.conf`
+  - `brand_domains.conf`
 
-- core analysis engine
-- implements scoring logic
-- generates rule candidates
+### Processing
 
-#### mailfilter-header-import.pl
+The rule generator:
 
-- imports test data into SQLite
-- enables reproducible testing
+- identifies suspicious patterns (domains, headers, subjects)
+- evaluates frequency and risk
+- checks for conflicts with:
+  - protected domains
+  - existing ALLOW rules
+- assigns scoring levels
+- filters unstable or low-quality candidates
 
----
+### Important
 
-## Configuration Model
-
-Runtime configuration is separated from code.
-
-Location:
-
-/etc/mailfilter/
-/etc/mailfilter/rulegen/
-
-### Configuration Files
-
-- `protected_domains.conf`
-- `allow_subject_tokens.conf`
-- `bulk_providers.conf`
-- `weak_subject_tokens.conf`
-- `brand_domains.conf`
-
-These files define:
-
-- trust relationships
-- allow-list behavior
-- provider classification
-- phishing indicators
+Rules are **not blindly generated**.  
+They are filtered through multiple safety layers.
 
 ---
 
-## Rule Generation
+## 6. Output Files
 
-Generated files:
-
-- `generated-candidates.conf`
-- `generated-rules.conf`
-- `generated-conservative-rules.conf`
-- `generated-aggressive-rules.conf`
-
-### Workflow
-
-1. candidates are generated with metadata
-2. candidates are evaluated and filtered
-3. production rules are exported
-4. rules are included via `mailfilterrc`
-
----
-
-## Runtime Integration
-
-Rules are dynamically included:
+### 6.1 Candidate Output
 
 ```
-INCLUDE="/etc/mailfilter/generated-rules.conf"
+generated-candidates.conf
 ```
+
+- raw suggestions
+- not used in runtime
+- intended for review
+
+---
+
+### 6.2 Exported Rule Sets
+
+```
+generated-rules.conf
+generated-conservative-rules.conf
+generated-aggressive-rules.conf
+```
+
+- ready-to-use rules
+- separated by aggressiveness level
+- intended for controlled integration
+
+---
+
+## 7. Feedback Loop
+
+The system uses a **controlled feedback loop**:
+
+1. Rules are generated offline
+2. Admin reviews and selects rules
+3. Rules are included in `mailfilterrc`
+4. Runtime applies rules
+5. New data is logged
+6. Cycle repeats
+
+### Key property
+
+> The system is **human-supervised**, not autonomous.
+
+---
+
+## 8. Safety Mechanisms
+
+To prevent false positives and unstable rules:
+
+- Protected domains (multi-level trust)
+- ALLOW proximity checks
+- Bulk provider detection
+- Weak signal filtering
+- Frequency thresholds
+- Conflict detection with existing rules
+
+---
+
+## 9. Statistics & Analysis Tools
+
+### CLI Tool
+
+```
+mailfilter-stats.sh
+```
+
+- fast terminal output
+- useful for debugging and quick inspection
+
+### HTML Tool
+
+```
+mailfilter-stats-html.sh
+```
+
+- structured HTML reports
+- visual analysis
+- suitable for documentation and sharing
+- handles long header values safely
+
+---
+
+## 10. Integration Scenario
+
+Typical deployment:
+
+```
+fetchmail → mailfilter → MTA / SpamAssassin
+```
+
 or:
 
 ```
-INCLUDE="/etc/mailfilter/generated-conservative-rules.conf"
+mail source → mailfilter → downstream processing
 ```
-or:
-```
-INCLUDE="/etc/mailfilter/generated-aggressive-rules.conf"
-```
-
-This allows:
-
-- dynamic adaptation
-- no restart required
-- separation of static and generated rules
 
 ---
 
-## Autonomy
+## 11. Positioning
 
-The system can operate without:
+`mailfilter-sqlite` is:
 
-- local MTA
-- fetchmail
-
-mailfilter can directly retrieve headers and populate the database.
-
----
-
-## Testing Strategy
-
-- separate SQLite databases for testing
-- synthetic datasets supported
-- no interference with production data
-- deterministic replay possible
+- lightweight
+- transparent
+- auditable
+- scriptable
+- suitable for automation
 
 ---
 
-## Architectural Summary
+## 12. Future Direction
 
-mailfilter-sqlite transforms a classic filter into:
+The architecture allows:
 
-- a data collection engine
-- a structured analysis system
-- a rule generation platform
+- improved data-driven rule generation
+- better scoring heuristics
+- domain clustering
+- pattern detection across headers
+- integration into distribution-specific packages
 
-The separation between core and intelligence layer ensures:
+---
 
-- stability of the original codebase
-- flexibility of rule evolution
-- long-term maintainability
+## 13. Summary
+
+`mailfilter-sqlite` combines:
+
+- deterministic filtering
+- structured logging
+- offline analysis
+- controlled rule generation
+
+into a **closed but human-controlled feedback system**.
