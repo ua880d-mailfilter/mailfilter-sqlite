@@ -71,6 +71,59 @@ Die Datenbank enthält strukturierte Informationen:
 
 ---
 
+```mermaid
+erDiagram
+    MESSAGES {
+        string msg_log_id PK "Primärschlüssel"
+        string message_id "Original Message-ID"
+        string from_addr "Absender"
+        string to_addr "Empfänger"
+        string subject "Original-Betreff"
+        string normal_subject "Normalisierter Betreff (für Clustering)"
+        string date_hdr "Date-Header (für Temporal Relevance)"
+        integer msg_size "Nachrichtengröße"
+        string decision "PASS / DENY / SCORE"
+        integer final_score "Gesamt-Score"
+        datetime created_at
+    }
+
+    HEADER_ENTRIES {
+        int id PK
+        string msg_log_id FK "Verweis auf messages"
+        int ordinal "Reihenfolge (z.B. Received)"
+        string tag "Header-Name (Received, From, Subject...)"
+        string body "Header-Wert"
+        datetime created_at
+    }
+
+    RULE_HITS {
+        int id PK
+        string msg_log_id FK "Verweis auf messages"
+        string phase "Verarbeitungsphase"
+        string expression "Regel-Ausdruck"
+        boolean is_negative "Negativ-Regel?"
+        boolean matched "Getroffen?"
+        string header_tag
+        string header_body
+        boolean normalized_subject
+        integer score_delta "Score-Änderung"
+        datetime created_at
+    }
+
+    MESSAGES ||--o{ HEADER_ENTRIES : "hat viele Header"
+    MESSAGES ||--o{ RULE_HITS : "hat viele Regel-Treffer"
+
+    classDef messagesClass fill:#e3f2fd,stroke:#1976d2,stroke-width:3px,color:#000;
+    classDef headersClass fill:#f1f8e9,stroke:#388e3c,stroke-width:3px,color:#000;
+    classDef rulehitsClass fill:#fff3e0,stroke:#f57c00,stroke-width:3px,color:#000;
+
+    class MESSAGES messagesClass
+    class HEADER_ENTRIES headersClass
+    class RULE_HITS rulehitsClass
+```
+
+---
+
 ## Datenumfang
 
 - Es werden ausschließlich Header gespeichert
