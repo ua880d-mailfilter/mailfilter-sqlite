@@ -182,6 +182,10 @@ print("""<!DOCTYPE html>
             margin-left: 4px;
             vertical-align: middle;
         }
+        #authResultsWrap select:disabled {
+           background: #f1f1f1;
+           color: #666;
+       }
     </style>
 </head>
 <body>
@@ -369,8 +373,14 @@ print("""
 
     <div class="tag-select-wrap">
       <label><strong>Header-Feld für Regel:</strong></label><br>
-      <select id="headerTagSelect" onchange="updateRulePreview()"></select>
+      <select id="headerTagSelect" onchange="handleHeaderTagChange()"></select>
       <div class="small-note">Es werden nur Header-Tags angezeigt, die für diese Mail tatsächlich vorhanden sind.</div>
+    </div>
+
+    <div id="authResultsWrap" class="tag-select-wrap" style="display:none;">
+      <label><strong>Authentication-Results Merkmal:</strong></label><br>
+      <select id="authResultsSelect" onchange="updateRulePreview()" disabled></select>
+      <div class="small-note">Erkannte Teilmerkmale aus Authentication-Results, z. B. dkim=pass oder header.d=example.com.</div>
     </div>
 
     <div class="value-preview-wrap">
@@ -504,7 +514,7 @@ function getUniqueTags(headers) {
 }
 
 function chooseDefaultTag(tags) {
-    const preferred = ["From", "Return-path", "Reply-To", "List-Unsubscribe", "Subject", "X-Mailer"];
+    const preferred = ["From", "Return-path", "Reply-To", "Authentication-Results", "List-Unsubscribe", "Subject", "X-Mailer"];
     for (const p of preferred) {
         if (tags.includes(p)) return p;
     }
@@ -515,6 +525,104 @@ function getHeaderBodies(msgId, tag) {
     return getHeadersForMsg(msgId)
         .filter(h => h.tag === tag)
         .map(h => h.body || "");
+}
+
+function normalizeAuthResultValue(value) {
+    return String(value || '').trim();
+}
+
+function parseAuthenticationResults(msgId) {
+    const headers = getHeaderBodies(msgId, "Authentication-Results");
+    const features = [];
+    const seen = new Set();
+
+    function addFeature(key, label, regexParts) {
+        const normalizedKey = String(key || '').trim();
+        if (!normalizedKey || seen.has(normalizedKey)) return;
+        seen.add(normalizedKey);
+        features.push({
+            key: normalizedKey,
+            label: label,
+            regexParts: regexParts || [normalizedKey]
+        });
+    }
+
+    headers.forEach(h => {
+        const text = String(h || '');
+
+        const resultMatches = text.match(/\b(?:dkim|spf|dmarc|iprev|arc)=\w+\b/g) || [];
+        resultMatches.forEach(m => {
+            addFeature(m, m, [m]);
+        });
+
+        const headerDMatches = text.match(/\bheader\.d=([A-Za-z0-9.-]+\.[A-Za-z]{2,})\b/g) || [];
+        headerDMatches.forEach(m => {
+            addFeature(m, m, [m]);
+        });
+
+        const strongCombos = [];
+
+        const dkimPass = /\bdkim=pass\b/.test(text);
+        const spfPass = /\bspf=pass\b/.test(text);
+        const dmarcPass = /\bdmarc=pass\b/.test(text);
+        const iprevPass = /\biprev=pass\b/.test(text);
+
+        const hd = text.match(/\bheader\.d=([A-Za-z0-9.-]+\.[A-Za-z]{2,})\b/);
+        const headerDomain = hd ? hd[1] : "";
+
+        if (dkimPass && headerDomain) {
+            strongCombos.push({
+                key: 'dkim=pass + header.d=' + headerDomain,
+                label: 'dkim=pass + header.d=' + headerDomain,
+                regexParts: ['dkim=pass', 'header.d=' + headerDomain]
+            });
+        }
+
+        if (dkimPass && spfPass) {
+            strongCombos.push({
+                key: 'dkim=pass + spf=pass',
+                label: 'dkim=pass + spf=pass',
+                regexParts: ['dkim=pass', 'spf=pass']
+            });
+        }
+
+        if (dkimPass && dmarcPass) {
+            strongCombos.push({
+                key: 'dkim=pass + dmarc=pass',
+                label: 'dkim=pass + dmarc=pass',
+                regexParts: ['dkim=pass', 'dmarc=pass']
+            });
+        }
+
+        if (spfPass && dmarcPass) {
+            strongCombos.push({
+                key: 'spf=pass + dmarc=pass',
+                label: 'spf=pass + dmarc=pass',
+                regexParts: ['spf=pass', 'dmarc=pass']
+            });
+        }
+
+        if (iprevPass && dkimPass) {
+            strongCombos.push({
+                key: 'iprev=pass + dkim=pass',
+                label: 'iprev=pass + dkim=pass',
+                regexParts: ['iprev=pass', 'dkim=pass']
+            });
+        }
+
+        strongCombos.forEach(c => addFeature(c.key, c.label, c.regexParts));
+    });
+
+    return features;
+}
+
+function buildAuthResultsRegexFromFeature(feature) {
+    if (!feature || !feature.regexParts || !feature.regexParts.length) {
+        return '^Authentication-Results:';
+    }
+
+    const parts = feature.regexParts.map(p => escapeRegex(p));
+    return '^Authentication-Results:.*' + parts.join('.*');
 }
 
 function buildSubjectTokens(subject) {
@@ -868,6 +976,31 @@ function buildSuggestedValue(msgId, tag) {
         };
     }
 
+	if (tag === "Authentication-Results") {
+		const features = parseAuthenticationResults(msgId);
+		const select = document.getElementById("authResultsSelect");
+		let feature = null;
+
+		if (features.length) {
+			const idx = parseInt(select.value || "0", 10);
+			feature = features[idx] || features[0];
+		}
+
+		if (feature) {
+			return {
+				display: feature.label,
+				regex: buildAuthResultsRegexFromFeature(feature),
+				source: tag
+			};
+		}
+
+		return {
+			display: 'Keine brauchbaren Authentication-Results-Merkmale gefunden',
+			regex: '^Authentication-Results:',
+			source: tag
+		};
+	}
+
     if (tag === "List-Unsubscribe") {
         for (const h of headers) {
             const email = extractEmail(h);
@@ -969,6 +1102,60 @@ function populateHeaderTagSelect(msgId) {
     });
 
     select.value = chooseDefaultTag(tags);
+
+    if (select.value === "Authentication-Results") {
+        document.getElementById("actionSelect").value = "SCORE";
+    }
+}
+
+function populateAuthResultsSelect(msgId) {
+    const wrap = document.getElementById("authResultsWrap");
+    const select = document.getElementById("authResultsSelect");
+    const currentTag = document.getElementById("headerTagSelect").value;
+
+    select.innerHTML = "";
+    select.disabled = true;
+    wrap.style.display = "none";
+
+    if (currentTag !== "Authentication-Results") {
+        return;
+    }
+
+    wrap.style.display = "block";
+
+    const features = parseAuthenticationResults(msgId);
+
+    if (!features.length) {
+        const opt = document.createElement("option");
+        opt.value = "";
+        opt.textContent = "Keine Teilmerkmale erkannt";
+        select.appendChild(opt);
+        select.disabled = true;
+        return;
+    }
+
+    features.forEach((feature, idx) => {
+        const opt = document.createElement("option");
+        opt.value = String(idx);
+        opt.textContent = feature.label;
+        select.appendChild(opt);
+    });
+
+    select.disabled = false;
+}
+
+function handleHeaderTagChange() {
+    if (currentMsgId) {
+        populateAuthResultsSelect(currentMsgId);
+    }
+
+    const selectedTag = document.getElementById("headerTagSelect").value;
+    if (selectedTag === "Authentication-Results") {
+        document.getElementById("actionSelect").value = "SCORE";
+    }
+
+    toggleScoreField();
+    updateRulePreview();
 }
 
 function useSubjectVariant(variantName) {
@@ -982,6 +1169,7 @@ function updateRulePreview() {
     if (!currentMsgId) return;
 
     const tag = document.getElementById("headerTagSelect").value;
+
     const suggestion = buildSuggestedValue(currentMsgId, tag);
 
     const preview = document.getElementById("ruleValuePreview");
@@ -1016,8 +1204,7 @@ function showRuleModal(msgId) {
     document.getElementById("modalFrom").textContent = meta.from_addr || "—";
 
     populateHeaderTagSelect(msgId);
-    toggleScoreField();
-    updateRulePreview();
+    handleHeaderTagChange();
 
     document.getElementById("generatedRule").style.display = "none";
     document.getElementById("copyBtn").style.display = "none";
@@ -1043,7 +1230,9 @@ function generateRule() {
     if (action === "DENY") {
         rule = 'DENY="' + suggestion.regex + '"';
     } else if (action === "SCORE") {
-        rule = 'SCORE +' + score + '="' + suggestion.regex + '"';
+        const numericScore = parseInt(score, 10) || 0;
+        const formattedScore = numericScore >= 0 ? ('+' + numericScore) : String(numericScore);
+        rule = 'SCORE ' + formattedScore + '="' + suggestion.regex + '"';
     } else if (action === "PASS") {
         rule = 'ALLOW="' + suggestion.regex + '"';
     }
