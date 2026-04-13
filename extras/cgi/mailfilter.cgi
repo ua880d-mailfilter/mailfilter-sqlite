@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 """
-mailfilter.cgi – Version 18
+mailfilter.cgi – Version 18a
 Erweitert um:
 - Header-Info-Modal
 - Rule-Modal mit dynamischer Header-Tag-Auswahl
+- Add Generator for Authentication-Results and ARC-Authentication-Results
 - intelligentere Regelgenerierung
 """
 
@@ -378,9 +379,9 @@ print("""
     </div>
 
     <div id="authResultsWrap" class="tag-select-wrap" style="display:none;">
-      <label><strong>Authentication-Results Merkmal:</strong></label><br>
+      <label><strong>Auth-Merkmal:</strong></label><br>
       <select id="authResultsSelect" onchange="updateRulePreview()" disabled></select>
-      <div class="small-note">Erkannte Teilmerkmale aus Authentication-Results, z. B. dkim=pass oder header.d=example.com.</div>
+      <div class="small-note">Erkannte Teilmerkmale aus Authentication-Results oder ARC-Authentication-Results.</div>
     </div>
 
     <div class="value-preview-wrap">
@@ -514,7 +515,7 @@ function getUniqueTags(headers) {
 }
 
 function chooseDefaultTag(tags) {
-    const preferred = ["From", "Return-path", "Reply-To", "Authentication-Results", "List-Unsubscribe", "Subject", "X-Mailer"];
+    const preferred = ["From", "Return-path", "Reply-To", "Authentication-Results", "ARC-Authentication-Results", "List-Unsubscribe", "Subject", "X-Mailer"];
     for (const p of preferred) {
         if (tags.includes(p)) return p;
     }
@@ -531,8 +532,8 @@ function normalizeAuthResultValue(value) {
     return String(value || '').trim();
 }
 
-function parseAuthenticationResults(msgId) {
-    const headers = getHeaderBodies(msgId, "Authentication-Results");
+function parseAuthLikeHeader(msgId, headerTag) {
+    const headers = getHeaderBodies(msgId, headerTag);
     const features = [];
     const seen = new Set();
 
@@ -560,6 +561,21 @@ function parseAuthenticationResults(msgId) {
             addFeature(m, m, [m]);
         });
 
+        const headerFromMatches = text.match(/\bheader\.from=([A-Za-z0-9.-]+\.[A-Za-z]{2,})\b/g) || [];
+        headerFromMatches.forEach(m => {
+            addFeature(m, m, [m]);
+        });
+
+        const headerIMatches = text.match(/\bheader\.i=([^\s;]+)\b/g) || [];
+        headerIMatches.forEach(m => {
+            addFeature(m, m, [m]);
+        });
+
+        const smtpMailfromMatches = text.match(/\bsmtp\.mailfrom=([^\s;]+)\b/g) || [];
+        smtpMailfromMatches.forEach(m => {
+            addFeature(m, m, [m]);
+        });
+
         const strongCombos = [];
 
         const dkimPass = /\bdkim=pass\b/.test(text);
@@ -568,13 +584,34 @@ function parseAuthenticationResults(msgId) {
         const iprevPass = /\biprev=pass\b/.test(text);
 
         const hd = text.match(/\bheader\.d=([A-Za-z0-9.-]+\.[A-Za-z]{2,})\b/);
+        const hf = text.match(/\bheader\.from=([A-Za-z0-9.-]+\.[A-Za-z]{2,})\b/);
+        const smf = text.match(/\bsmtp\.mailfrom=([^\s;]+)\b/);
+
         const headerDomain = hd ? hd[1] : "";
+        const headerFrom = hf ? hf[1] : "";
+        const smtpMailfrom = smf ? smf[1] : "";
 
         if (dkimPass && headerDomain) {
             strongCombos.push({
                 key: 'dkim=pass + header.d=' + headerDomain,
                 label: 'dkim=pass + header.d=' + headerDomain,
                 regexParts: ['dkim=pass', 'header.d=' + headerDomain]
+            });
+        }
+
+        if (dkimPass && headerFrom) {
+            strongCombos.push({
+                key: 'dkim=pass + header.from=' + headerFrom,
+                label: 'dkim=pass + header.from=' + headerFrom,
+                regexParts: ['dkim=pass', 'header.from=' + headerFrom]
+            });
+        }
+
+        if (spfPass && smtpMailfrom) {
+            strongCombos.push({
+                key: 'spf=pass + smtp.mailfrom=' + smtpMailfrom,
+                label: 'spf=pass + smtp.mailfrom=' + smtpMailfrom,
+                regexParts: ['spf=pass', 'smtp.mailfrom=' + smtpMailfrom]
             });
         }
 
@@ -616,13 +653,13 @@ function parseAuthenticationResults(msgId) {
     return features;
 }
 
-function buildAuthResultsRegexFromFeature(feature) {
+function buildAuthLikeRegexFromFeature(headerTag, feature) {
     if (!feature || !feature.regexParts || !feature.regexParts.length) {
-        return '^Authentication-Results:';
+        return '^' + escapeRegex(headerTag) + ':';
     }
 
     const parts = feature.regexParts.map(p => escapeRegex(p));
-    return '^Authentication-Results:.*' + parts.join('.*');
+    return '^' + escapeRegex(headerTag) + ':.*' + parts.join('.*');
 }
 
 function buildSubjectTokens(subject) {
@@ -976,8 +1013,8 @@ function buildSuggestedValue(msgId, tag) {
         };
     }
 
-	if (tag === "Authentication-Results") {
-		const features = parseAuthenticationResults(msgId);
+	if (tag === "Authentication-Results" || tag === "ARC-Authentication-Results") {
+		const features = parseAuthLikeHeader(msgId, tag);
 		const select = document.getElementById("authResultsSelect");
 		let feature = null;
 
@@ -989,14 +1026,14 @@ function buildSuggestedValue(msgId, tag) {
 		if (feature) {
 			return {
 				display: feature.label,
-				regex: buildAuthResultsRegexFromFeature(feature),
+				regex: buildAuthLikeRegexFromFeature(tag, feature),
 				source: tag
 			};
 		}
 
 		return {
-			display: 'Keine brauchbaren Authentication-Results-Merkmale gefunden',
-			regex: '^Authentication-Results:',
+			display: 'Keine brauchbaren Merkmale in ' + tag + ' gefunden',
+			regex: '^' + escapeRegex(tag) + ':',
 			source: tag
 		};
 	}
@@ -1103,7 +1140,7 @@ function populateHeaderTagSelect(msgId) {
 
     select.value = chooseDefaultTag(tags);
 
-    if (select.value === "Authentication-Results") {
+    if (select.value === "Authentication-Results" || select.value === "ARC-Authentication-Results") {
         document.getElementById("actionSelect").value = "SCORE";
     }
 }
@@ -1117,13 +1154,13 @@ function populateAuthResultsSelect(msgId) {
     select.disabled = true;
     wrap.style.display = "none";
 
-    if (currentTag !== "Authentication-Results") {
+    if (currentTag !== "Authentication-Results" && currentTag !== "ARC-Authentication-Results") {
         return;
     }
 
     wrap.style.display = "block";
 
-    const features = parseAuthenticationResults(msgId);
+    const features = parseAuthLikeHeader(msgId, currentTag);
 
     if (!features.length) {
         const opt = document.createElement("option");
@@ -1150,7 +1187,7 @@ function handleHeaderTagChange() {
     }
 
     const selectedTag = document.getElementById("headerTagSelect").value;
-    if (selectedTag === "Authentication-Results") {
+    if (selectedTag === "Authentication-Results" || selectedTag === "ARC-Authentication-Results") {
         document.getElementById("actionSelect").value = "SCORE";
     }
 
