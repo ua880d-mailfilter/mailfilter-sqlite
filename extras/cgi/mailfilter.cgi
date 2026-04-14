@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
 """
-mailfilter.cgi – Version 18e
+mailfilter.cgi – Version 18f
 Erweitert um:
 - Header-Info-Modal
 - Rule-Modal mit dynamischer Header-Tag-Auswahl
 - Add Generator for Subject Header 
 - Add Generator for Authentication-Results and ARC-Authentication-Results
 - Add anti-phishing intelligence to Authentication-Results and ARC-Authentication-Results
+- Add Generator for DKIM-Signature
 - Datum-Angaben im Rule Modal hinzugefügt
 - intelligentere Regelgenerierung
 """
@@ -214,7 +215,11 @@ print("""<!DOCTYPE html>
         #authResultsWrap select:disabled {
            background: #f1f1f1;
            color: #666;
-       }
+        }
+        #dkimWrap select:disabled {
+            background: #f1f1f1;
+            color: #666;
+        }
     </style>
 </head>
 <body>
@@ -402,7 +407,7 @@ print("""
     <p><strong>From:</strong> <span id="modalFrom"></span></p>
 
     <label><strong>Aktion wählen:</strong></label><br>
-    <select id="actionSelect" onchange="toggleScoreField(); applyAuthScoreRecommendation(); updateRulePreview();" style="margin:10px 0;">
+    <select id="actionSelect" onchange="toggleScoreField(); applyAuthScoreRecommendation(); applyDkimScoreRecommendation(); updateRulePreview();" style="margin:10px 0;">
       <option value="DENY">DENY – hart blocken</option>
       <option value="SCORE">SCORE – Strafpunkte vergeben</option>
       <option value="PASS">PASS – immer durchlassen</option>
@@ -423,6 +428,12 @@ print("""
       <label><strong>Auth-Merkmal:</strong></label><br>
       <select id="authResultsSelect" onchange="applyAuthScoreRecommendation(); updateRulePreview()" disabled></select>
       <div class="small-note">Erkannte Teilmerkmale aus Authentication-Results oder ARC-Authentication-Results.</div>
+    </div>
+
+    <div id="dkimWrap" class="tag-select-wrap" style="display:none;">
+      <label><strong>DKIM-Merkmal:</strong></label><br>
+      <select id="dkimSelect" onchange="applyDkimScoreRecommendation(); updateRulePreview()" disabled></select>
+      <div class="small-note">Erkannte Teilmerkmale aus DKIM-Signature, z. B. d=, i= oder s=.</div>
     </div>
 
     <div class="value-preview-wrap">
@@ -795,6 +806,45 @@ function hasConsistentFirstPartyIdentity(msgId, authBodies) {
     return false;
 }
 
+function applyDkimScoreRecommendation() {
+    if (!currentMsgId) return;
+
+    const tag = document.getElementById("headerTagSelect").value;
+    if (tag !== "DKIM-Signature") {
+        return;
+    }
+
+    const action = document.getElementById("actionSelect").value;
+    if (action !== "SCORE") {
+        return;
+    }
+
+    const features = parseDkimSignature(currentMsgId);
+    const select = document.getElementById("dkimSelect");
+    let feature = null;
+
+    if (features.length) {
+        const idx = parseInt(select.value || "0", 10);
+        feature = features[idx] || features[0];
+    }
+
+    if (!feature) return;
+
+    const text = (feature.label || "").toLowerCase();
+
+    if (text.includes('d=') && text.includes('i=')) {
+        document.getElementById("scoreValue").value = -30;
+    } else if (text.includes('d=') && text.includes('s=')) {
+        document.getElementById("scoreValue").value = -25;
+    } else if (text.includes('d=')) {
+        document.getElementById("scoreValue").value = -20;
+    } else if (text.includes('i=')) {
+        document.getElementById("scoreValue").value = -15;
+    } else if (text.includes('s=')) {
+        document.getElementById("scoreValue").value = -10;
+    }
+}
+
 function hasBulkOrPlatformContext(msgId) {
     /*
      * 1) Harte Marketing-/Versandplattform-Indikatoren
@@ -992,6 +1042,69 @@ function applyAuthScoreRecommendation() {
     if (rec.recommendedScore !== null) {
         document.getElementById("scoreValue").value = rec.recommendedScore;
     }
+}
+
+function parseDkimSignature(msgId) {
+    const headers = getHeaderBodies(msgId, "DKIM-Signature");
+    const features = [];
+    const seen = new Set();
+
+    function addFeature(key, label, regexParts) {
+        const normalizedKey = String(key || '').trim();
+        if (!normalizedKey || seen.has(normalizedKey)) return;
+        seen.add(normalizedKey);
+        features.push({
+            key: normalizedKey,
+            label: label,
+            regexParts: regexParts || [normalizedKey]
+        });
+    }
+
+    headers.forEach(h => {
+        const text = String(h || '');
+
+        const dMatch = text.match(/\bd=([^;\s]+)/i);
+        const iMatch = text.match(/\bi=([^;\s]+)/i);
+        const sMatch = text.match(/\bs=([^;\s]+)/i);
+        const aMatch = text.match(/\ba=([^;\s]+)/i);
+
+        const dVal = dMatch ? dMatch[1].trim() : "";
+        const iVal = iMatch ? iMatch[1].trim() : "";
+        const sVal = sMatch ? sMatch[1].trim() : "";
+        const aVal = aMatch ? aMatch[1].trim() : "";
+
+        if (dVal) addFeature('d=' + dVal, 'd=' + dVal, ['d=' + dVal]);
+        if (iVal) addFeature('i=' + iVal, 'i=' + iVal, ['i=' + iVal]);
+        if (sVal) addFeature('s=' + sVal, 's=' + sVal, ['s=' + sVal]);
+        if (aVal) addFeature('a=' + aVal, 'a=' + aVal, ['a=' + aVal]);
+
+        if (dVal && iVal) {
+            addFeature(
+                'd=' + dVal + ' + i=' + iVal,
+                'd=' + dVal + ' + i=' + iVal,
+                ['d=' + dVal, 'i=' + iVal]
+            );
+        }
+
+        if (dVal && sVal) {
+            addFeature(
+                'd=' + dVal + ' + s=' + sVal,
+                'd=' + dVal + ' + s=' + sVal,
+                ['d=' + dVal, 's=' + sVal]
+            );
+        }
+    });
+
+    return features;
+}
+
+function buildDkimRegexFromFeature(feature) {
+    if (!feature || !feature.regexParts || !feature.regexParts.length) {
+        return '^DKIM-Signature:';
+    }
+
+    const parts = feature.regexParts.map(p => escapeRegex(p));
+    return '^DKIM-Signature:.*' + parts.join('.*');
 }
 
 function buildSubjectTokens(subject) {
@@ -1370,6 +1483,31 @@ function buildSuggestedValue(msgId, tag) {
 		};
 	}
 
+	if (tag === "DKIM-Signature") {
+		const features = parseDkimSignature(msgId);
+		const select = document.getElementById("dkimSelect");
+		let feature = null;
+
+		if (features.length) {
+			const idx = parseInt(select.value || "0", 10);
+			feature = features[idx] || features[0];
+		}
+
+		if (feature) {
+			return {
+				display: feature.label,
+				regex: buildDkimRegexFromFeature(feature),
+				source: tag
+			};
+		}
+
+		return {
+			display: 'Keine brauchbaren DKIM-Merkmale gefunden',
+			regex: '^DKIM-Signature:',
+			source: tag
+		};
+	}
+
     if (tag === "List-Unsubscribe") {
         for (const h of headers) {
             const email = extractEmail(h);
@@ -1513,18 +1651,60 @@ function populateAuthResultsSelect(msgId) {
     select.disabled = false;
 }
 
+function populateDkimSelect(msgId) {
+    const wrap = document.getElementById("dkimWrap");
+    const select = document.getElementById("dkimSelect");
+    const currentTag = document.getElementById("headerTagSelect").value;
+
+    select.innerHTML = "";
+    select.disabled = true;
+    wrap.style.display = "none";
+
+    if (currentTag !== "DKIM-Signature") {
+        return;
+    }
+
+    wrap.style.display = "block";
+
+    const features = parseDkimSignature(msgId);
+
+    if (!features.length) {
+        const opt = document.createElement("option");
+        opt.value = "";
+        opt.textContent = "Keine DKIM-Merkmale erkannt";
+        select.appendChild(opt);
+        select.disabled = true;
+        return;
+    }
+
+    features.forEach((feature, idx) => {
+        const opt = document.createElement("option");
+        opt.value = String(idx);
+        opt.textContent = feature.label;
+        select.appendChild(opt);
+    });
+
+    select.disabled = false;
+}
+
 function handleHeaderTagChange() {
     if (currentMsgId) {
         populateAuthResultsSelect(currentMsgId);
+        populateDkimSelect(currentMsgId);
     }
 
     const selectedTag = document.getElementById("headerTagSelect").value;
-    if (selectedTag === "Authentication-Results" || selectedTag === "ARC-Authentication-Results") {
+    if (
+        selectedTag === "Authentication-Results" ||
+        selectedTag === "ARC-Authentication-Results" ||
+        selectedTag === "DKIM-Signature"
+    ) {
         document.getElementById("actionSelect").value = "SCORE";
     }
 
     toggleScoreField();
     applyAuthScoreRecommendation();
+    applyDkimScoreRecommendation();
     updateRulePreview();
 }
 
