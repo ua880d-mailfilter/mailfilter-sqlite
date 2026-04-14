@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
 """
-mailfilter.cgi – Version 18a
+mailfilter.cgi – Version 18e
 Erweitert um:
 - Header-Info-Modal
 - Rule-Modal mit dynamischer Header-Tag-Auswahl
 - Add Generator for Subject Header 
 - Add Generator for Authentication-Results and ARC-Authentication-Results
+- Add anti-phishing intelligence to Authentication-Results and ARC-Authentication-Results
 - Datum-Angaben im Rule Modal hinzugefügt
 - intelligentere Regelgenerierung
 """
@@ -401,7 +402,7 @@ print("""
     <p><strong>From:</strong> <span id="modalFrom"></span></p>
 
     <label><strong>Aktion wählen:</strong></label><br>
-    <select id="actionSelect" onchange="toggleScoreField(); updateRulePreview();" style="margin:10px 0;">
+    <select id="actionSelect" onchange="toggleScoreField(); applyAuthScoreRecommendation(); updateRulePreview();" style="margin:10px 0;">
       <option value="DENY">DENY – hart blocken</option>
       <option value="SCORE">SCORE – Strafpunkte vergeben</option>
       <option value="PASS">PASS – immer durchlassen</option>
@@ -420,13 +421,17 @@ print("""
 
     <div id="authResultsWrap" class="tag-select-wrap" style="display:none;">
       <label><strong>Auth-Merkmal:</strong></label><br>
-      <select id="authResultsSelect" onchange="updateRulePreview()" disabled></select>
+      <select id="authResultsSelect" onchange="applyAuthScoreRecommendation(); updateRulePreview()" disabled></select>
       <div class="small-note">Erkannte Teilmerkmale aus Authentication-Results oder ARC-Authentication-Results.</div>
     </div>
 
     <div class="value-preview-wrap">
       <label><strong>Verwendeter Wert / Vorschlag:</strong></label>
       <div id="ruleValuePreview" class="preview-box"></div>
+    </div>
+
+    <div id="authWarningBox" style="display:none; margin-top:10px; padding:8px 10px; border:1px solid #f5c6cb; background:#f8d7da; color:#721c24; border-radius:4px;">
+      Möglicher Phishing-/Bulk-Kontext erkannt. Technische Pass-Signale sind vorhanden, wirken hier aber nicht automatisch vertrauensfördernd.
     </div>
 
     <div id="subjectVariantsWrap" class="value-preview-wrap" style="display:none;">
@@ -700,6 +705,293 @@ function buildAuthLikeRegexFromFeature(headerTag, feature) {
 
     const parts = feature.regexParts.map(p => escapeRegex(p));
     return '^' + escapeRegex(headerTag) + ':.*' + parts.join('.*');
+}
+
+function extractDomainFromAddressLike(text) {
+    const s = String(text || '').trim();
+
+    const m1 = s.match(/@([A-Za-z0-9.-]+\.[A-Za-z]{2,})/);
+    if (m1) return m1[1].toLowerCase();
+
+    const m2 = s.match(/\b([A-Za-z0-9.-]+\.[A-Za-z]{2,})\b/);
+    if (m2) return m2[1].toLowerCase();
+
+    return "";
+}
+
+function domainFamily(domain) {
+    const d = String(domain || '').toLowerCase().trim();
+    if (!d) return "";
+
+    const parts = d.split('.').filter(Boolean);
+    if (parts.length >= 2) {
+        return parts.slice(-2).join('.');
+    }
+    return d;
+}
+
+function hasHeaderValueMatching(msgId, tag, rx) {
+    const bodies = getHeaderBodies(msgId, tag);
+    for (const b of bodies) {
+        if (rx.test(String(b || ""))) {
+            return true;
+        }
+    }
+    return false;
+}
+
+function getFirstHeaderValue(msgId, tag) {
+    const bodies = getHeaderBodies(msgId, tag);
+    return bodies.length ? String(bodies[0] || "") : "";
+}
+
+function hasKnownPlatformIndicator(authBodies, returnPathBodies, messageIdBodies) {
+    const platformPatterns = [
+        /mailjet/i,
+        /sendgrid/i,
+        /mailchimp/i,
+        /amazonses/i
+    ];
+
+    for (const rx of platformPatterns) {
+        if (rx.test(authBodies) || rx.test(returnPathBodies) || rx.test(messageIdBodies)) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+function hasConsistentFirstPartyIdentity(msgId, authBodies) {
+    const fromVal = getFirstHeaderValue(msgId, "From");
+    const replyToVal = getFirstHeaderValue(msgId, "Reply-To");
+    const returnPathVal =
+        getFirstHeaderValue(msgId, "Return-Path") ||
+        getFirstHeaderValue(msgId, "Return-path");
+
+    const authDomainMatches = [...authBodies.matchAll(/\bheader\.d=([A-Za-z0-9.-]+\.[A-Za-z]{2,})\b/ig)];
+    const authFromMatches = [...authBodies.matchAll(/\bheader\.from=([A-Za-z0-9.-]+\.[A-Za-z]{2,})\b/ig)];
+
+    const fromFamily = domainFamily(extractDomainFromAddressLike(fromVal));
+    const replyToFamily = domainFamily(extractDomainFromAddressLike(replyToVal));
+    const returnPathFamily = domainFamily(extractDomainFromAddressLike(returnPathVal));
+
+    const authFamilies = authDomainMatches.map(m => domainFamily(m[1]))
+        .concat(authFromMatches.map(m => domainFamily(m[1])))
+        .filter(Boolean);
+
+    const visibleFamilies = [fromFamily, replyToFamily, returnPathFamily].filter(Boolean);
+
+    if (!visibleFamilies.length || !authFamilies.length) {
+        return false;
+    }
+
+    for (const vf of visibleFamilies) {
+        if (authFamilies.includes(vf)) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+function hasBulkOrPlatformContext(msgId) {
+    /*
+     * 1) Harte Marketing-/Versandplattform-Indikatoren
+     *    => weiterhin klar verdächtig
+     */
+    if (hasHeaderValueMatching(msgId, "Precedence", /\bbulk\b/i)) return true;
+    if (hasHeaderValueMatching(msgId, "X-CampaignID", /.+/)) return true;
+    if (hasHeaderValueMatching(msgId, "X-MJ-Mid", /.+/)) return true;
+    if (hasHeaderValueMatching(msgId, "X-MJ-SMTPGUID", /.+/)) return true;
+    if (hasHeaderValueMatching(msgId, "X-REPORT-ABUSE-TO", /mailjet/i)) return true;
+
+    const authBodies = getHeaderBodies(msgId, "Authentication-Results")
+        .concat(getHeaderBodies(msgId, "ARC-Authentication-Results"))
+        .join(" ");
+
+    const returnPathBodies = getHeaderBodies(msgId, "Return-path")
+        .concat(getHeaderBodies(msgId, "Return-Path"))
+        .join(" ");
+
+    const messageIdBodies = getHeaderBodies(msgId, "Message-Id")
+        .concat(getHeaderBodies(msgId, "Message-ID"))
+        .join(" ");
+
+    /*
+     * 2) Plattform-Indikator allein ist NICHT automatisch verdächtig,
+     *    wenn gleichzeitig eine konsistente First-Party-Domain sichtbar ist.
+     */
+    const hasPlatform = hasKnownPlatformIndicator(authBodies, returnPathBodies, messageIdBodies);
+    const hasConsistentFirstParty = hasConsistentFirstPartyIdentity(msgId, authBodies);
+
+    if (hasPlatform && hasConsistentFirstParty) {
+        return false;
+    }
+
+    if (hasPlatform) {
+        return true;
+    }
+
+    /*
+     * 3) Legitime Listen-/Community-Mails ausdrücklich NICHT
+     *    allein wegen List-Unsubscribe / Precedence:list beanstanden
+     */
+    const isListMail =
+        hasHeaderValueMatching(msgId, "Precedence", /\blist\b/i) ||
+        hasHeaderValueMatching(msgId, "List-ID", /.+/) ||
+        hasHeaderValueMatching(msgId, "List-Archive", /.+/);
+
+    /*
+     * 4) Domain-Konsistenz prüfen:
+     *    From / Reply-To / Return-Path / header.d / header.from
+     *    Wenn dieselbe Domänenfamilie mehrfach konsistent auftaucht,
+     *    dann nicht als Bulk/Phishing warnen.
+     */
+    const fromVal = getFirstHeaderValue(msgId, "From");
+    const replyToVal = getFirstHeaderValue(msgId, "Reply-To");
+    const returnPathVal =
+        getFirstHeaderValue(msgId, "Return-Path") ||
+        getFirstHeaderValue(msgId, "Return-path");
+
+    const authDomainMatch = authBodies.match(/\bheader\.d=([A-Za-z0-9.-]+\.[A-Za-z]{2,})\b/i);
+    const authFromMatch = authBodies.match(/\bheader\.from=([A-Za-z0-9.-]+\.[A-Za-z]{2,})\b/i);
+
+    const fromFamily = domainFamily(extractDomainFromAddressLike(fromVal));
+    const replyToFamily = domainFamily(extractDomainFromAddressLike(replyToVal));
+    const returnPathFamily = domainFamily(extractDomainFromAddressLike(returnPathVal));
+    const authDFamily = domainFamily(authDomainMatch ? authDomainMatch[1] : "");
+    const authFromFamily = domainFamily(authFromMatch ? authFromMatch[1] : "");
+
+    const families = [
+        fromFamily,
+        replyToFamily,
+        returnPathFamily,
+        authDFamily,
+        authFromFamily
+    ].filter(Boolean);
+
+    const familyCount = {};
+    families.forEach(f => {
+        familyCount[f] = (familyCount[f] || 0) + 1;
+    });
+
+    const dominantFamily = Object.keys(familyCount).sort((a, b) => familyCount[b] - familyCount[a])[0] || "";
+    const dominantHits = dominantFamily ? familyCount[dominantFamily] : 0;
+
+    const hasConsistentIdentity = dominantHits >= 2;
+
+    if (isListMail && hasConsistentIdentity) {
+        return false;
+    }
+
+    /*
+     * 5) Identitäts-Mismatch bleibt verdächtig
+     */
+    if (fromFamily && authDFamily && fromFamily !== authDFamily && !hasConsistentFirstParty) {
+        return true;
+    }
+
+    if (fromFamily && returnPathFamily && fromFamily !== returnPathFamily && !isListMail && !hasConsistentFirstParty) {
+        return true;
+    }
+
+    /*
+     * 6) List-Unsubscribe allein reicht NICHT.
+     *    Precedence:list allein reicht NICHT.
+     */
+    return false;
+}
+
+function getAuthScoreRecommendation(msgId, tag) {
+    const features = parseAuthLikeHeader(msgId, tag);
+    const select = document.getElementById("authResultsSelect");
+    let feature = null;
+
+    if (features.length) {
+        const idx = parseInt(select.value || "0", 10);
+        feature = features[idx] || features[0];
+    }
+
+    const info = {
+        recommendedScore: null,
+        warning: ""
+    };
+
+    if (!feature) {
+        return info;
+    }
+
+    const text = (feature.label || "").toLowerCase();
+    const isBulkContext = hasBulkOrPlatformContext(msgId);
+
+    const hasFail = /\bfail\b/.test(text);
+    const hasPass = /\bpass\b/.test(text);
+
+    if (hasFail) {
+        if (text.includes('dkim=fail') && text.includes('spf=fail')) {
+            info.recommendedScore = 50;
+        } else if (text.includes('dmarc=fail')) {
+            info.recommendedScore = 35;
+        } else {
+            info.recommendedScore = 25;
+        }
+        return info;
+    }
+
+    if (hasPass) {
+        if (isBulkContext) {
+            info.recommendedScore = 25;
+            info.warning = "Möglicher Phishing-/Bulk-/Marketing-Kontext erkannt. Technische Pass-Signale sind vorhanden, wirken hier aber nicht automatisch vertrauensfördernd.";
+            return info;
+        }
+
+        if (text.includes('dkim=pass') && text.includes('header.from=')) {
+            info.recommendedScore = -35;
+        } else if (text.includes('spf=pass') && text.includes('smtp.mailfrom=')) {
+            info.recommendedScore = -30;
+        } else if (text.includes('dkim=pass') && text.includes('header.d=')) {
+            info.recommendedScore = -30;
+        } else if (text.includes('dkim=pass') && text.includes('spf=pass') && text.includes('dmarc=pass')) {
+            info.recommendedScore = -40;
+        } else if (text.includes('dkim=pass') && text.includes('spf=pass')) {
+            info.recommendedScore = -30;
+        } else if (text.includes('dkim=pass') || text.includes('spf=pass') || text.includes('dmarc=pass')) {
+            info.recommendedScore = -20;
+        }
+    }
+
+    return info;
+}
+
+function applyAuthScoreRecommendation() {
+    if (!currentMsgId) return;
+
+    const tag = document.getElementById("headerTagSelect").value;
+    const warningBox = document.getElementById("authWarningBox");
+
+    warningBox.style.display = "none";
+    warningBox.textContent = "Möglicher Phishing-/Bulk-Kontext erkannt. Technische Pass-Signale sind vorhanden, wirken hier aber nicht automatisch vertrauensfördernd.";
+
+    if (tag !== "Authentication-Results" && tag !== "ARC-Authentication-Results") {
+        return;
+    }
+
+    const action = document.getElementById("actionSelect").value;
+    if (action !== "SCORE") {
+        return;
+    }
+
+    const rec = getAuthScoreRecommendation(currentMsgId, tag);
+
+    if (rec.warning) {
+        warningBox.textContent = rec.warning;
+        warningBox.style.display = "block";
+    }
+
+    if (rec.recommendedScore !== null) {
+        document.getElementById("scoreValue").value = rec.recommendedScore;
+    }
 }
 
 function buildSubjectTokens(subject) {
@@ -1232,6 +1524,7 @@ function handleHeaderTagChange() {
     }
 
     toggleScoreField();
+    applyAuthScoreRecommendation();
     updateRulePreview();
 }
 
@@ -1285,6 +1578,7 @@ function showRuleModal(msgId) {
     populateHeaderTagSelect(msgId);
     handleHeaderTagChange();
 
+    document.getElementById("authWarningBox").style.display = "none";
     document.getElementById("generatedRule").style.display = "none";
     document.getElementById("copyBtn").style.display = "none";
     document.getElementById("generatedRule").textContent = "";
