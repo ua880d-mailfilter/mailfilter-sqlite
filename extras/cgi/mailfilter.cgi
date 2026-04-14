@@ -4,7 +4,9 @@ mailfilter.cgi – Version 18a
 Erweitert um:
 - Header-Info-Modal
 - Rule-Modal mit dynamischer Header-Tag-Auswahl
+- Add Generator for Subject Header 
 - Add Generator for Authentication-Results and ARC-Authentication-Results
+- Datum-Angaben im Rule Modal hinzugefügt
 - intelligentere Regelgenerierung
 """
 
@@ -63,6 +65,31 @@ def decode_subject(subject):
         return " ".join(decoded_parts).strip()
     except Exception:
         return re.sub(r'=\?.*?\?=', '', subject).strip()
+
+def format_ts_readable(dt):
+    if not dt:
+        return "—"
+    try:
+        dt = str(dt).strip()
+        parsed = datetime.strptime(dt[:19], "%Y-%m-%d %H:%M:%S")
+        return parsed.strftime("%d.%m.%Y - %H:%M:%S")
+    except Exception:
+        return html.escape(str(dt))
+
+
+def format_date_hdr_readable(date_str):
+    if not date_str:
+        return "—"
+    try:
+        clean = re.sub(r'\s*\([A-Za-z]+\)$', '', str(date_str).strip())
+        parsed = parsedate_tz(clean)
+        if parsed:
+            ts = mktime_tz(parsed)
+            dt = datetime.fromtimestamp(ts)
+            return dt.strftime("%d.%m.%Y - %H:%M:%S")
+    except Exception:
+        pass
+    return html.escape(str(date_str))
 
 def save_rule_if_new(msg_log_id, rule_text):
     if not rule_text or not rule_text.strip():
@@ -261,7 +288,8 @@ conn = get_db_connection()
 cur = conn.cursor()
 cutoff_ts = int(cutoff_date.timestamp())
 
-cur.execute("SELECT msg_log_id, final_score, decision, subject, date_hdr, from_addr FROM messages")
+cur.execute("SELECT msg_log_id, final_score, decision, subject, date_hdr, created_at, from_addr FROM messages")
+
 
 filtered_rows = []
 for row in cur.fetchall():
@@ -284,7 +312,9 @@ subject_data = defaultdict(lambda: {
     'score_sum': 0.0,
     'example_id': None,
     'from_addr': '',
-    'subject_clean': ''
+    'subject_clean': '',
+    'date_hdr': '',
+    'created_at': ''
 })
 
 for row in filtered_rows:
@@ -296,6 +326,8 @@ for row in filtered_rows:
         data['example_id'] = row['msg_log_id']
         data['from_addr'] = row['from_addr'] or ''
         data['subject_clean'] = decode_subject(subj)
+        data['date_hdr'] = row['date_hdr'] or ''
+        data['created_at'] = row['created_at'] or ''
 
 top_subjects = sorted(subject_data.items(), key=lambda x: x[1]['count'], reverse=True)[:limit]
 visible_msg_ids = []
@@ -311,7 +343,9 @@ for subj, data in top_subjects:
     messages_meta[msg_id] = {
         "msg_id": msg_id,
         "subject": clean,
-        "from_addr": from_addr
+        "from_addr": from_addr,
+        "date_hdr_readable": format_date_hdr_readable(data.get("date_hdr")),
+        "created_at_readable": format_ts_readable(data.get("created_at"))
     }
 
     safe_msg_id = html.escape(str(msg_id), quote=True)
@@ -357,7 +391,13 @@ print("""
   <div class="modal-content rule-modal-content">
     <h3>Regel für diese Mail erstellen</h3>
     <p><strong>Subject:</strong> <span id="modalSubject"></span></p>
-    <p><strong>msg_log_id:</strong> <span id="modalMsgId"></span></p>
+    <p>
+      <strong>msg_log_id:</strong> <span id="modalMsgId"></span>
+      &nbsp;&nbsp;&nbsp;
+      <strong>Mail-Datum:</strong> <span id="modalDateHdr"></span>
+      &nbsp;&nbsp;&nbsp;
+      <strong>erfasst am:</strong> <span id="modalCreatedAt"></span>
+    </p>
     <p><strong>From:</strong> <span id="modalFrom"></span></p>
 
     <label><strong>Aktion wählen:</strong></label><br>
@@ -1239,6 +1279,8 @@ function showRuleModal(msgId) {
     document.getElementById("modalMsgId").textContent = msgId;
     document.getElementById("modalSubject").textContent = meta.subject || "—";
     document.getElementById("modalFrom").textContent = meta.from_addr || "—";
+    document.getElementById("modalDateHdr").textContent = meta.date_hdr_readable || "—";
+    document.getElementById("modalCreatedAt").textContent = meta.created_at_readable || "—";
 
     populateHeaderTagSelect(msgId);
     handleHeaderTagChange();
