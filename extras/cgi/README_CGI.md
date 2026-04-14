@@ -1,8 +1,8 @@
 # mailfilter.cgi
 
-Interaktive CGI-Oberfläche für **mailfilter-sqlite** zur Analyse gespeicherter Mail-Header, zur schnellen Ableitung von `mailfilter`-Regeln und zum direkten Schreiben zusätzlicher Regeln in eine separate Include-Datei.
+Interaktive CGI-Oberfläche für `mailfilter-sqlite` zur Analyse gespeicherter Mail-Header, zur schnellen Ableitung von `mailfilter`-Regeln und zum direkten Schreiben zusätzlicher Regeln in eine separate Include-Datei.
 
-Diese Komponente ist als leichtgewichtiges Web-Frontend für kleine bis mittlere Administrationsumgebungen gedacht, insbesondere für Systeme wie **IPFire**, auf denen Header bereits durch **mailfilter-sqlite** in einer SQLite-Datenbank protokolliert werden.
+Diese Komponente ist als leichtgewichtiges Web-Frontend für kleine bis mittlere Administrationsumgebungen gedacht, insbesondere für Systeme wie IPFire, auf denen Header bereits durch `mailfilter-sqlite` in einer SQLite-Datenbank protokolliert werden.
 
 Die CGI-Oberfläche ist bewusst einfach gehalten:
 
@@ -21,9 +21,9 @@ Damit eignet sich `mailfilter.cgi` gut für interaktive Sichtung, manuelle Regel
 
 Im Mittelpunkt stehen dabei drei praktische Aufgaben:
 
-1. **Sichtung auffälliger oder häufiger Betreffzeilen** innerhalb eines konfigurierbaren Zeitraums
-2. **Analyse vollständiger Header einer konkreten Nachricht** über `msg_log_id`
-3. **Interaktive Generierung und Speicherung zusätzlicher Regeln** (`DENY`, `SCORE`, `ALLOW`)
+1. Sichtung auffälliger oder häufiger Betreffzeilen innerhalb eines konfigurierbaren Zeitraums
+2. Analyse vollständiger Header einer konkreten Nachricht über `msg_log_id`
+3. Interaktive Generierung und Speicherung zusätzlicher Regeln (`DENY`, `SCORE`, `ALLOW`)
 
 Die erzeugten Regeln werden nicht in die Hauptkonfiguration geschrieben, sondern in eine separate Include-Datei ausgelagert. Das hält die eigentliche `mailfilterrc` sauber und erlaubt eine saubere Trennung zwischen:
 
@@ -54,19 +54,19 @@ Das CGI-Script ist die Web-Oberfläche für den manuellen Betrieb. Es eignet sic
 
 - schnelle Sichtung einzelner Nachrichten
 - unmittelbare Regelbildung beim Durchsehen verdächtiger Betreffzeilen
-- Prüfung konkreter Header (`From`, `Return-path`, `Subject`, `List-Unsubscribe`, `X-Mailer`, …)
+- Prüfung konkreter Header (`From`, `Return-path`, `Subject`, `Authentication-Results`, `ARC-Authentication-Results`, `List-Unsubscribe`, `X-Mailer`, …)
 - direktes Speichern neuer Regeln in eine zusätzliche Include-Datei
 
 Beide Werkzeuge ergänzen sich sehr gut:
 
-- **analyze.py** für Statistik, Brainstorming und Automatisierung
-- **mailfilter.cgi** für interaktive Nacharbeit und manuelle Präzisierung
+- `mailfilter-analyze.py` für Statistik, Brainstorming und Automatisierung
+- `mailfilter.cgi` für interaktive Nacharbeit, Header-Sichtung und manuelle Präzisierung
 
 ---
 
 ## Datenbasis
 
-`mailfilter.cgi` arbeitet direkt auf der von **mailfilter-sqlite** gefüllten SQLite-Datenbank, typischerweise:
+`mailfilter.cgi` arbeitet direkt auf der von `mailfilter-sqlite` gefüllten SQLite-Datenbank, typischerweise:
 
 ```text
 /var/spool/filter/mailheader.sqlite3
@@ -114,7 +114,7 @@ Aktuell nutzt die CGI-Oberfläche vor allem `messages` und `header_entries`.
 
 ## Zeitfilterung
 
-Die Oberfläche filtert standardmäßig anhand von **`date_hdr`**, also des echten Datums aus dem Mail-Header.
+Die Oberfläche filtert standardmäßig anhand von `date_hdr`, also des echten Datums aus dem Mail-Header.
 
 Das ist bei `mailfilter-sqlite` bewusst sinnvoll, weil `created_at` bei vollständigen POP3-Abfragen bzw. beim erstmaligen Import vieler älterer Mails auf denselben Erfassungszeitpunkt fallen kann. Für Administratoren ist in solchen Fällen das tatsächliche Mail-Datum in `date_hdr` wesentlich aussagekräftiger.
 
@@ -122,354 +122,358 @@ Das ist bei `mailfilter-sqlite` bewusst sinnvoll, weil `created_at` bei vollstä
 
 ## Hauptfunktionen der Oberfläche
 
-## 1. Zeitraum- und Listenfilter
+### 1. Zeitraum- und Listenfilter
 
 Im oberen Bereich der Oberfläche kann gesteuert werden:
 
 - Zeitraum: z. B. `1`, `2`, `5`, `10`, `20`, `30`, `60`, `90`, `180`, `365` Tage
 - maximale Anzahl der anzuzeigenden Top-Einträge, z. B. `5`, `10`, `15`, `20`, `30`, `50`
 
-Die Ansicht bleibt beim Speichern neuer Regeln erhalten.
+Die Ansicht bleibt auch nach dem Speichern neuer Regeln erhalten.
 
----
-
-## 2. Decision-Verteilung
+### 2. Decision-Verteilung
 
 Die Oberfläche zeigt die aktuelle Verteilung der in `messages.decision` gespeicherten Entscheidungen für den gewählten Zeitraum, z. B.:
 
 - `pass`
 - `allow`
 - `deny`
-- `unknown`
 
-So lässt sich schnell erkennen, ob sich innerhalb des gefilterten Zeitraums auffällige Muster häufen.
+Das dient als schnelle Übersicht über das aktuelle Gesamtbild.
 
----
+### 3. Top Subjects
 
-## 3. Top Subjects
+Die Haupttabelle gruppiert Betreffzeilen und zeigt pro Eintrag u. a.:
 
-Anschließend werden die häufigsten Betreffzeilen im gewählten Zeitraum angezeigt, inklusive:
+- Häufigkeit
+- durchschnittlichen Score
+- gekürzten Subject-Text
+- eine Beispiel-`msg_log_id`
+- Aktionsbuttons
 
-- Anzahl
-- durchschnittlichem Score
-- Betreffzeile
-- Beispiel-`msg_log_id`
+Damit können häufige oder auffällige Kampagnen schnell identifiziert werden.
 
-Jeder Eintrag repräsentiert eine gruppierte Sicht auf eine Betreffzeile und dient als Einstieg für die weitere Detailanalyse.
+### 4. Header-Detailansicht
 
----
+Über den Button **`Header`** wird für eine konkrete `msg_log_id` ein separates Modal geöffnet. Dort werden alle in `header_entries` gespeicherten Header der Nachricht tabellarisch angezeigt.
 
-## 4. Header-Modal
+Das ist besonders hilfreich, um:
 
-Über den Button **`Header`** lässt sich für die zugehörige `msg_log_id` ein eigenes Modal öffnen, das alle zugehörigen Header aus `header_entries` zeigt.
+- den realen `From`-Header zu sehen
+- `Return-path`, `Reply-To`, `List-Unsubscribe` und `Received` zu prüfen
+- technische Versandmerkmale zu erkennen
+- Phishing-, Marketing- oder Listenmails manuell einzuordnen
 
-Dadurch kann ein Administrator sofort prüfen:
+### 5. Rule-Modal
 
-- welche Header tatsächlich vorhanden sind
-- in welcher Form `From`, `Return-path`, `Subject`, `List-Unsubscribe` etc. vorliegen
-- ob bestimmte Header als Regelbasis besser geeignet sind als der Betreff selbst
+Über Klick auf die Zeile oder über **`Rule`** wird ein eigenes Regel-Modal geöffnet.
 
-Das ist besonders nützlich, um stabile Regeln zu identifizieren.
+Im Kopf des Modals werden angezeigt:
 
----
+- `msg_log_id`
+- `Mail-Datum` (formatiert aus `date_hdr`)
+- `erfasst am` (aus `created_at`)
+- `From`
+- `Subject`
 
-## 5. Rule-Modal
-
-Über Klick auf die Tabellenzeile oder den Button **`Rule`** öffnet sich das Rule-Modal.
-
-Dort stehen aktuell folgende Funktionen zur Verfügung:
-
-- Auswahl des Regeltyps:
-  - `DENY`
-  - `SCORE`
-  - `PASS` / `ALLOW`
-- Eingabe eines Score-Werts für `SCORE`
-- Auswahl eines konkreten Header-Tags aus den wirklich vorhandenen Headern der Nachricht
-- automatische Vorschau einer geeigneten Regelbasis
-- Generierung der finalen `mailfilter`-Regel
-- Kopieren der Regel in die Zwischenablage
-- direktes Speichern der Regel in eine separate Include-Datei
-
----
-
-## Strategien der Regelgenerierung
-
-Die Oberfläche versucht, für unterschiedliche Header-Typen sinnvolle Regelvorschläge zu erzeugen.
-
-## `From`, `Return-path`, `Reply-To`
-
-Hier wird bevorzugt eine E-Mail-Adresse extrahiert. Das ist oft die stabilste Basis für:
-
-- `ALLOW`
-- gezielte `DENY`
-- moderate `SCORE`
-
-Beispiel:
+Format der Datumsanzeige:
 
 ```text
-SCORE +50="^From:.*produkte@service\.freenet\.de"
+DD.MM.JJJJ - HH:MM:SS
 ```
 
-Wichtig: Wird explizit `From` oder `Return-path` gewählt, fällt die Logik nicht stillschweigend auf `Subject` zurück.
+So lassen sich reale Mailzeit und Datenbank-Erfassung sofort unterscheiden.
 
 ---
 
-## `List-Unsubscribe`
+## Regelbildung im Modal
 
-Falls vorhanden, kann `List-Unsubscribe` besonders bei Newslettern oder Massenmailern eine stabile Regelbasis sein. Es wird bevorzugt versucht, eine Adresse oder einen markanten Teilwert zu extrahieren.
+### Grundprinzip
+
+Das Modal erzeugt interaktiv `mailfilter`-Regeln der Typen:
+
+- `DENY`
+- `SCORE`
+- `ALLOW`
+
+Für `SCORE` bleibt der Wert frei editierbar. Positive und negative Werte werden korrekt formatiert.
+
+### Header-Feld-Auswahl
+
+Das Feld **`Header-Feld für Regel`** wird dynamisch aus den tatsächlich vorhandenen Header-Tags der gewählten Mail aufgebaut.
+
+Damit können Regeln nicht nur aus `Subject`, sondern auch aus anderen Headern erzeugt werden, z. B.:
+
+- `From`
+- `Return-path`
+- `Reply-To`
+- `Subject`
+- `Authentication-Results`
+- `ARC-Authentication-Results`
+- `List-Unsubscribe`
+- `X-Mailer`
 
 ---
 
-## `Subject`
+## Subject-Strategie
 
-Für `Subject` existieren bewusst zwei Strategien:
+Für `Subject` existieren zwei Vorschlagsmodi:
 
 ### Konservativ
 
-Ziel ist eine eher präzise und kurze Regel mit **wenigen starken Tokens**.
+Der konservative Vorschlag wählt aus dem Subject wenige starke Tokens aus und erzeugt eine relativ präzise Regel. Dabei werden u. a. berücksichtigt:
 
-Aktuell basiert die konservative Strategie im Wesentlichen auf:
-
-- Vorverarbeitung des Betreffs
-- Entfernung bzw. Entwertung dynamischer Zahlen-/Preisbestandteile
-- Erkennung und Erhalt domain-artiger Tokens
-- Gewichtung stärkerer Tokens
-- Auswahl der **drei stärksten Tokens** als Basis
+- längere bzw. stärkere Begriffe
+- Modell-/Produktbezeichnungen
+- domainspezifische Tokens
+- Entfernung unnötiger Zahl-/Preis-/Mengenbestandteile
 
 Beispiel:
 
 ```text
-ALLOW="^Subject:.*HS-PX410.*original.*packing"
+^Subject:.*HS-PX410.*original.*packing
 ```
-
-Diese Variante eignet sich besonders für:
-
-- `ALLOW`
-- präzisere `DENY`
-- engere, nachvollziehbare Subject-Regeln
 
 ### Gruppiert / flexibel
 
-Die flexible Strategie ist für längere oder kampagnenartige Betreffzeilen gedacht.
-
-Hier werden bevorzugt:
-
-- Promo-/Werbewörter gebündelt
-- starke Inhalts-/Produktbegriffe gruppiert
-- maximal wenige, kompakte Gruppen gebildet
+Die flexible Variante gruppiert längere Betreffzeilen in wenige sinnvolle Token-Gruppen und erzeugt breiter matchende Regeln, die eher für `SCORE` geeignet sind.
 
 Beispiel:
 
 ```text
-SCORE +50="^Subject:.*(Weekend|Clearance|Sale).*(Eachine|E200|Helicopter)"
+^Subject:.*(Weekend|Clearance|Sale).*(Eachine|E200|Helicopter)
 ```
 
-Diese Variante eignet sich besonders für:
+Ziel ist nicht perfekte automatische Klassifikation, sondern ein operativ brauchbarer Regelvorschlag für Administratoren.
 
-- `SCORE`
-- ähnliche oder leicht variierte Werbe-/Spam-Betreffzeilen
-- breitere, aber noch kontrollierte Subject-Regeln
+### Aktuelle Grundsätze der Subject-Logik
 
-### Empfehlung
+- Domains werden erkannt und korrekt maskiert
+- Punkte werden außerhalb domainspezifischer Tokens als Trenner behandelt
+- Fließkomma-/Preis-/Mengenmuster werden möglichst aus der konservativen Regelbildung herausgehalten
+- sehr lange starre Wortketten werden vermieden
+- kurze, starke konservative Regeln werden bevorzugt
 
-Im praktischen Einsatz gilt meist:
+---
 
-- **ALLOW** eher konservativ
-- **SCORE** oft flexibel
-- **DENY** mit Subject-Regeln vorsichtig einsetzen
+## Auth-/ARC-Auth-Speziallogik
 
-Wo immer möglich, sind stabile Header wie `From` oder `Return-path` oft besser als ein reiner Subject-Match.
+### Unterstützte Header
+
+Das CGI besitzt eine Spezialbehandlung für:
+
+- `Authentication-Results`
+- `ARC-Authentication-Results`
+
+### Teilmerkmal-Extraktion
+
+Bei Auswahl eines dieser Header wird ein zweites Dropdown eingeblendet. Dieses enthält erkannte Teilmerkmale wie z. B.:
+
+- `dkim=pass`
+- `spf=pass`
+- `dmarc=pass`
+- `iprev=pass`
+- `header.d=example.org`
+- `header.from=example.org`
+- `smtp.mailfrom=user@example.org`
+
+Zusätzlich können sinnvolle Kombinationen angeboten werden, etwa:
+
+- `dkim=pass + header.d=example.org`
+- `dkim=pass + spf=pass`
+- `dkim=pass + dmarc=pass`
+- `spf=pass + smtp.mailfrom=user@example.org`
+
+### Standardaktion
+
+Wird einer dieser Header gewählt, setzt das CGI standardmäßig die Aktion auf `SCORE`. Das ist nur eine Voreinstellung; der Administrator kann jederzeit auf `DENY` oder `ALLOW` umstellen.
+
+### Semantische SCORE-Empfehlung
+
+Für `Authentication-Results` und `ARC-Authentication-Results` berechnet das CGI inzwischen eine vorsichtige empfohlene SCORE-Richtung:
+
+- `pass`-Signale können zu negativen SCORE-Vorschlägen führen
+- `fail`-Signale eher zu positiven SCORE-Vorschlägen
+- Plattform-/Bulk-/Marketing-Kontext kann positive Warn-Scores erzeugen
+- offensichtliche Fehlalarme bei legitimen Community-, Projekt- oder First-Party-Mails werden möglichst vermieden
+
+Wichtig:
+
+- diese Logik ist **nur empfehlend**
+- sie ersetzt **nicht** die manuelle Entscheidung
+- sie nimmt dem Administrator keine Option weg
+
+### Plattform- und Bulk-Kontext
+
+Das CGI versucht inzwischen zwischen mehreren Fällen zu unterscheiden.
+
+#### Eher legitim
+
+- konsistente First-Party-Domain in `From`, `Reply-To`, `Return-Path`, `header.d`, `header.from`
+- legitime Listen-/Community-Mails
+- Versand über legitime Plattformen wie Amazon SES, solange die eigentliche Absenderdomäne konsistent mitläuft
+
+#### Eher verdächtig
+
+- Marketing-/Kampagnenheader (`X-CampaignID`, `X-MJ-*`, …)
+- `Precedence: bulk`
+- klarer Plattform-/Absender-Mismatch
+- technische Pass-Signale ohne konsistente sichtbare Absenderidentität
+
+### Warnhinweis im Modal
+
+Bei verdächtigem Auth-/Bulk-/Plattformkontext zeigt das Modal einen farbigen Warnhinweis an. Dieser soll keine harte Entscheidung vorwegnehmen, sondern auf potenziell riskante technische Konstellationen aufmerksam machen.
 
 ---
 
 ## Speichern von Regeln
 
-Unterhalb der erzeugten Regel stehen aktuell zwei Aktionen zur Verfügung:
+### Ziel-Datei
 
-- **`Regel kopieren`**
-- **`Regel speichern`**
-
-Beim Speichern wird die Regel in folgende Datei geschrieben:
+Neu erzeugte Regeln werden in eine separate Include-Datei geschrieben, standardmäßig:
 
 ```text
 /etc/mailfilter/mailfilter-extra-rules-cgi.conf
 ```
 
-Vor dem Schreiben wird geprüft, ob dieselbe Regel bereits vorhanden ist.
+Diese Datei kann anschließend per `INCLUDE` in die Hauptkonfiguration eingebunden werden.
 
-- existiert sie bereits, wird nichts doppelt gespeichert
-- existiert sie noch nicht, wird sie **append** angefügt
+### Schreibverhalten
 
-Jede gespeicherte Regel erhält zusätzlich einen Kommentar mit der zugehörigen `msg_log_id`, z. B.:
+Beim Klick auf **`Regel speichern`** gilt:
+
+- die erzeugte Regel wird geprüft
+- identische Regeln werden nicht doppelt gespeichert
+- neue Regeln werden angehängt
+- über jeder gespeicherten Regel wird ein Kommentar mit der `msg_log_id` abgelegt
+
+Beispiel:
 
 ```text
 ### msg_log_id: hdr-157 ###
 SCORE +50="^Subject:.*(Letzte|Chance|Rabatt).*(Sichere|werbefreies|Postfach)"
 ```
 
-Das erleichtert die Rückverfolgung, woher eine Regel stammt.
+### Nutzen
+
+Dadurch bleibt nachvollziehbar:
+
+- woher eine Regel stammt
+- aus welcher Mail sie abgeleitet wurde
+- welche Regeln interaktiv über das CGI erzeugt wurden
 
 ---
 
-## Warum eine separate Regeldatei?
+## Typische praktische Nutzung
 
-Die Speicherung in eine separate Datei ist bewusst Teil des Konzepts.
+Typischer Ablauf:
 
-`mailfilter` kann über `INCLUDE` weitere Konfigurationsdateien einbinden. Dadurch lässt sich die Gesamtregelbasis sauber strukturieren.
+1. Zeitraum wählen
+2. auffälliges oder häufiges Subject in der Tabelle sichten
+3. per **`Header`** vollständige Header analysieren
+4. per **`Rule`** Regel-Modal öffnen
+5. passenden Header oder Subject-Vorschlag wählen
+6. Regeltyp (`DENY`, `SCORE`, `ALLOW`) festlegen
+7. Wert bei `SCORE` anpassen
+8. Regel kopieren oder direkt speichern
 
-Beispielsweise können getrennt gepflegt werden:
+Dieses Vorgehen ist besonders nützlich für:
 
-- Hauptkonfiguration
-- manuelle Regeln
-- automatisch erzeugte Regeln
-- per CGI interaktiv gespeicherte Regeln
-- spätere Rule-Generator-Ausgaben
-
-Für kleine und mittlere Administrationsumgebungen ist das deutlich wartbarer als eine einzige große Konfigurationsdatei.
-
----
-
-## Einbindung in `mailfilterrc`
-
-Die zusätzliche Datei muss in der eigentlichen Konfiguration eingebunden werden, z. B.:
-
-```text
-INCLUDE = "/etc/mailfilter/mailfilter-extra-rules-cgi.conf"
-```
-
-Die genaue Einbindung hängt vom restlichen lokalen Aufbau ab. Wichtig ist nur, dass die Datei von `mailfilter` beim Lauf berücksichtigt wird.
+- schnelle Reaktion auf neue Werbe- oder Phishingwellen
+- manuelle Nacharbeit nach Headeranalyse
+- Ergänzung automatisch erzeugter Regeln
+- lokale Feinanpassung in kleinen Administrationsumgebungen
 
 ---
 
-## Installationshinweise
+## Installation
 
-## Voraussetzungen
+### Voraussetzungen
 
-Benötigt werden mindestens:
+Benötigt werden:
 
-- ein funktionierendes `mailfilter-sqlite`
-- eine SQLite-Datenbank mit den Tabellen `messages` und `header_entries`
 - ein Webserver mit CGI-Unterstützung
 - Python 3
-- Schreibrechte für die zusätzliche Regeldatei, falls die Save-Funktion genutzt werden soll
+- Zugriff auf die SQLite-Datenbank von `mailfilter-sqlite`
+- Schreibrechte auf die zusätzliche Regeldatei, sofern Speichern im CGI genutzt werden soll
 
-Typischer Zielpfad für die Datenbank:
+### Ablage
 
-```text
-/var/spool/filter/mailheader.sqlite3
-```
-
-Typischer Zielpfad für die per CGI gespeicherten Regeln:
-
-```text
-/etc/mailfilter/mailfilter-extra-rules-cgi.conf
-```
-
----
-
-## Ablage im Repository
-
-Empfohlene Projektstruktur:
-
-```text
-extras/
-├── cgi/
-│   └── mailfilter.cgi/
-│       ├── mailfilter.cgi
-│       └── readme_cgi.md
-└── python/
-    └── mailfilter-analyze.py
-```
-
----
-
-## Beispielinstallation auf dem Zielsystem
-
-### 1. CGI-Script kopieren
-
-Beispielhaft nach:
+Beispiel:
 
 ```text
 /srv/web/ipfire/cgi-bin/mailfilter.cgi
 ```
 
-oder in das jeweilige CGI-Verzeichnis des Zielsystems.
+oder ein anderer CGI-Pfad des Zielsystems.
 
-### 2. Ausführbar machen
+### Dateirechte
 
-```bash
-chmod 0755 /srv/web/ipfire/cgi-bin/mailfilter.cgi
-```
-
-### 3. Regeldatei anlegen
-
-Falls die zusätzliche CGI-Regeldatei noch nicht existiert:
+Das Script selbst muss ausführbar sein, z. B.:
 
 ```bash
-touch /etc/mailfilter/mailfilter-extra-rules-cgi.conf
-chmod 0644 /etc/mailfilter/mailfilter-extra-rules-cgi.conf
+chmod 0755 mailfilter.cgi
 ```
 
-Die Rechte müssen zur Webserver-/CGI-Umgebung passen. Falls der Webserver die Datei direkt beschreiben soll, sind die Eigentümer- und Gruppenrechte entsprechend anzupassen.
+Falls die Funktion **`Regel speichern`** genutzt werden soll, muss der CGI-/Webserver-User Schreibrechte auf die zusätzliche Regeldatei besitzen.
 
-### 4. Include in `mailfilterrc` ergänzen
+### Include in der mailfilter-Konfiguration
 
-```text
-INCLUDE = "/etc/mailfilter/mailfilter-extra-rules-cgi.conf"
-```
-
-### 5. CGI im Browser aufrufen
+Die zusätzliche CGI-Datei sollte nicht isoliert bleiben, sondern per `INCLUDE` in die eigentliche `mailfilterrc` eingebunden werden.
 
 Beispiel:
 
 ```text
-https://<system>/cgi-bin/mailfilter.cgi
+INCLUDE "/etc/mailfilter/mailfilter-extra-rules-cgi.conf"
 ```
 
----
-
-## Sicherheits- und Betriebsaspekte
-
-Die CGI-Oberfläche ist bewusst für kontrollierte Administratorumgebungen gedacht.
-
-Empfehlungen:
-
-- nur intern oder abgesichert erreichbar machen
-- Schreibrechte für die Regeldatei bewusst vergeben
-- Webserver-Logs im Blick behalten
-- generierte Regeln regelmäßig prüfen
-- insbesondere `ALLOW`-Regeln mit Bedacht einsetzen
-
-Da Regeln direkt gespeichert werden können, sollte der Zugriff auf die Oberfläche nicht unkontrolliert offen sein.
+Je nach lokaler Struktur können weitere Generator- oder Hilfsdateien parallel eingebunden werden.
 
 ---
 
-## Grenzen der aktuellen Version
+## Designziel
 
-Der aktuelle Stand ist bewusst pragmatisch und leichtgewichtig. Einige mögliche spätere Ausbaustufen sind:
+Das CGI soll keine vollautomatische Sicherheitsentscheidung treffen. Es ist als interaktives Arbeitswerkzeug gedacht.
 
-- Anzeige zusätzlicher Details aus `rule_hits`
-- manuelles Selektieren einzelner Subject-Tokens per Klick
-- gruppenweise Auswahl stärkerer/flexibler Subject-Regeln
-- getrennte Ausgabedateien für `ALLOW`, `SCORE`, `DENY`
-- direkte Bearbeitung oder Deaktivierung bereits gespeicherter Regeln
-- Referenzierung gespeicherter Regeln innerhalb der Oberfläche
-- stärkere heuristische Unterscheidung zwischen legitimen Mails und Kampagnen-/Werbemustern
+Wichtige Leitlinien:
+
+- nachvollziehbar statt magisch
+- einfache lokale Bedienung
+- keine schweren Abhängigkeiten
+- direkte Nutzbarkeit auf kleinen Systemen
+- Ergänzung, nicht Ersatz, für umfangreichere Generator-Logik
+
+Gerade deshalb ist das CGI bewusst nah an realen Headern und am tatsächlichen `mailfilter`-Regeltext gehalten.
+
+---
+
+## Grenzen
+
+`mailfilter.cgi` kann Hinweise verdichten und Regelvorschläge erzeugen, ersetzt aber keine vollständige Kampagnen- oder Korrelationsanalyse.
+
+Insbesondere gehören weiterhin eher in andere Werkzeuge wie `mailfilter-rulegen.pl` oder `mailfilter-analyze.py`:
+
+- großflächige Massenanalyse
+- zeitliche Korrelationen
+- heuristische Aggregation über viele Mails
+- automatische Kampagnenerkennung
+- tiefe Score-Systeme über mehrere Signale hinweg
+
+Das CGI ist die operative, manuelle Frontend-Schicht dazu.
 
 ---
 
 ## Fazit
 
-`mailfilter.cgi` ist als schlanke Web-Oberfläche ein sehr praktischer Baustein für **mailfilter-sqlite**.
+`mailfilter.cgi` hat sich von einer einfachen Betreff-/Headeransicht zu einem kleinen, interaktiven Regelwerkzeug für `mailfilter-sqlite` entwickelt.
 
-Die Kombination aus:
+Es verbindet:
 
-- SQLite-basierter Headeranalyse
-- interaktiver Sichtung
-- Header-Detailansicht
-- konservativer und flexibler Regelgenerierung
-- direktem Speichern in eine separate Include-Datei
+- reale Headeranalyse
+- manuelle Kontextprüfung
+- konservative und flexible Subject-Regeln
+- Auth-/ARC-Auth-Speziallogik
+- direktes Speichern zusätzlicher Regeln
+- saubere Trennung über separate Include-Dateien
 
-macht das Script besonders nützlich für Administratoren, die in kleinen oder mittleren Umgebungen Mailverkehr schnell analysieren und regelbasiert nachsteuern wollen.
-
-Durch die Trennung von Hauptkonfiguration, Generatorlogik und CGI-regelbasiertem Schreiben bleibt die Gesamtkonfiguration sauber, nachvollziehbar und erweiterbar.
+Damit eignet sich das Script gut für Administratoren, die auf Basis realer Header schnell und kontrolliert nachsteuern möchten.
