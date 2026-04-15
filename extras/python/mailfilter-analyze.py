@@ -59,10 +59,13 @@ BULK_DOMAIN_HINTS = (
 
 HIGH_TRUST_FROM_DOMAINS = (
     "google.com",
+    "accounts.google.com",
     "youtube.com",
     "paypal.de",
     "paypal.com",
     "github.com",
+    "telekom.de",
+    "ipfire.org",
 )
 
 SUSPICIOUS_TLDS = (
@@ -394,6 +397,20 @@ def build_combined_auth_signals(
     high_trust_domain = domain_is_high_trust(from_domain)
     multi_dkim_context = len(dkim_domains) > 1
 
+    infra_dkim = any(
+        dkim_domain.endswith((
+            "mailjet.com",
+            "bnc3.mailjet.com",
+            "sendgrid.net",
+            "emarsys.net",
+            "mailchimpapp.net",
+            "amazonses.com",
+        ))
+        for dkim_domain in dkim_domains
+    )
+
+    third_party_dkim = bool(dkim_domains) and not dkim_aligned
+
     if dkim_pass and spf_pass and dmarc_pass:
         combined.append("AUTH_PASS_TRIPLE")
 
@@ -427,10 +444,22 @@ def build_combined_auth_signals(
     if multi_dkim_context:
         combined.append("MULTI_DKIM_CONTEXT")
 
+    if infra_dkim:
+        combined.append("THIRD_PARTY_DKIM_INFRA")
+
+    if third_party_dkim:
+        combined.append("FROM_DKIM_MISMATCH")
+
     if (
         (dkim_pass or spf_pass or dmarc_pass)
         and not any_fail
         and alarm_subject
+        and (
+            bulk_hint
+            or infra_dkim
+            or third_party_dkim
+            or low_trust_domain
+        )
         and not high_trust_domain
     ):
         combined.append("AUTH_OK_BUT_CONTEXT_SUSPECT")
@@ -440,15 +469,26 @@ def build_combined_auth_signals(
         and not any_fail
         and bulk_hint
         and not alarm_subject
+        and not third_party_dkim
     ):
         combined.append("AUTH_OK_BULK_CONTEXT")
 
     if (
         dkim_pass
-        and (spf_pass or dmarc_pass)
         and (dkim_aligned or auth_from_aligned or mailfrom_aligned)
         and high_trust_domain
+        and not bulk_hint
         and not alarm_subject
+    ):
+        combined.append("AUTH_OK_STRONG")
+
+    if (
+        dkim_pass
+        and dkim_aligned
+        and high_trust_domain
+        and alarm_subject
+        and not bulk_hint
+        and not infra_dkim
     ):
         combined.append("AUTH_OK_STRONG")
 
@@ -457,15 +497,17 @@ def build_combined_auth_signals(
 
 def auth_suspicion_score(flags: Iterable[str]) -> int:
     weights = {
-        "auth_fail_present": 5,
-        "auth_ok_but_context_suspect": 5,
+        "auth_fail_present": 6,
+        "auth_ok_but_context_suspect": 6,
         "alarm_subject_pattern": 3,
         "low_trust_domain_context": 3,
+        "third_party_dkim_infra": 3,
+        "from_dkim_mismatch": 3,
         "multi_dkim_context": 2,
         "payment_subject_pattern": 1,
         "dkim_sig_only": 1,
-        "auth_ok_bulk_context": -1,
-        "auth_ok_strong": -2,
+        "auth_ok_bulk_context": -2,
+        "auth_ok_strong": -3,
         "auth_pass_triple": -2,
         "dkim_pass_d_aligned": -1,
         "spf_pass_mailfrom_aligned": -1,
