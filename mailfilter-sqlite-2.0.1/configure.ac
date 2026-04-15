@@ -24,8 +24,8 @@
 #  
 # Process this file with autoconf to produce a configure script.
 AC_PREREQ([2.71])
-AC_INIT([mailfilter-sqlite],[2.0.1],[ua880d@gmail.com])
-AC_REVISION([mailfilter-sqlite 2.0.1])
+AC_INIT([mailfilter-sqlite],[2.0.2],[ua880d@gmail.com])
+AC_REVISION([mailfilter-sqlite 2.0.2])
 AC_SUBST([PACKAGE_COPYRIGHT])
 AC_DEFINE([PACKAGE_COPYRIGHT],
           ["Copyright (c) 2000-2022 Andreas Bauer <baueran@gmail.com>; Copyright (c) 2026 <Rico Dummis> <ua880d@gmail.com>"],

@@ -31,6 +31,10 @@ page.
 
 Enjoy Mailfilter!
 
+-------------------15.04.2026 by Rico D.------------------------------
+
+- Bugfix: `msg_log_id` / `hdr-*` is now continued from the existing SQLite database across program restarts, preventing header collisions when appending to an existing database.
+
 --------------------25.03.2026 by Rico D.------------------------------
 
 mailfilter-sqlite-2.0.1 (sqlite extension)

@@ -4,6 +4,14 @@ Mailfilter ChangeLog
 Please note, this file is kept only for historic reasons. Check git history for
 current change log from now on.
 
+2026-04-15  Rico Dummis <ua880d@gmail.com>
+
+        * src/header.hh, src/header.cc: Keep header serial as class-wide state
+        and add synchronization method.
+        * src/dblog.hh, src/dblog.cc: Read highest existing hdr-N from SQLite
+        database during init and continue msg_log_id numbering across restarts.
+        * configure.ac: Bump version to 2.0.2.
+
 2026-03-25  Rico Dummis <ua880d@gmail.com>
 
     * Added SQLite-based header logging (optional) --enable-sqlite3-headerlog
