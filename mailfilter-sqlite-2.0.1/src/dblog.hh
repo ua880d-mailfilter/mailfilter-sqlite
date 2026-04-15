@@ -48,6 +48,7 @@ private:
   Dblog& operator=       (const Dblog&);
 
   void create_schema     (void);
+  unsigned long max_msg_log_serial (void) const;
   std::string ensure_msg_log_id (const Header*) const;
   std::string sql_quote  (const std::string&) const;
   void exec              (const std::string&) const;

@@ -80,6 +80,7 @@ void Dblog :: init (const char* db_path)
   try
     {
       create_schema ();
+      Header :: sync_log_id_counter (max_msg_log_serial ());
     }
   catch (...)
     {
@@ -185,6 +186,46 @@ void Dblog :: create_schema (void)
 
   exec ("CREATE INDEX IF NOT EXISTS idx_rule_hits_phase "
         "ON rule_hits(phase);");
+}
+
+unsigned long Dblog :: max_msg_log_serial (void) const
+{
+#ifdef USE_SQLITE3_HEADERLOG
+  if (!is_ready || !db_handle)
+    return 0;
+
+  const char* sql =
+    "SELECT MAX(CAST(SUBSTR(msg_log_id, 5) AS INTEGER)) "
+    "FROM ("
+    "  SELECT msg_log_id FROM messages "
+    "    WHERE msg_log_id GLOB 'hdr-[0-9]*' "
+    "  UNION ALL "
+    "  SELECT msg_log_id FROM header_entries "
+    "    WHERE msg_log_id GLOB 'hdr-[0-9]*' "
+    "  UNION ALL "
+    "  SELECT msg_log_id FROM rule_hits "
+    "    WHERE msg_log_id GLOB 'hdr-[0-9]*' "
+    ");";
+
+  sqlite3_stmt* stmt = NULL;
+  unsigned long max_serial = 0;
+
+  if (sqlite3_prepare_v2 ((sqlite3*)db_handle, sql, -1, &stmt, NULL) != SQLITE_OK)
+    return 0;
+
+  if (sqlite3_step (stmt) == SQLITE_ROW) {
+    if (sqlite3_column_type (stmt, 0) != SQLITE_NULL) {
+      sqlite3_int64 value = sqlite3_column_int64 (stmt, 0);
+      if (value > 0)
+        max_serial = (unsigned long)value;
+    }
+  }
+
+  sqlite3_finalize (stmt);
+  return max_serial;
+#else
+  return 0;
+#endif
 }
 
 string Dblog :: ensure_msg_log_id (const Header* the_header) const

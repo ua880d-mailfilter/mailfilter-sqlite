@@ -54,6 +54,8 @@ private:
   string         msg_date;
   int            msg_size;
 
+  static unsigned long header_serial;
+
 public:
   Header	();
   vector<entry>* entries             (void);
@@ -76,6 +78,8 @@ public:
   void           set_date            (const char*);
   int            size                (void)                const;
   void           set_size            (int);
+
+  static void sync_log_id_counter (unsigned long); 
 };
 
 #endif

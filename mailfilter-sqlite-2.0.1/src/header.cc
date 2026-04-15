@@ -35,10 +35,10 @@ extern "C"
 using namespace std;
 
 extern int cmp_no_case (const string&, const string&);
+unsigned long Header :: header_serial = 0;
 
 Header :: Header ()
 {
-  static unsigned long header_serial = 0;
   ostringstream tmp;
 
   header_serial++;
@@ -47,6 +47,12 @@ Header :: Header ()
   msg_log_id = tmp.str ();
   msg_entry_ordinal = 0;
   msg_size = 0;
+}
+
+void Header :: sync_log_id_counter (unsigned long last_serial)
+{
+  if (last_serial > header_serial)
+    header_serial = last_serial;
 }
 
 vector<entry>* Header :: entries (void)
