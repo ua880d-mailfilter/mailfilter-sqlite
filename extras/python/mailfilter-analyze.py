@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # /usr/bin/mailfilter-analyze.py
-# V. 15a
+# V. 15b
 
 from __future__ import annotations
 
@@ -340,13 +340,22 @@ def has_bulk_hint(header_names: Iterable[str], dkim_domains: Iterable[str]) -> b
 
     return False
 
+def domain_is_high_trust(from_domain: str) -> bool:
+    lowered = from_domain.lower()
+    if not lowered:
+        return False
+
+    return any(
+        lowered == domain or lowered.endswith("." + domain)
+        for domain in HIGH_TRUST_FROM_DOMAINS
+    )
 
 def domain_looks_low_trust(from_domain: str) -> bool:
     lowered = from_domain.lower()
     if not lowered:
         return True
 
-    if any(lowered == domain or lowered.endswith("." + domain) for domain in HIGH_TRUST_FROM_DOMAINS):
+    if domain_is_high_trust(lowered):
         return False
 
     if any(lowered.endswith(tld) for tld in SUSPICIOUS_TLDS):
@@ -382,6 +391,7 @@ def build_combined_auth_signals(
     payment_subject = text_matches_any(subject, PAYMENT_SUBJECT_PATTERNS)
     bulk_hint = has_bulk_hint(header_names, dkim_domains)
     low_trust_domain = domain_looks_low_trust(from_domain)
+    high_trust_domain = domain_is_high_trust(from_domain)
     multi_dkim_context = len(dkim_domains) > 1
 
     if dkim_pass and spf_pass and dmarc_pass:
@@ -421,7 +431,7 @@ def build_combined_auth_signals(
         (dkim_pass or spf_pass or dmarc_pass)
         and not any_fail
         and alarm_subject
-        and low_trust_domain
+        and not high_trust_domain
     ):
         combined.append("AUTH_OK_BUT_CONTEXT_SUSPECT")
 
@@ -437,7 +447,7 @@ def build_combined_auth_signals(
         dkim_pass
         and (spf_pass or dmarc_pass)
         and (dkim_aligned or auth_from_aligned or mailfrom_aligned)
-        and not low_trust_domain
+        and high_trust_domain
         and not alarm_subject
     ):
         combined.append("AUTH_OK_STRONG")
@@ -447,19 +457,19 @@ def build_combined_auth_signals(
 
 def auth_suspicion_score(flags: Iterable[str]) -> int:
     weights = {
-        "AUTH_FAIL_PRESENT": 5,
-        "AUTH_OK_BUT_CONTEXT_SUSPECT": 5,
-        "ALARM_SUBJECT_PATTERN": 3,
-        "LOW_TRUST_DOMAIN_CONTEXT": 3,
-        "MULTI_DKIM_CONTEXT": 2,
-        "PAYMENT_SUBJECT_PATTERN": 1,
-        "DKIM_SIG_ONLY": 1,
-        "AUTH_OK_BULK_CONTEXT": -1,
-        "AUTH_OK_STRONG": -2,
-        "AUTH_PASS_TRIPLE": -2,
-        "DKIM_PASS_D_ALIGNED": -1,
-        "SPF_PASS_MAILFROM_ALIGNED": -1,
-        "DMARC_PASS_FROM_ALIGNED": -1,
+        "auth_fail_present": 5,
+        "auth_ok_but_context_suspect": 5,
+        "alarm_subject_pattern": 3,
+        "low_trust_domain_context": 3,
+        "multi_dkim_context": 2,
+        "payment_subject_pattern": 1,
+        "dkim_sig_only": 1,
+        "auth_ok_bulk_context": -1,
+        "auth_ok_strong": -2,
+        "auth_pass_triple": -2,
+        "dkim_pass_d_aligned": -1,
+        "spf_pass_mailfrom_aligned": -1,
+        "dmarc_pass_from_aligned": -1,
     }
     return sum(weights.get(flag, 0) for flag in flags)
 
@@ -467,11 +477,11 @@ def auth_suspicion_score(flags: Iterable[str]) -> int:
 def classify_marker(flags: Iterable[str]) -> str:
     flags_set = set(flags)
 
-    if "AUTH_OK_BUT_CONTEXT_SUSPECT" in flags_set or "AUTH_FAIL_PRESENT" in flags_set:
+    if "auth_ok_but_context_suspect" in flags_set or "auth_fail_present" in flags_set:
         return "!!! suspicious"
-    if "AUTH_OK_BULK_CONTEXT" in flags_set:
+    if "auth_ok_bulk_context" in flags_set:
         return "bulk/auth-ok"
-    if "AUTH_OK_STRONG" in flags_set or "AUTH_PASS_TRIPLE" in flags_set:
+    if "auth_ok_strong" in flags_set or "auth_pass_triple" in flags_set:
         return "auth-strong"
     return "auth-neutral"
 
@@ -675,7 +685,7 @@ def print_auth_analysis(
 
     print("  Häufigste Flags:")
     for flag, count in flag_counter.most_common(12):
-        print(f"    {flag:28} -> {count:6,}")
+        print(f"    {flag:<28} -> {count:>6,}")
 
     ranked = sorted(analyses, key=auth_priority, reverse=True)[:auth_limit]
 
@@ -692,21 +702,19 @@ def print_auth_analysis(
         if item.dkim_selectors:
             domains.append("dkim_s=" + ",".join(item.dkim_selectors))
 
-                print(
+        flags_text = ", ".join(item.flags) if item.flags else "—"
+        details_text = " | ".join(domains) if domains else "—"
+
+        print(
             f"  {'msg_log_id=' + item.msg_log_id:<22}"
             f"{'marker=' + item.marker:<30}"
             f"{'decision=' + item.decision:<18}"
             f"{'score=' + format(item.final_score, '7.1f')}"
         )
-
-        flags_text = ", ".join(item.flags) if item.flags else "—"
-        details_text = " | ".join(domains) if domains else "—"
-
         print(f"    {'Subject':<8}: {subject_short}")
         print(f"    {'From':<8}: {item.from_addr or '—'}")
         print(f"    {'Flags':<8}: {flags_text}")
         print(f"    {'Details':<8}: {details_text}")
-
 
 def print_stats(
     *,
@@ -794,12 +802,19 @@ def print_stats(
         )[:15]:
             count = int(data["count"])
             avg = float(data["score_sum"]) / count if count > 0 else 0.0
-            msg_id = data["example_id"] or "—"
+            msg_id = str(data["example_id"] or "—")
             clean = decode_subject(subject)
-            suffix = "..." if len(clean) > 70 else ""
+
+            if len(clean) > 64:
+                subject_short = clean[:61] + "..."
+            else:
+                subject_short = clean
+
             print(
-                f"  {count:5,} × (Ø {avg:.1f}) | msg_log_id: {msg_id:<14} -> "
-                f"{clean[:80]}{suffix}"
+                f"  {count:>5,} × "
+                f"(Ø {avg:>6.1f}) | "
+                f"{'msg_log_id:':<11} {msg_id:<12} -> "
+                f"{subject_short}"
             )
 
         if analyze_auth:
